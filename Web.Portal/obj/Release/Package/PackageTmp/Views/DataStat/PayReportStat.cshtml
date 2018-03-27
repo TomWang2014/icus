@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "缴费记录上报情况";
+}
+
+<style type="text/css">
+    .table th, td {
+        word-break: keep-all;
+        white-space: nowrap;
+    }
+
+    .table tr td:nth-of-type(3) {
+        word-break: normal;
+        white-space: normal;
+    }
+</style>
+<div class="row">
+    <form class="form-horizontal" role="form">
+        <div class="col-sm-12">
+            <div class="col-sm-4">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">合作机构：</label>
+                    <div class="col-sm-8">
+                        <select class="form-control m-b" name="tenant" v-model="SearchDto.TenantId" v-on:change="getProjectList()">
+                            <option value="-1">全部</option>
+                            <option v-for="item in tenantList" value="{{item.Id}}">{{item.NetSysUserName}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">项目名称：</label>
+                    <div class="col-sm-8">
+                        <select class="form-control m-b" name="projectCarbon" v-model="SearchDto.ProjectId">
+                            <option value="-1">全部</option>
+                            <option v-for="item in projectList" value="{{item.Id}}">{{item.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group form-group">
+                    <div class="col-sm-8">
+                        <button type="button" v-on:click="getList()" class="btn btn-w-m btn-primary">搜索</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>合作机构@(ViewBag.TenantNumber)家，项目@(ViewBag.ProjectNumber)个，共缴费@(ViewBag.PayTotal)元</h5>
+            </div>
+            <div class="ibox-content">
+                <table class="table" v-if="list.length>0">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>合作机构名称</th>
+                            <th>项目名称</th>
+                            <th>缴费时间</th>
+                            <th>缴费金额</th>
+                            <th>描述</th>
+                            <th>记录创建时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.NetStudentNetTenantNetSysUserName}}</td>
+                            <td>{{item.ProjectName}}</td>
+                            <td>{{item.PayTimeStr}}</td>
+                            <td>{{item.PayAmount}}</td>
+                            <td>{{item.PayDesc}}</td>
+                            <td>{{item.CreateTimeStr}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="pager"></div>
+                <blockquote v-if="list.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询！</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+@section js{
+    <script src="~/Scripts/app/analysis/pay/services.js"></script>
+    <script src="~/Scripts/app/analysis/pay/index.js"></script>
+}
+
+
+
+

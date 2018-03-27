@@ -1,0 +1,13 @@
+﻿1>------ 已启动生成:  项目: Infrastructure, 配置: Debug Any CPU ------
+1>C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets(1697,5): warning MSB3245: 未能解析此引用。未能找到程序集“AiExpressionTurn”。请检查磁盘上是否存在该程序集。 如果您的代码需要此引用，则可能出现编译错误。
+1>C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets(1697,5): warning MSB3245: 未能解析此引用。未能找到程序集“Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL”。请检查磁盘上是否存在该程序集。 如果您的代码需要此引用，则可能出现编译错误。
+1>  Infrastructure -> E:\SourceCode\mohrss\Infrastructure\bin\Debug\College.Infrastructure.dll
+2>------ 已启动生成:  项目: Domain, 配置: Debug Any CPU ------
+2>  Domain -> E:\SourceCode\mohrss\Domain\bin\Debug\College.Domain.dll
+3>------ 已启动生成:  项目: Application, 配置: Debug Any CPU ------
+4>------ 已启动生成:  项目: Repository, 配置: Debug Any CPU ------
+3>  Application -> E:\SourceCode\mohrss\Application\bin\Debug\College.Application.dll
+4>  Repository -> E:\SourceCode\mohrss\Repository\bin\Debug\College.Repository.dll
+5>------ 已启动生成:  项目: Web.Portal, 配置: Debug Any CPU ------
+5>  Web.Portal -> E:\SourceCode\mohrss\Web.Portal\bin\College.Web.Portal.dll
+========== 生成:  成功 5 个，失败 0 个，最新 0 个，跳过 0 个 ==========

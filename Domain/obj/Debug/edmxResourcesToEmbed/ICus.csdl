@@ -1,0 +1,602 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="icusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="BalanceLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BId" Type="Int64" Nullable="false" />
+    <Property Name="CompanyId" Type="Int64" Nullable="false" />
+    <Property Name="OrderId" Type="Int64" Nullable="false" />
+    <Property Name="ChangeNumbers" Type="Int32" />
+    <Property Name="ChangeTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_BalanceLog_Company" FromRole="BalanceLog" ToRole="Company" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_BalanceLog_Orders" FromRole="BalanceLog" ToRole="Orders" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_BalanceLog_Users" FromRole="BalanceLog" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="CallBatch">
+    <Key>
+      <PropertyRef Name="BatchId" />
+    </Key>
+    <Property Name="BatchId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BatchName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerNumbers" Type="Int32" />
+    <Property Name="CallLeader" Type="Int32" />
+    <Property Name="CalledNumbers" Type="Int32" />
+    <Property Name="Creator" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CallBatchToCustomer" Relationship="Self.FK_CallBatchToCustomer_CallBatch" FromRole="CallBatch" ToRole="CallBatchToCustomer" />
+  </EntityType>
+  <EntityType Name="CallBatchToCustomer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BatchId" Type="Int64" Nullable="false" />
+    <Property Name="CustomerId" Type="Int64" />
+    <Property Name="BId" Type="Int64" />
+    <Property Name="CompanyId" Type="Int64" Nullable="false" />
+    <Property Name="CallStatus" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CallBatch" Relationship="Self.FK_CallBatchToCustomer_CallBatch" FromRole="CallBatchToCustomer" ToRole="CallBatch" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_CallBatchToCustomer_Company" FromRole="CallBatchToCustomer" ToRole="Company" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_CallBatchToCustomer_Customers" FromRole="CallBatchToCustomer" ToRole="Customers" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_CallBatchToCustomer_Users" FromRole="CallBatchToCustomer" ToRole="Users" />
+    <NavigationProperty Name="CallRemarks" Relationship="Self.FK_CallRemarks_CallBatchToCustomer" FromRole="CallBatchToCustomer" ToRole="CallRemarks" />
+  </EntityType>
+  <EntityType Name="CallRemarks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BatchToCustomerId" Type="Int64" />
+    <Property Name="RealName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sex" Type="Int32" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="MinPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MaxPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CallStatus" Type="Int32" />
+    <Property Name="Intension" Type="Int32" />
+    <Property Name="Remarks" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="CallTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="CallBatchToCustomer" Relationship="Self.FK_CallRemarks_CallBatchToCustomer" FromRole="CallRemarks" ToRole="CallBatchToCustomer" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="License" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelete" Type="Int32" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="BalanceLog" Relationship="Self.FK_BalanceLog_Company" FromRole="Company" ToRole="BalanceLog" />
+    <NavigationProperty Name="CallBatchToCustomer" Relationship="Self.FK_CallBatchToCustomer_Company" FromRole="Company" ToRole="CallBatchToCustomer" />
+    <NavigationProperty Name="BusinessToCustomers" Relationship="Self.FK_BusinessToCustomers_Company" FromRole="Company" ToRole="BusinessToCustomers" />
+    <NavigationProperty Name="Commission" Relationship="Self.FK_Commission_Company" FromRole="Company" ToRole="Commission" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Company" FromRole="Company" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="CustomerIntention">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int64" Nullable="false" />
+    <Property Name="ProjectName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="NewCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectCity" Type="Int32" />
+    <Property Name="ProjectArea" Type="Int32" />
+    <Property Name="BehaviorType" Type="Int32" />
+    <Property Name="BehaviorTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_CustomerIntention_Customers" FromRole="CustomerIntention" ToRole="Customers" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RealName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sex" Type="Int32" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelete" Type="Int32" Nullable="false" />
+    <Property Name="GenerateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CallBatchToCustomer" Relationship="Self.FK_CallBatchToCustomer_Customers" FromRole="Customers" ToRole="CallBatchToCustomer" />
+    <NavigationProperty Name="CustomerIntention" Relationship="Self.FK_CustomerIntention_Customers" FromRole="Customers" ToRole="CustomerIntention" />
+    <NavigationProperty Name="BusinessToCustomers" Relationship="Self.FK_BusinessToCustomers_Customers" FromRole="Customers" ToRole="BusinessToCustomers" />
+  </EntityType>
+  <EntityType Name="Funcs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ControllerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ActionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ParentFuncId" Type="Int32" />
+    <Property Name="IsDisPlay" Type="Int32" Nullable="false" />
+    <Property Name="ICon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Roles" Relationship="Self.CusFuncCusRoles" FromRole="Funcs" ToRole="Roles" />
+  </EntityType>
+  <EntityType Name="ImportTelephone">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="NewCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectArea" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BehaviorTime" Type="DateTime" Precision="3" />
+    <Property Name="IsDelete" Type="Int32" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BId" Type="Int64" Nullable="false" />
+    <Property Name="CompanyId" Type="Int64" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BuyNumbers" Type="Int32" />
+    <Property Name="SellerId" Type="Int64" />
+    <Property Name="Percentage" Type="Double" />
+    <Property Name="PayTime" Type="DateTime" Precision="3" />
+    <Property Name="IsPay" Type="Int32" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="BalanceLog" Relationship="Self.FK_BalanceLog_Orders" FromRole="Orders" ToRole="BalanceLog" />
+    <NavigationProperty Name="Commission" Relationship="Self.FK_Commission_Orders" FromRole="Orders" ToRole="Commission" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Orders_Users" FromRole="Orders" ToRole="Users" />
+    <NavigationProperty Name="Users1" Relationship="Self.FK_Orders_Users1" FromRole="Orders" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="ProjectToArea">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProjectName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="NewCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsDelete" Type="Int32" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+    <NavigationProperty Name="Funcs" Relationship="Self.CusFuncCusRoles" FromRole="Roles" ToRole="Funcs" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="type" Type="Int32" Nullable="false" />
+    <Property Name="RealName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyId" Type="Int64" />
+    <Property Name="CompanyName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdentityCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UsedTimes" Type="Int64" />
+    <Property Name="LastTimes" Type="Int64" />
+    <Property Name="RoleId" Type="Int32" />
+    <Property Name="IsDelete" Type="Int32" Nullable="false" />
+    <Property Name="CreatorId" Type="Int64" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="BalanceLog" Relationship="Self.FK_BalanceLog_Users" FromRole="Users" ToRole="BalanceLog" />
+    <NavigationProperty Name="CallBatchToCustomer" Relationship="Self.FK_CallBatchToCustomer_Users" FromRole="Users" ToRole="CallBatchToCustomer" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Users_Company" FromRole="Users" ToRole="Company" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Users" FromRole="Users" ToRole="Orders" />
+    <NavigationProperty Name="Orders1" Relationship="Self.FK_Orders_Users1" FromRole="Users" ToRole="Orders" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+    <NavigationProperty Name="BusinessToCustomers" Relationship="Self.FK_BusinessToCustomers_Users" FromRole="Users" ToRole="BusinessToCustomers" />
+    <NavigationProperty Name="Commission" Relationship="Self.FK_Commission_Users" FromRole="Users" ToRole="Commission" />
+  </EntityType>
+  <EntityType Name="VirtualNumbers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="BusinessToCustomers">
+    <Key>
+      <PropertyRef Name="BId" />
+      <PropertyRef Name="CompanyId" />
+      <PropertyRef Name="CustomerId" />
+      <PropertyRef Name="CreateTime" />
+    </Key>
+    <Property Name="BId" Type="Int64" Nullable="false" />
+    <Property Name="CompanyId" Type="Int64" Nullable="false" />
+    <Property Name="CustomerId" Type="Int64" Nullable="false" />
+    <Property Name="RealName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sex" Type="Int32" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="City" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_BusinessToCustomers_Company" FromRole="BusinessToCustomers" ToRole="Company" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_BusinessToCustomers_Customers" FromRole="BusinessToCustomers" ToRole="Customers" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_BusinessToCustomers_Users" FromRole="BusinessToCustomers" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Commission">
+    <Key>
+      <PropertyRef Name="SellerId" />
+      <PropertyRef Name="CompanyId" />
+      <PropertyRef Name="OrderId" />
+      <PropertyRef Name="CreateTime" />
+    </Key>
+    <Property Name="SellerId" Type="Int64" Nullable="false" />
+    <Property Name="CompanyId" Type="Int64" Nullable="false" />
+    <Property Name="OrderId" Type="Int64" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ComputeTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Commission_Company" FromRole="Commission" ToRole="Company" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Commission_Orders" FromRole="Commission" ToRole="Orders" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Commission_Users" FromRole="Commission" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_BalanceLog_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="BalanceLog" Type="Self.BalanceLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BalanceLog">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BalanceLog_Orders">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+    <End Role="BalanceLog" Type="Self.BalanceLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BalanceLog">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BalanceLog_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="BalanceLog" Type="Self.BalanceLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BalanceLog">
+        <PropertyRef Name="BId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CallBatchToCustomer_CallBatch">
+    <End Role="CallBatch" Type="Self.CallBatch" Multiplicity="1" />
+    <End Role="CallBatchToCustomer" Type="Self.CallBatchToCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CallBatch">
+        <PropertyRef Name="BatchId" />
+      </Principal>
+      <Dependent Role="CallBatchToCustomer">
+        <PropertyRef Name="BatchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CallBatchToCustomer_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="CallBatchToCustomer" Type="Self.CallBatchToCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CallBatchToCustomer">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CallBatchToCustomer_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="CallBatchToCustomer" Type="Self.CallBatchToCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CallBatchToCustomer">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CallBatchToCustomer_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="CallBatchToCustomer" Type="Self.CallBatchToCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CallBatchToCustomer">
+        <PropertyRef Name="BId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CallRemarks_CallBatchToCustomer">
+    <End Role="CallBatchToCustomer" Type="Self.CallBatchToCustomer" Multiplicity="0..1" />
+    <End Role="CallRemarks" Type="Self.CallRemarks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CallBatchToCustomer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CallRemarks">
+        <PropertyRef Name="BatchToCustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessToCustomers_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="BusinessToCustomers" Type="Self.BusinessToCustomers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessToCustomers">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Commission_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="Commission" Type="Self.Commission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Commission">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerIntention_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="CustomerIntention" Type="Self.CustomerIntention" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerIntention">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessToCustomers_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="BusinessToCustomers" Type="Self.BusinessToCustomers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessToCustomers">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Commission_Orders">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+    <End Role="Commission" Type="Self.Commission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Commission">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="BId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="SellerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessToCustomers_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="BusinessToCustomers" Type="Self.BusinessToCustomers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessToCustomers">
+        <PropertyRef Name="BId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Commission_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Commission" Type="Self.Commission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Commission">
+        <PropertyRef Name="SellerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CusFuncCusRoles">
+    <End Role="Funcs" Type="Self.Funcs" Multiplicity="*" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="icusEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Area" EntityType="Self.Area" />
+    <EntitySet Name="BalanceLog" EntityType="Self.BalanceLog" />
+    <EntitySet Name="CallBatch" EntityType="Self.CallBatch" />
+    <EntitySet Name="CallBatchToCustomer" EntityType="Self.CallBatchToCustomer" />
+    <EntitySet Name="CallRemarks" EntityType="Self.CallRemarks" />
+    <EntitySet Name="Company" EntityType="Self.Company" />
+    <EntitySet Name="CustomerIntention" EntityType="Self.CustomerIntention" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" />
+    <EntitySet Name="Funcs" EntityType="Self.Funcs" />
+    <EntitySet Name="ImportTelephone" EntityType="Self.ImportTelephone" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" />
+    <EntitySet Name="ProjectToArea" EntityType="Self.ProjectToArea" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="VirtualNumbers" EntityType="Self.VirtualNumbers" />
+    <EntitySet Name="BusinessToCustomers" EntityType="Self.BusinessToCustomers" />
+    <EntitySet Name="Commission" EntityType="Self.Commission" />
+    <AssociationSet Name="FK_BalanceLog_Company" Association="Self.FK_BalanceLog_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="BalanceLog" EntitySet="BalanceLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BalanceLog_Orders" Association="Self.FK_BalanceLog_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="BalanceLog" EntitySet="BalanceLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BalanceLog_Users" Association="Self.FK_BalanceLog_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="BalanceLog" EntitySet="BalanceLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CallBatchToCustomer_CallBatch" Association="Self.FK_CallBatchToCustomer_CallBatch">
+      <End Role="CallBatch" EntitySet="CallBatch" />
+      <End Role="CallBatchToCustomer" EntitySet="CallBatchToCustomer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CallBatchToCustomer_Company" Association="Self.FK_CallBatchToCustomer_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="CallBatchToCustomer" EntitySet="CallBatchToCustomer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CallBatchToCustomer_Customers" Association="Self.FK_CallBatchToCustomer_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="CallBatchToCustomer" EntitySet="CallBatchToCustomer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CallBatchToCustomer_Users" Association="Self.FK_CallBatchToCustomer_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CallBatchToCustomer" EntitySet="CallBatchToCustomer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CallRemarks_CallBatchToCustomer" Association="Self.FK_CallRemarks_CallBatchToCustomer">
+      <End Role="CallBatchToCustomer" EntitySet="CallBatchToCustomer" />
+      <End Role="CallRemarks" EntitySet="CallRemarks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessToCustomers_Company" Association="Self.FK_BusinessToCustomers_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="BusinessToCustomers" EntitySet="BusinessToCustomers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Commission_Company" Association="Self.FK_Commission_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="Commission" EntitySet="Commission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Company" Association="Self.FK_Users_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerIntention_Customers" Association="Self.FK_CustomerIntention_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="CustomerIntention" EntitySet="CustomerIntention" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessToCustomers_Customers" Association="Self.FK_BusinessToCustomers_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="BusinessToCustomers" EntitySet="BusinessToCustomers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Commission_Orders" Association="Self.FK_Commission_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Commission" EntitySet="Commission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Users1" Association="Self.FK_Orders_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessToCustomers_Users" Association="Self.FK_BusinessToCustomers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="BusinessToCustomers" EntitySet="BusinessToCustomers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Commission_Users" Association="Self.FK_Commission_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Commission" EntitySet="Commission" />
+    </AssociationSet>
+    <AssociationSet Name="CusFuncCusRoles" Association="Self.CusFuncCusRoles">
+      <End Role="Funcs" EntitySet="Funcs" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

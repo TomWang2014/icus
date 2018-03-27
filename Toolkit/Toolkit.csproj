@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7B82C707-ACFA-4E6F-926D-26387707E818}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YangMei.Toolkit</RootNamespace>
+    <AssemblyName>YangMei.Toolkit</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Modle\Cer_Certificate.cs" />
+    <Compile Include="Modle\Cer_CertificateColoum.cs" />
+    <Compile Include="Modle\Cer_MyCertificate.cs" />
+    <Compile Include="Modle\Dept_BackRate.cs" />
+    <Compile Include="Modle\Dept_DealRecord.cs" />
+    <Compile Include="Modle\Dept_Permission.cs" />
+    <Compile Include="Modle\Dept_RolePermission.cs" />
+    <Compile Include="Modle\Dept_Roles.cs" />
+    <Compile Include="Modle\Dept_RoleUser.cs" />
+    <Compile Include="Modle\Dept_Users.cs" />
+    <Compile Include="Modle\DrawSeeting.cs" />
+    <Compile Include="Modle\F_SplitIDs_Result.cs" />
+    <Compile Include="Modle\GetChildCourseSortBySortId_Result.cs" />
+    <Compile Include="Modle\GetChildDept_Result.cs" />
+    <Compile Include="Modle\Len_CourseRevalution.cs" />
+    <Compile Include="Modle\Len_CourseXinDe.cs" />
+    <Compile Include="Modle\Len_LearningRecord.cs" />
+    <Compile Include="Modle\Len_Questions.cs" />
+    <Compile Include="Modle\Len_UserLearnWare.cs" />
+    <Compile Include="Modle\Len_UserOrder.cs" />
+    <Compile Include="Modle\Len_WarePhoto.cs" />
+    <Compile Include="Modle\MessageSending.cs" />
+    <Compile Include="Modle\Model1.Designer.cs" />
+    <Compile Include="Modle\Money_LineRemit.cs" />
+    <Compile Include="Modle\Money_LineWithDraw.cs" />
+    <Compile Include="Modle\Res_BookBuy.cs" />
+    <Compile Include="Modle\Res_BookDeptDetials.cs" />
+    <Compile Include="Modle\Res_BookStorage.cs" />
+    <Compile Include="Modle\Res_BookStorageDetails.cs" />
+    <Compile Include="Modle\Res_BookUserDetials.cs" />
+    <Compile Include="Modle\Res_Card.cs" />
+    <Compile Include="Modle\Res_CardReturn.cs" />
+    <Compile Include="Modle\Res_CardSold.cs" />
+    <Compile Include="Modle\Res_CardSoldRecord.cs" />
+    <Compile Include="Modle\Res_Course.cs" />
+    <Compile Include="Modle\Res_CourseCategory.cs" />
+    <Compile Include="Modle\Res_CourseChangeLog.cs" />
+    <Compile Include="Modle\Res_CourseChat.cs" />
+    <Compile Include="Modle\Res_CourseEnter.cs" />
+    <Compile Include="Modle\Res_CoursePlan.cs" />
+    <Compile Include="Modle\Res_CourseToBook.cs" />
+    <Compile Include="Modle\Res_CourseToTeacher.cs" />
+    <Compile Include="Modle\Res_CourseToWare.cs" />
+    <Compile Include="Modle\Res_CourseWare.cs" />
+    <Compile Include="Modle\Res_CourseWareToExam.cs" />
+    <Compile Include="Modle\Res_CourseWareToQuestion.cs" />
+    <Compile Include="Modle\Res_CourseWareTree.cs" />
+    <Compile Include="Modle\Res_CourseWareTreeResource.cs" />
+    <Compile Include="Modle\Res_PlanBookChild.cs" />
+    <Compile Include="Modle\Res_PlanCourseChild.cs" />
+    <Compile Include="Modle\Res_GroupConfig.cs" />
+    <Compile Include="Modle\Res_Resource.cs" />
+    <Compile Include="Modle\Res_ResourcePackage.cs" />
+    <Compile Include="Modle\Res_Task.cs" />
+    <Compile Include="Modle\Res_TaskLearn.cs" />
+    <Compile Include="Modle\Res_TaskRes.cs" />
+    <Compile Include="Modle\Res_TeacherBook.cs" />
+    <Compile Include="Modle\sp_helpdiagramdefinition_Result.cs" />
+    <Compile Include="Modle\sp_helpdiagrams_Result.cs" />
+    <Compile Include="Modle\sysdiagrams.cs" />
+    <Compile Include="Modle\Sys_Admin.cs" />
+    <Compile Include="Modle\Sys_AdminRole.cs" />
+    <Compile Include="Modle\Sys_AdminTag.cs" />
+    <Compile Include="Modle\Sys_Answer.cs" />
+    <Compile Include="Modle\Sys_Config.cs" />
+    <Compile Include="Modle\Sys_Department.cs" />
+    <Compile Include="Modle\Sys_DeptToCourse.cs" />
+    <Compile Include="Modle\Sys_Log.cs" />
+    <Compile Include="Modle\Sys_LoginLog.cs" />
+    <Compile Include="Modle\Sys_Major.cs" />
+    <Compile Include="Modle\Sys_Notes.cs" />
+    <Compile Include="Modle\Sys_NotesResource.cs" />
+    <Compile Include="Modle\Sys_NotesSort.cs" />
+    <Compile Include="Modle\Sys_OperationsRole.cs" />
+    <Compile Include="Modle\Sys_OperPermission.cs" />
+    <Compile Include="Modle\Sys_OperRolePermission.cs" />
+    <Compile Include="Modle\Sys_Parameter.cs" />
+    <Compile Include="Modle\Sys_Permission.cs" />
+    <Compile Include="Modle\Sys_Questionnaire.cs" />
+    <Compile Include="Modle\Sys_RegisterApproval.cs" />
+    <Compile Include="Modle\Sys_RolePermission.cs" />
+    <Compile Include="Modle\Sys_Roles.cs" />
+    <Compile Include="Modle\Sys_RoleUser.cs" />
+    <Compile Include="Modle\Sys_Tags.cs" />
+    <Compile Include="Modle\Sys_TagSort.cs" />
+    <Compile Include="Modle\Sys_Tenant.cs" />
+    <Compile Include="Modle\Sys_TenantPermission.cs" />
+    <Compile Include="Modle\Sys_TenantToWare.cs" />
+    <Compile Include="Modle\Sys_ThirdUser.cs" />
+    <Compile Include="Modle\Sys_UserDevices.cs" />
+    <Compile Include="Modle\Sys_UserMessage.cs" />
+    <Compile Include="Modle\Sys_UserMessageContent.cs" />
+    <Compile Include="Modle\Sys_Users.cs" />
+    <Compile Include="Modle\Sys_VerificationCode.cs" />
+    <Compile Include="Modle\Tag_relation.cs" />
+    <Compile Include="Modle\vTenantFunction.cs" />
+    <Compile Include="Modle\V_CourseTree.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{962E8BC0-60C0-48CF-A339-A1CAAA4ADFD7}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,244 @@
+﻿<div class="row">
+    <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div>
+                    <h3 class="font-bold no-margins">
+                        各个合作机构下项目数统计图
+                    </h3>
+                </div>
+                <div class="m-t-md">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="echarts" id="ProjectNumberchart"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-t-md">
+                    <small>截至更新时间：@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div>
+                    <h3 class="font-bold no-margins">
+                        各个合作机构下学员报名数量统计图
+                    </h3>
+                </div>
+                <div class="m-t-md">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="echarts" id="Tenantstudentchart"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-t-md">
+                    <small>截至更新时间：@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title" style="border-style:none;">
+                <h5>各个合作机构数据汇总统计表</h5>
+            </div>
+            <div class="ibox-content" style="padding-top:0px;">
+                <div class="m-t-md">
+                    <div class="row">
+                        <table class="table" id="Stattable">
+                            <thead>
+                                <tr>
+                                    <th>机构名称</th>
+                                    <th>项目名称</th>
+                                    <th>学员报名数量(人)</th>
+                                    <th>缴费总额(元)</th>
+                                    <th>发证人数(人)</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="m-t-md">
+                    <small>截至更新时间：@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="stattabletpl" type="text/html">
+    {{# for(var i = 0, len = d.length; i < len; i++){ }}
+    <tr>
+        <td>{{ d[i].TenantName }}</td>
+        <td>{{ d[i].Projectname }}</td>
+        <td>{{ d[i].StudentCount }}</td>
+        <td>{{ d[i].PayAmountcount }}</td>
+        <td>{{ d[i].HavecerStudent }}</td>
+    </tr>
+    {{# } }}
+</script>
+
+@section js{
+    <!-- 自定义js -->
+    <script src="~/Content/js/content.js?v=1.0.0"></script>
+    <script src="~/Content/js/plugins/echarts/echarts-all.js"></script>
+    <script src="~/Content/js/plugins/layer/laytpl/laytpl.js"></script>
+    <script type="text/javascript">
+        vm = new Vue({
+            el: 'body'
+        });
+
+        $(function () {
+            gettenantpronumberdata();
+            gettenantstudentdata();
+            binddatatabledata();
+        });
+
+        //拉取机构下项目数统计数据
+        function gettenantpronumberdata() {
+            $.getJSON('@Url.Action("GetTenantProjectStatdata", "DataStat")', function (data) {
+                bindtenantpronumberchart(data);
+            });
+        }
+
+        //绑定机构下项目数量统计图
+        function bindtenantpronumberchart(data) {
+            var barChart = echarts.init(document.getElementById("ProjectNumberchart"));
+            var xarr = [];
+            var yarr = [];
+            $.each(data, function (idx, obj) {
+                xarr.push(obj.TenantName);
+                yarr.push(obj.ProjectCount);
+            });
+            var baroption = {
+                title: {
+                    show: false,
+                    text: '各个合作机构下项目数统计图'
+                },
+                tooltip: {
+                    type: 'showTip',
+                    trigger: 'axis'
+                },
+                legend: {
+                    show: false,
+                    data: ['合作单位名称']
+                },
+                grid: {
+                    x: 40,
+                    x2: 40,
+                    y2: 24
+                },
+                calculable: true,
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: xarr
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '项目总数',
+                        type: 'bar',
+                        data: yarr,
+                        markPoint: {
+                            data: [
+                                { type: 'max', name: '最大值' },
+                                { type: 'min', name: '最小值' }
+                            ]
+                        }
+                    }
+                ]
+            };
+            barChart.setOption(baroption);
+            window.onresize = barChart.resize;
+        }
+
+        //绑定机构下报名学员数量
+        function gettenantstudentdata() {
+            $.getJSON('@Url.Action("GetTenantStudentEnterStatdata", "DataStat")', function (data) {
+                bindtenantstudentchart(data);
+            });
+        }
+
+        //绑定机构下报名学员数量统计图
+        function bindtenantstudentchart(data) {
+            var barChart = echarts.init(document.getElementById("Tenantstudentchart"));
+            var xarr = [];
+            var yarr = [];
+            $.each(data, function (idx, obj) {
+                xarr.push(obj.TenantName);
+                yarr.push(obj.StudentCount);
+            });
+            var baroption = {
+                title: {
+                    show: false,
+                    text: '各个合作机构下学员报名数量统计图'
+                },
+                tooltip: {
+                    type: 'showTip',
+                    trigger: 'axis'
+                },
+                legend: {
+                    show: false,
+                    data: ['合作单位名称']
+                },
+                grid: {
+                    x: 40,
+                    x2: 40,
+                    y2: 24
+                },
+                calculable: true,
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: xarr
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '报名学员数量',
+                        type: 'bar',
+                        data: yarr,
+                        markPoint: {
+                            data: [
+                                { type: 'max', name: '最大值' },
+                                { type: 'min', name: '最小值' }
+                            ]
+                        }
+                    }
+                ]
+            };
+            barChart.setOption(baroption);
+            window.onresize = barChart.resize;
+        }
+
+        //绑定统计表数据
+        function binddatatabledata() {
+            $.getJSON('@Url.Action("GetTenantSummarySatadata", "DataStat")', function (data) {
+                var gettpl = document.getElementById('stattabletpl').innerHTML;
+                laytpl(gettpl).render(data, function (html) {
+                    $("#Stattable tbody").html(html);
+                });
+            });
+        }
+    </script>
+}

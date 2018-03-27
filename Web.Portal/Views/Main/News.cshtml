@@ -1,0 +1,72 @@
+﻿@model PagedList<ICusCRM.Application.NewsMgtServices.Dtos.NewsInfoItem>
+@using ICusCRM.Infrastructure.Entity
+@using Webdiyer.WebControls.Mvc
+
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.Title = "新闻中心";
+}
+
+<div class="content">
+    <img src="~/Content/main/images/news/new-top.png" />
+    <div class="main clearfix">
+        <div class="right">
+            <div class="title">
+                <h2>培训动态</h2><span></span>
+                <p>
+                    当前位置：<a href="http://edu.mohrss.gov.cn">首页</a>><a href="@Url.Action("News", "Main")">培训动态</a>
+                </p>
+            </div>
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <p><a href="@Url.Action("NewsInfo", "Main", new { newid = item.Id })">【@item.NewsTypeName】@item.Title</a></p><span>[@item.CreateTime] </span>
+                    </li>
+
+                }
+            </ul>
+            <div id="page"></div>
+        </div>
+    </div>
+</div>
+
+@section css{
+    <link href="~/Content/main/newsList.css" rel="stylesheet" />
+
+    <link href="~/Content/js/plugins/laypage/skin/laypage.css" rel="stylesheet" />
+}
+@section js{
+
+    <script src="~/Content/js/plugins/laypage/laypage.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            laypage({
+                cont: $('#page'), //容器。值支持id名、原生dom对象，jquery对象,
+                pages: @Model.TotalPageCount, //总页数
+                curr: function(){ //通过url获取当前页，也可以同上（pages）方式获取
+                    var page = location.search.match(/page=(\d+)/);
+                    return page ? page[1] : 1;
+                }(),
+                skip: true, //是否开启跳页
+                skin: '#0b60a2',
+                groups: 3, //连续显示分页数
+                jump: function(e, first){ //触发分页后的回调
+                    if(!first){ //一定要加此判断，否则初始时会无限刷新
+                        location.href = '@Url.Action("News","Main")?page='+e.curr;
+                    }
+                }
+
+            });
+
+            var winH = $(window).height();
+            var content = $(".content");
+            var allH = content.height() + 375;
+            if (allH < winH) {
+                content.height(winH - 375);
+            }
+        });
+    </script>
+}

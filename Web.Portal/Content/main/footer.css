@@ -1,0 +1,193 @@
+@charset "UTF-8";
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form,
+fieldset, legend, button, input, textarea, th, td {
+  margin: 0;
+  padding: 0;
+  font-family: '微软雅黑';
+}
+
+body, button, input, select, textarea {
+  font: 12px/1.5tahoma, arial, \5b8b\4f53;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+}
+
+address, cite, dfn, em, var {
+  font-style: normal;
+}
+
+code, kbd, pre, samp {
+  font-family: couriernew, courier, monospace;
+}
+
+small {
+  font-size: 12px;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+sup {
+  vertical-align: text-top;
+}
+
+sub {
+  vertical-align: text-bottom;
+}
+
+legend {
+  color: #000;
+}
+
+input {
+  outline: none;
+}
+
+fieldset, img {
+  border: 0;
+}
+
+button, input, select, textarea {
+  font-size: 100%;
+  font-family: '微软雅黑';
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background: #999999;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+@font-face {
+  font-family: 'iconfont';
+  /* project id 143771 */
+  src: url("//at.alicdn.com/t/font_bnbvf6hawmipmn29.eot");
+  src: url("//at.alicdn.com/t/font_bnbvf6hawmipmn29.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_bnbvf6hawmipmn29.woff") format("woff"), url("//at.alicdn.com/t/font_bnbvf6hawmipmn29.ttf") format("truetype"), url("//at.alicdn.com/t/font_bnbvf6hawmipmn29.svg#iconfont") format("svg");
+}
+
+.iconfont {
+  font-family: "iconfont";
+  font-size: 14px;
+  font-style: normal;
+}
+
+.size-12 {
+  font-size: 12px;
+}
+
+.size-14 {
+  font-size: 14px;
+}
+
+.size-16 {
+  font-size: 16px;
+}
+
+.size-18 {
+  font-size: 18px;
+}
+
+.cusor_hand {
+  cursor: pointer;
+}
+
+.trans {
+  transition: all 0.2s ease-in;
+}
+
+.overflow_pre {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.clear:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.footer-outer {
+  padding: 24px;
+  padding-bottom: 45px;
+  background: #0b60a2;
+}
+
+.footer-outer .content {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-outer .content:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.footer-outer .content > .left {
+  width: 630px;
+  float: left;
+}
+
+.footer-outer .content > .left > p {
+  font-size: 12px;
+  text-align: left;
+  line-height: 24px;
+  color: #fff;
+}
+
+.footer-outer .content > .left > p:nth-of-type(4) {
+  text-indent: 0;
+}
+
+.footer-outer .content > .left > p:nth-of-type(4) > svg {
+  float: left;
+  margin-right: 3px;
+}
+
+.footer-outer .content > .right {
+  width: 500px;
+  position: relative;
+  box-sizing: border-box;
+  float: right;
+}
+
+.footer-outer .content > .right > p {
+  font-size: 12px;
+  text-align: right;
+  line-height: 24px;
+  color: #fff;
+}

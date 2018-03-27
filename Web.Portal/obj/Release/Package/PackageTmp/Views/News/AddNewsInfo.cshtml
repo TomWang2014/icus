@@ -1,0 +1,276 @@
+﻿@{
+    ViewBag.Title = "添加新闻";
+}
+
+<div class="row">
+    <div class="tabs-container">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a data-toggle="tab" href="#tab-1" id="baseInfo" aria-expanded="true">新闻信息</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane active">
+                <div class="panel-body">
+                    <form class="form-horizontal m-t" id="signupForm" novalidate="novalidate">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">新闻标题：</label>
+                            <div class="col-sm-8">
+                                <input id="Title" name="Title" v-model="dto.Title" class="form-control" type="text">
+                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i>新闻标题最多允许200字符。</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">新闻分类：</label>
+                            <div class="col-sm-8">
+                                <label class="checkbox-inline i-checks" v-for="item in newsTypeList">
+                                    <input type="checkbox" name="newsType" value="{{item.Id}}">{{item.Name}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">作者：</label>
+                            <div class="col-sm-3">
+                                <input id="Author" name="Author" v-model="dto.Author" class="form-control" type="text">
+                            </div>
+                            <label class="col-sm-2 control-label">编辑：</label>
+                            <div class="col-sm-3">
+                                <input id="Editor" name="Editor" v-model="dto.Editor" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">新闻来源：</label>
+                            <div class="col-sm-3">
+                                <input id="Source" name="Source" v-model="dto.Source" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                            </div>
+                            <label class="col-sm-2 control-label">是否置顶：</label>
+                            <div class="col-sm-3">
+                                <div class="radio-inline i-checks">
+                                    <label>
+                                        <input type="radio" value="1" name="IsTop"><i></i>是
+                                    </label>
+                                </div>
+                                <div class="radio-inline i-checks">
+                                    <label>
+                                        <input type="radio" value="0" name="IsTop"><i></i>否
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">来源网址：</label>
+                            <div class="col-sm-8">
+                                <input id="SourceUrl" name="SourceUrl" v-model="dto.SourceUrl" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">新闻缩略图：</label>
+                            <div class="col-sm-8" style="padding-top:7px;">
+                                <template v-if="dto.Thumbnail.length<1">
+                                    <a data-toggle="modal" data-target="#myModal" href="#">上传</a>
+                                </template>
+                                <template v-else>
+                                    <a data-toggle="modal" data-target="#myModalShow" href="#">查看</a>
+                                    <a data-toggle="modal" v-on:click="delnewsinfoimg()" href="#">删除</a>
+                                </template>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">是否自动提取摘要：</label>
+                            <div class="col-sm-3">
+                                <div class="radio-inline i-checks">
+                                    <label>
+                                        <input type="radio" value="1" name="IsAbstract"><i></i>是
+                                    </label>
+                                </div>
+                                <div class="radio-inline i-checks">
+                                    <label>
+                                        <input type="radio" checked="" value="0" name="IsAbstract"><i></i>否
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">新闻摘要：</label>
+                            <div class="col-sm-8">
+                                <textarea id="Abstract" name="Abstract" v-model="dto.Abstract" class="form-control" style="resize:none;" rows="3"></textarea>
+                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i>新闻摘要最大允许200字符。</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">新闻内容：</label>
+                            <div class="col-sm-8">
+                                <div id="editor-trigger" style="min-height:500px;">
+
+                                </div>
+                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i>新闻内容最大允许2000字符。</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12" style="text-align:center;">
+                                <button type="button" class="btn btn-primary" v-on:click="save()">保存</button>
+                                <button type="button" class="btn btn-default" v-on:click="cancel()">取消</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">设置新闻缩略图</h4>
+            </div>
+            <div class="modal-body">
+                <div id="crop-avatar">
+                    <div id="avatar-modal">
+                        <form class="avatar-form" id="avatarForm" action="@Url.Action("SetNewsListImg", "News")" enctype="multipart/form-data" method="post">
+                            <div class="modal-body">
+                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> {{logoMsg}}</span>
+                                <div class="avatar-body">
+                                    <div class="avatar-upload">
+                                        <input type="hidden" class="avatar-src" name="avatar_src">
+                                        <input type="hidden" class="avatar-data" name="avatar_data">
+                                        <input type="hidden" v-model="dto.Id" name="id">
+                                        <input type="file" style="display: none" class="avatar-input" id="avatarInput" name="avatar_file">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div style="background-image: url('/Content/img/course.jpg')" class="avatar-wrapper"></div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div style="background-image: url('/Content/img/course.jpg');background-size: cover" class="avatar-preview preview-lg"></div>
+                                            <p style="width: 100%;text-align: center;margin-top: 30px">
+                                                <button type="button" id="btnSelectFile" class="btn btn-default btn-sm">选择图片</button>
+                                                <button type="submit" class="btn btn-primary btn-sm">剪辑上传</button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="myModalShow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">查看新闻缩略图</h4>
+            </div>
+            <div class="modal-body">
+                <img v-bind:src=dto.Thumbnail style="margin:0 auto;display:block;max-height:100%;max-width:100%;">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script type="text/javascript">
+        var objId = '@ViewBag.NewsId';
+    </script>
+    <script src="~/Content/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/Content/js/plugins/wangEditor/js/wangEditor.min.js"></script>
+    <script src="~/Content/js/plugins/avatar/assets/css/cropper.js"></script>
+    <script src="~/Scripts/app/news/addnewsInfo/main.js"></script>
+    <script src="~/Content/js/jquery.form.js"></script>
+    <script src="~/Scripts/app/news/newsType/services.js"></script>
+    <script src="~/Scripts/app/news/addnewsInfo/services.js"></script>
+    <script src="~/Scripts/app/news/addnewsInfo/index.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /**
+             * 下面是进行插件初始化
+             * 你只需传入相应的键值对
+             * */
+            $('#signupForm').bootstrapValidator({
+                fields: {
+                    Title: {
+                        validators: {
+                            notEmpty: {
+                                /*非空提示*/
+                                message: '新闻标题不能为空！'
+                            },
+                            stringLength: {
+                                /*长度提示*/
+                                max: 200,
+                                message: '新闻标题长度必须在1到200之间'
+                            } /*最后一个没有逗号*/
+                        }
+                    },
+                    Author: {
+                        validators: {
+                            stringLength: {
+                                /*长度提示*/
+                                max: 20,
+                                message: '作者长度必须在0到20之间'
+                            } /*最后一个没有逗号*/
+                        }
+                    },
+                    Editor: {
+                        validators: {
+                            stringLength: {
+                                /*长度提示*/
+                                max: 20,
+                                message: '编辑长度必须在0到20之间'
+                            } /*最后一个没有逗号*/
+                        }
+                    },
+                    Source: {
+                        validators: {
+                            stringLength: {
+                                /*长度提示*/
+                                max: 50,
+                                message: '来源长度必须在0到50之间'
+                            } /*最后一个没有逗号*/
+                        }
+                    },
+                    SourceUrl: {
+                        validators: {
+                            stringLength: {
+                                /*长度提示*/
+                                max: 200,
+                                message: '来源网址长度必须在0到200之间'
+                            } /*最后一个没有逗号*/
+                        }
+                    },
+                    Abstract: {
+                        validators: {
+                            stringLength: {
+                                /*长度提示*/
+                                max: 200,
+                                message: '新闻摘要长度必须在0到200之间'
+                            } /*最后一个没有逗号*/
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+@section css{
+    <link href="~/Content/js/plugins/avatar/css/main.css" rel="stylesheet" />
+    <link href="~/Content/js/plugins/avatar/assets/css/cropper.min.css" rel="stylesheet" />
+    <link href="~/Content/js/plugins/iCheck/custom.css" rel="stylesheet" />
+    <link href="~/Content/js/plugins/wangEditor/css/wangEditor.min.css" rel="stylesheet" />
+}

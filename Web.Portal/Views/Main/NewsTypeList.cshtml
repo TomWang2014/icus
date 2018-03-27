@@ -1,0 +1,22 @@
+﻿@model List<ICusCRM.Application.NewsMgtServices.Dtos.NewsTypeItem>
+@{
+    ViewBag.Title = "";
+}
+<div class="left">
+    <div class="list">
+        @foreach (var item in Model)
+        {
+            if (item.Id == ViewBag.TypeId)
+            {
+                <a href="@Url.Action("News", "Main", new { typeid = item.Id, page=1 })" class="checked">@item.Name</a>
+            }
+            else
+            {
+                <a href="@Url.Action("News", "Main", new { typeid = item.Id, page=1 })">@item.Name</a>
+            }
+        }
+    </div>
+</div>
+
+
+

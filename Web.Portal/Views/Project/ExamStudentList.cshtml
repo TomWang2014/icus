@@ -1,0 +1,144 @@
+﻿@{
+    ViewBag.Title = "学员报名审批";
+}
+<style type="text/css">
+    .table th, td {
+        word-break: keep-all;
+        white-space: nowrap;
+    }
+
+    .table tr td:nth-of-type(3) {
+        word-break: normal;
+        white-space: normal;
+    }
+</style>
+<div class="row">
+    <form class="form-horizontal" role="form">
+        <div class="col-sm-12">
+            <div class="col-sm-3">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">学号：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" v-model="SearchDto.StudentNo" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">姓名：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" v-model="SearchDto.RealName" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">审核状态：</label>
+                    <div class="col-sm-8">
+                        <select class="form-control m-b" name="ExamineStatus" v-model="SearchDto.ExamineStatus">
+                            <option value="-1">全部</option>
+                            <option value="0">审核中</option>
+                            <option value="1">审核通过</option>
+                            <option value="2">审核未通过</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-3">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">证件类型：</label>
+                    <div class="col-sm-8">
+                        <select class="form-control m-b" name="CertificateType" v-model="SearchDto.CertificateType">
+                            <option value="-1">全部</option>
+                            <option value="0">身份证</option>
+                            <option value="1">士兵证</option>
+                            <option value="2">军官证</option>
+                            <option value="3">警官证</option>
+                            <option value="4">护照</option>
+                            <option value="5">其他</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">证件号码：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" v-model="SearchDto.CertificateNum" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-3">
+                <div class="form-group form-group">
+                    <div class="col-sm-8">
+                        <button type="button" v-on:click="getList()" class="btn btn-w-m btn-primary">搜索</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>@(ViewBag.projectName)学员报名审核</h5>
+                <div class="ibox-tools">
+                    <button v-if="listSelected.length>1" type="button" style="margin-right: 8px;margin-top:-6px;" v-on:click="PassBatch()" class="btn btn-info btn-sm">批量审核通过</button>
+                    <button v-if="listSelected.length>1" type="button" style="margin-right: 8px;margin-top:-6px;" v-on:click="UnPassBatch()" class="btn btn-danger btn-sm">批量审核不通过</button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table" v-if="list.length>0">
+                    <thead>
+                        <tr>
+                            <td style="width: 40px; text-align: center;">
+                                <input v-model="checkAllBool" type="checkbox">
+                            </td>
+                            <th>序号</th>
+                            <th>学号</th>
+                            <th>姓名</th>
+                            <th>审核状态</th>
+                            <th>审核时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list">
+                            <td style="width: 40px; text-align: center;">
+                                <input type="checkbox" v-on:change="change(item.seleced,item.Id);" v-model="item.seleced" />
+                            </td>
+                            <td>{{$index+1}}</td>
+                            <td>{{item.NetStudentStudentNo}}</td>
+                            <td>{{item.NetStudentRealName}}</td>
+                            <td>{{item.ExamineStatusStr}}</td>
+                            <td>{{item.ExamineTimeStr}}</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" v-on:click="StudentInfo(item.StuId)" type="button">查看学员信息</button>
+                                <button v-if="item.ExamineStatus==0||item.ExamineStatus==2" v-on:click="setExamStatus(item.Id,1)" type="button" class="btn btn-info btn-xs">审核通过</button>
+                                <button v-if="item.ExamineStatus==1" v-on:click="setExamStatus(item.Id,2)" type="button" class="btn btn-danger btn-xs">审核不通过</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="pager"></div>
+                <blockquote v-if="list.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询！</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+@section js{
+    <script>
+        var projectId=@ViewBag.projectId;
+    </script>
+    <script src="~/Scripts/app/project/examList/services.js"></script>
+    <script src="~/Scripts/app/project/examList/index.js"></script>
+}

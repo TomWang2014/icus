@@ -1,0 +1,1 @@
+var allPaths =[{"Area":"","Controller":"home","Action":"index","Url":"/"},{"Area":"","Controller":"home","Action":"mainpanel","Url":"/home/mainpanel"}]

@@ -1,0 +1,764 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="collegeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="NetBaseini">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsautomaticUser" Type="int" />
+    <Property Name="IsSendEmail" Type="int" />
+  </EntityType>
+  <EntityType Name="NetExamRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StuId" Type="int" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="Score" Type="float" />
+    <Property Name="ExamTime" Type="datetime" />
+    <Property Name="ExamName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CheckCode" Type="nvarchar" MaxLength="64" />
+    <Property Name="ClassId" Type="int" />
+  </EntityType>
+  <EntityType Name="NetInterface">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenantId" Type="int" />
+    <Property Name="StudentNo" Type="nvarchar" MaxLength="32" />
+    <Property Name="ProjectCode" Type="nvarchar" MaxLength="16" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Value" Type="int" Nullable="false" />
+    <Property Name="ExplainMsg" Type="nvarchar" MaxLength="512" />
+    <Property Name="Status" Type="int" />
+    <Property Name="SendTimes" Type="int" />
+    <Property Name="SendTime" Type="datetime" />
+    <Property Name="UpdateTime" Type="datetime" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="ClassId" Type="int" />
+  </EntityType>
+  <EntityType Name="NetLearnRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StuId" Type="int" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="StartTime" Type="datetime" />
+    <Property Name="EndTime" Type="datetime" />
+    <Property Name="LearnTime" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CheckCode" Type="nvarchar" MaxLength="64" />
+    <Property Name="ClassId" Type="int" />
+  </EntityType>
+  <EntityType Name="NetNewsInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="150" />
+    <Property Name="Contect" Type="nvarchar(max)" />
+    <Property Name="Author" Type="nvarchar" MaxLength="50" />
+    <Property Name="Editor" Type="nvarchar" MaxLength="50" />
+    <Property Name="Source" Type="nvarchar" MaxLength="50" />
+    <Property Name="SourceUrl" Type="nvarchar" MaxLength="200" />
+    <Property Name="Abstract" Type="nvarchar" MaxLength="200" />
+    <Property Name="IsTop" Type="int" />
+    <Property Name="Thumbnail" Type="nvarchar" MaxLength="200" />
+    <Property Name="IsDelete" Type="int" />
+    <Property Name="IsPublish" Type="int" />
+    <Property Name="BrowseNumber" Type="int" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="OperUser" Type="int" />
+    <Property Name="OperTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="NetNewsInfoType">
+    <Key>
+      <PropertyRef Name="NewsId" />
+      <PropertyRef Name="NewsTypeId" />
+    </Key>
+    <Property Name="NewsId" Type="int" Nullable="false" />
+    <Property Name="NewsTypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NetNewsType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="10" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="OrderNum" Type="int" />
+  </EntityType>
+  <EntityType Name="NetOperateLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Field1" Type="varchar" MaxLength="200" />
+    <Property Name="Field2" Type="varchar" MaxLength="200" />
+    <Property Name="Field3" Type="varchar" MaxLength="200" />
+    <Property Name="Field4" Type="varchar" MaxLength="200" />
+    <Property Name="Field5" Type="varchar" MaxLength="200" />
+    <Property Name="OperatorId" Type="int" />
+    <Property Name="OperatorCreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NetPayRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StuId" Type="int" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="PayAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PayTime" Type="datetime" />
+    <Property Name="PayDesc" Type="nvarchar" MaxLength="200" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CheckCode" Type="nvarchar" MaxLength="64" />
+    <Property Name="ClassId" Type="int" />
+  </EntityType>
+  <EntityType Name="NetProject">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectCode" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FrontImage" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Shortabstract" Type="nvarchar" MaxLength="500" />
+    <Property Name="Descriptions" Type="nvarchar(max)" />
+    <Property Name="IsRecommend" Type="bit" />
+    <Property Name="LearnTime" Type="int" Nullable="false" />
+    <Property Name="StartTime" Type="datetime" />
+    <Property Name="EndTime" Type="datetime" />
+    <Property Name="Teacher" Type="varchar" MaxLength="10" />
+    <Property Name="TrialRange" Type="nvarchar" MaxLength="200" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="ProjectType" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TenantId" Type="int" Nullable="false" />
+    <Property Name="TenantItemId" Type="int" />
+    <Property Name="ExamineUser" Type="int" />
+    <Property Name="ExamineTime" Type="datetime" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="BrowseNumber" Type="int" Nullable="false" />
+    <Property Name="CreateUser" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="OperUser" Type="int" />
+    <Property Name="OperTime" Type="datetime" />
+    <Property Name="IsautomaticUser" Type="bit" />
+    <Property Name="Url" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="NetProjectCarbon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SourceCode" Type="nvarchar" MaxLength="12" />
+    <Property Name="SourceId" Type="int" Nullable="false" />
+    <Property Name="ProjectCode" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FrontImage" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Shortabstract" Type="nvarchar" MaxLength="500" />
+    <Property Name="Descriptions" Type="nvarchar(max)" />
+    <Property Name="IsRecommend" Type="bit" />
+    <Property Name="LearnTime" Type="int" Nullable="false" />
+    <Property Name="StartTime" Type="datetime" />
+    <Property Name="EndTime" Type="datetime" />
+    <Property Name="Teacher" Type="varchar" MaxLength="10" />
+    <Property Name="TrialRange" Type="nvarchar" MaxLength="200" />
+    <Property Name="ProjectType" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TenantId" Type="int" Nullable="false" />
+    <Property Name="TenantItemId" Type="int" />
+    <Property Name="ExamineUser" Type="int" />
+    <Property Name="ExamineTime" Type="datetime" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="BrowseNumber" Type="int" Nullable="false" />
+    <Property Name="CreateUser" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="OperUser" Type="int" />
+    <Property Name="OperTime" Type="datetime" />
+    <Property Name="IsautomaticUser" Type="bit" />
+    <Property Name="Url" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="NetProjectSetting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FrontImage" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProjectId" Type="int" />
+  </EntityType>
+  <EntityType Name="NetProjectType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="NetStuCertificationRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StuId" Type="int" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="CertificationName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CertificationCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="CerGrantTime" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="OperUser" Type="int" />
+    <Property Name="OperTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="NetStudent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentNo" Type="nvarchar" MaxLength="32" />
+    <Property Name="RealName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sex" Type="int" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Nation" Type="nvarchar" MaxLength="20" />
+    <Property Name="IsDelete" Type="int" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="OperUser" Type="int" />
+    <Property Name="OperTime" Type="datetime" />
+    <Property Name="TenantId" Type="int" />
+  </EntityType>
+  <EntityType Name="NetStudentCard">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CertificateType" Type="int" />
+    <Property Name="CertificateNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="OperUser" Type="int" />
+    <Property Name="OperTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="NetStudentCardRel">
+    <Key>
+      <PropertyRef Name="StuId" />
+      <PropertyRef Name="CardId" />
+    </Key>
+    <Property Name="StuId" Type="int" Nullable="false" />
+    <Property Name="CardId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NetStudentLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentNo" Type="nvarchar" MaxLength="32" />
+    <Property Name="RealName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sex" Type="int" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Nation" Type="nvarchar" MaxLength="20" />
+    <Property Name="CertificateType" Type="int" />
+    <Property Name="CertificateNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChangeType" Type="int" />
+    <Property Name="TenantId" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="NetStudentProject">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StuId" Type="int" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="ExamineUser" Type="int" />
+    <Property Name="ExamineTime" Type="datetime" />
+    <Property Name="ExamineStatus" Type="int" />
+    <Property Name="Examinemsg" Type="nvarchar" MaxLength="200" />
+    <Property Name="IsFreeze" Type="int" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="OperUser" Type="int" />
+    <Property Name="OperTime" Type="datetime" />
+    <Property Name="IsCertificate" Type="bit" />
+    <Property Name="ClassId" Type="int" />
+  </EntityType>
+  <EntityType Name="NetSysFunc">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="OrderNumber" Type="int" Nullable="false" />
+    <Property Name="AreaName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ControllerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ActionName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ParentFuncId" Type="int" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsTenantFunc" Type="bit" />
+    <Property Name="FuncType" Type="int" Nullable="false" />
+    <Property Name="IsDisplay" Type="bit" Nullable="false" />
+    <Property Name="Icon" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="NetSysFuncSysRoles">
+    <Key>
+      <PropertyRef Name="SysFuncId" />
+      <PropertyRef Name="SysRoleId" />
+    </Key>
+    <Property Name="SysFuncId" Type="int" Nullable="false" />
+    <Property Name="SysRoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NetSysRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Type" Type="int" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="CreationTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NetSysUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Account" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Gender" Type="int" />
+    <Property Name="IdCardNo" Type="nvarchar(max)" />
+    <Property Name="SysRoleId" Type="int" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="CreationTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NetTenant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="FrontImage" Type="nvarchar" MaxLength="200" />
+    <Property Name="Logo" Type="nvarchar" MaxLength="200" />
+    <Property Name="Descriptions" Type="nvarchar(max)" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="CreateUser" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="OperUser" Type="int" />
+    <Property Name="OperTime" Type="datetime" />
+    <Property Name="AesKey" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gateway" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="TokenUrl" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="NetTenantIpWhite">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenantId" Type="int" />
+    <Property Name="IpAddress" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="NetTenantSetting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Logo" Type="nvarchar" MaxLength="200" />
+    <Property Name="TenantId" Type="int" />
+  </EntityType>
+  <Association Name="FK__NetTenant__Tenan__318258D2">
+    <End Role="NetTenant" Type="Self.NetTenant" Multiplicity="0..1" />
+    <End Role="NetTenantSetting" Type="Self.NetTenantSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetTenant">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetTenantSetting">
+        <PropertyRef Name="TenantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId">
+    <End Role="NetSysFunc" Type="Self.NetSysFunc" Multiplicity="0..1" />
+    <End Role="NetSysFunc1" Type="Self.NetSysFunc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetSysFunc">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetSysFunc1">
+        <PropertyRef Name="ParentFuncId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_SysFuncSysRoles_dbo_Sys_Func_SysFunc_Id">
+    <End Role="NetSysFunc" Type="Self.NetSysFunc" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NetSysFuncSysRoles" Type="Self.NetSysFuncSysRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetSysFunc">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetSysFuncSysRoles">
+        <PropertyRef Name="SysFuncId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_SysFuncSysRoles_dbo_SysRole_SysRole_Id">
+    <End Role="NetSysRole" Type="Self.NetSysRole" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NetSysFuncSysRoles" Type="Self.NetSysFuncSysRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetSysRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetSysFuncSysRoles">
+        <PropertyRef Name="SysRoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Net_ExamRecord_Net_Student">
+    <End Role="NetStudent" Type="Self.NetStudent" Multiplicity="0..1" />
+    <End Role="NetExamRecord" Type="Self.NetExamRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetStudent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetExamRecord">
+        <PropertyRef Name="StuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Net_NewsInfo_Type_Net_NewsInfo">
+    <End Role="NetNewsInfo" Type="Self.NetNewsInfo" Multiplicity="1" />
+    <End Role="NetNewsInfoType" Type="Self.NetNewsInfoType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetNewsInfo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetNewsInfoType">
+        <PropertyRef Name="NewsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Net_NewsInfo_Type_Net_NewsType">
+    <End Role="NetNewsType" Type="Self.NetNewsType" Multiplicity="1" />
+    <End Role="NetNewsInfoType" Type="Self.NetNewsInfoType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetNewsType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetNewsInfoType">
+        <PropertyRef Name="NewsTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetLearnRecord_NetStudent">
+    <End Role="NetStudent" Type="Self.NetStudent" Multiplicity="0..1" />
+    <End Role="NetLearnRecord" Type="Self.NetLearnRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetStudent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetLearnRecord">
+        <PropertyRef Name="StuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetNewsInfo_NetSysUser">
+    <End Role="NetSysUser" Type="Self.NetSysUser" Multiplicity="0..1" />
+    <End Role="NetNewsInfo" Type="Self.NetNewsInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetSysUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetNewsInfo">
+        <PropertyRef Name="CreateUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetPayRecord_NetStudent">
+    <End Role="NetStudent" Type="Self.NetStudent" Multiplicity="0..1" />
+    <End Role="NetPayRecord" Type="Self.NetPayRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetStudent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetPayRecord">
+        <PropertyRef Name="StuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetProject_NetProjectType">
+    <End Role="NetProjectType" Type="Self.NetProjectType" Multiplicity="1" />
+    <End Role="NetProject" Type="Self.NetProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetProjectType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetProject">
+        <PropertyRef Name="ProjectType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetProjectCarbon_NetProject">
+    <End Role="NetProject" Type="Self.NetProject" Multiplicity="1" />
+    <End Role="NetProjectCarbon" Type="Self.NetProjectCarbon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetProject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetProjectCarbon">
+        <PropertyRef Name="SourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetProjectCarbon_NetProjectType">
+    <End Role="NetProjectType" Type="Self.NetProjectType" Multiplicity="1" />
+    <End Role="NetProjectCarbon" Type="Self.NetProjectCarbon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetProjectType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetProjectCarbon">
+        <PropertyRef Name="ProjectType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetProjectSetting_NetProjectCarbon">
+    <End Role="NetProjectCarbon" Type="Self.NetProjectCarbon" Multiplicity="0..1" />
+    <End Role="NetProjectSetting" Type="Self.NetProjectSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetProjectCarbon">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetProjectSetting">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetStu_CertificationRecord_NetStudent">
+    <End Role="NetStudent" Type="Self.NetStudent" Multiplicity="0..1" />
+    <End Role="NetStuCertificationRecord" Type="Self.NetStuCertificationRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetStudent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetStuCertificationRecord">
+        <PropertyRef Name="StuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetStudent_NetTenant">
+    <End Role="NetTenant" Type="Self.NetTenant" Multiplicity="0..1" />
+    <End Role="NetStudent" Type="Self.NetStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetTenant">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetStudent">
+        <PropertyRef Name="TenantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetStudentCardRel_NetStudent">
+    <End Role="NetStudent" Type="Self.NetStudent" Multiplicity="1" />
+    <End Role="NetStudentCardRel" Type="Self.NetStudentCardRel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetStudent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetStudentCardRel">
+        <PropertyRef Name="StuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetStudentCardRel_NetStudentCard">
+    <End Role="NetStudentCard" Type="Self.NetStudentCard" Multiplicity="1" />
+    <End Role="NetStudentCardRel" Type="Self.NetStudentCardRel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetStudentCard">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetStudentCardRel">
+        <PropertyRef Name="CardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetStudentProject_NetStudent">
+    <End Role="NetStudent" Type="Self.NetStudent" Multiplicity="0..1" />
+    <End Role="NetStudentProject" Type="Self.NetStudentProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetStudent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetStudentProject">
+        <PropertyRef Name="StuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetSysUser_NetSysRole1">
+    <End Role="NetSysRole" Type="Self.NetSysRole" Multiplicity="1" />
+    <End Role="NetSysUser" Type="Self.NetSysUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetSysRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetSysUser">
+        <PropertyRef Name="SysRoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetTenant_NetSysUser">
+    <End Role="NetSysUser" Type="Self.NetSysUser" Multiplicity="1" />
+    <End Role="NetTenant" Type="Self.NetTenant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetSysUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetTenant">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetTenantIpWhite_NetTenant">
+    <End Role="NetTenant" Type="Self.NetTenant" Multiplicity="0..1" />
+    <End Role="NetTenantIpWhite" Type="Self.NetTenantIpWhite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetTenant">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetTenantIpWhite">
+        <PropertyRef Name="TenantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="collegeModelStoreContainer">
+    <EntitySet Name="NetBaseini" EntityType="Self.NetBaseini" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetExamRecord" EntityType="Self.NetExamRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetInterface" EntityType="Self.NetInterface" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetLearnRecord" EntityType="Self.NetLearnRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetNewsInfo" EntityType="Self.NetNewsInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetNewsInfoType" EntityType="Self.NetNewsInfoType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetNewsType" EntityType="Self.NetNewsType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetOperateLog" EntityType="Self.NetOperateLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetPayRecord" EntityType="Self.NetPayRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetProject" EntityType="Self.NetProject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetProjectCarbon" EntityType="Self.NetProjectCarbon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetProjectSetting" EntityType="Self.NetProjectSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetProjectType" EntityType="Self.NetProjectType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetStuCertificationRecord" EntityType="Self.NetStuCertificationRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetStudent" EntityType="Self.NetStudent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetStudentCard" EntityType="Self.NetStudentCard" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetStudentCardRel" EntityType="Self.NetStudentCardRel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetStudentLog" EntityType="Self.NetStudentLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetStudentProject" EntityType="Self.NetStudentProject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetSysFunc" EntityType="Self.NetSysFunc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetSysFuncSysRoles" EntityType="Self.NetSysFuncSysRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetSysRole" EntityType="Self.NetSysRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetSysUser" EntityType="Self.NetSysUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetTenant" EntityType="Self.NetTenant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetTenantIpWhite" EntityType="Self.NetTenantIpWhite" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetTenantSetting" EntityType="Self.NetTenantSetting" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__NetTenant__Tenan__318258D2" Association="Self.FK__NetTenant__Tenan__318258D2">
+      <End Role="NetTenant" EntitySet="NetTenant" />
+      <End Role="NetTenantSetting" EntitySet="NetTenantSetting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId" Association="Self.FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId">
+      <End Role="NetSysFunc" EntitySet="NetSysFunc" />
+      <End Role="NetSysFunc1" EntitySet="NetSysFunc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_SysFuncSysRoles_dbo_Sys_Func_SysFunc_Id" Association="Self.FK_dbo_SysFuncSysRoles_dbo_Sys_Func_SysFunc_Id">
+      <End Role="NetSysFunc" EntitySet="NetSysFunc" />
+      <End Role="NetSysFuncSysRoles" EntitySet="NetSysFuncSysRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_SysFuncSysRoles_dbo_SysRole_SysRole_Id" Association="Self.FK_dbo_SysFuncSysRoles_dbo_SysRole_SysRole_Id">
+      <End Role="NetSysRole" EntitySet="NetSysRole" />
+      <End Role="NetSysFuncSysRoles" EntitySet="NetSysFuncSysRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Net_ExamRecord_Net_Student" Association="Self.FK_Net_ExamRecord_Net_Student">
+      <End Role="NetStudent" EntitySet="NetStudent" />
+      <End Role="NetExamRecord" EntitySet="NetExamRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Net_NewsInfo_Type_Net_NewsInfo" Association="Self.FK_Net_NewsInfo_Type_Net_NewsInfo">
+      <End Role="NetNewsInfo" EntitySet="NetNewsInfo" />
+      <End Role="NetNewsInfoType" EntitySet="NetNewsInfoType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Net_NewsInfo_Type_Net_NewsType" Association="Self.FK_Net_NewsInfo_Type_Net_NewsType">
+      <End Role="NetNewsType" EntitySet="NetNewsType" />
+      <End Role="NetNewsInfoType" EntitySet="NetNewsInfoType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetLearnRecord_NetStudent" Association="Self.FK_NetLearnRecord_NetStudent">
+      <End Role="NetStudent" EntitySet="NetStudent" />
+      <End Role="NetLearnRecord" EntitySet="NetLearnRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetNewsInfo_NetSysUser" Association="Self.FK_NetNewsInfo_NetSysUser">
+      <End Role="NetSysUser" EntitySet="NetSysUser" />
+      <End Role="NetNewsInfo" EntitySet="NetNewsInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetPayRecord_NetStudent" Association="Self.FK_NetPayRecord_NetStudent">
+      <End Role="NetStudent" EntitySet="NetStudent" />
+      <End Role="NetPayRecord" EntitySet="NetPayRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetProject_NetProjectType" Association="Self.FK_NetProject_NetProjectType">
+      <End Role="NetProjectType" EntitySet="NetProjectType" />
+      <End Role="NetProject" EntitySet="NetProject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetProjectCarbon_NetProject" Association="Self.FK_NetProjectCarbon_NetProject">
+      <End Role="NetProject" EntitySet="NetProject" />
+      <End Role="NetProjectCarbon" EntitySet="NetProjectCarbon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetProjectCarbon_NetProjectType" Association="Self.FK_NetProjectCarbon_NetProjectType">
+      <End Role="NetProjectType" EntitySet="NetProjectType" />
+      <End Role="NetProjectCarbon" EntitySet="NetProjectCarbon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetProjectSetting_NetProjectCarbon" Association="Self.FK_NetProjectSetting_NetProjectCarbon">
+      <End Role="NetProjectCarbon" EntitySet="NetProjectCarbon" />
+      <End Role="NetProjectSetting" EntitySet="NetProjectSetting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetStu_CertificationRecord_NetStudent" Association="Self.FK_NetStu_CertificationRecord_NetStudent">
+      <End Role="NetStudent" EntitySet="NetStudent" />
+      <End Role="NetStuCertificationRecord" EntitySet="NetStuCertificationRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetStudent_NetTenant" Association="Self.FK_NetStudent_NetTenant">
+      <End Role="NetTenant" EntitySet="NetTenant" />
+      <End Role="NetStudent" EntitySet="NetStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetStudentCardRel_NetStudent" Association="Self.FK_NetStudentCardRel_NetStudent">
+      <End Role="NetStudent" EntitySet="NetStudent" />
+      <End Role="NetStudentCardRel" EntitySet="NetStudentCardRel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetStudentCardRel_NetStudentCard" Association="Self.FK_NetStudentCardRel_NetStudentCard">
+      <End Role="NetStudentCard" EntitySet="NetStudentCard" />
+      <End Role="NetStudentCardRel" EntitySet="NetStudentCardRel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetStudentProject_NetStudent" Association="Self.FK_NetStudentProject_NetStudent">
+      <End Role="NetStudent" EntitySet="NetStudent" />
+      <End Role="NetStudentProject" EntitySet="NetStudentProject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetSysUser_NetSysRole1" Association="Self.FK_NetSysUser_NetSysRole1">
+      <End Role="NetSysRole" EntitySet="NetSysRole" />
+      <End Role="NetSysUser" EntitySet="NetSysUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetTenant_NetSysUser" Association="Self.FK_NetTenant_NetSysUser">
+      <End Role="NetSysUser" EntitySet="NetSysUser" />
+      <End Role="NetTenant" EntitySet="NetTenant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetTenantIpWhite_NetTenant" Association="Self.FK_NetTenantIpWhite_NetTenant">
+      <End Role="NetTenant" EntitySet="NetTenant" />
+      <End Role="NetTenantIpWhite" EntitySet="NetTenantIpWhite" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

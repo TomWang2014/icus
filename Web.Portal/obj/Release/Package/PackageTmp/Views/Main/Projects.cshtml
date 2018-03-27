@@ -1,0 +1,133 @@
+﻿@model PagedList<College.Application.OrgMgtServices.Dtos.ProjectItem>
+@using College.Infrastructure.Entity
+@using Webdiyer.WebControls.Mvc
+@{
+
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.Title = "项目列表";
+
+    var typeList = ViewBag.types as List<ComboboxItemDto>;
+    var requestType = Request["type"];
+    var viewBagtype = ViewBag.type;
+
+    if (requestType == null)
+    {
+        requestType = viewBagtype;
+    }
+}
+
+<form method="GET" action="@Url.Action("Projects")" id="form">
+    <div class="main clearfix">
+        <p>
+            当前位置：<a href="http://edu.mohrss.gov.cn">首页</a>><a href="@Url.Action("Projects", "Main", new { type = ViewBag.type })">课程列表</a>
+        </p>
+
+        <h2>@ViewBag.typename</h2>
+
+
+        <div class="right">
+            <div class="topnav">
+                <div class="search">
+                    <span id="search_btn"></span>
+                    <input type="text" value="@ViewBag.keywords" name="keywords" id="keywords" placeholder="输入你想要的课程名称">
+                    <input type="hidden" name="type" value="@ViewBag.type" />
+                    <input type="hidden" name="order" value="@ViewBag.order" />
+                </div>
+                <div class="list">
+                    排序
+                    <div class="child">
+                        <h3 id="newest">按最新</h3>
+                        <h3 class="checked" id="hotest">按热门</h3>
+                    </div>
+                </div>
+            </div>
+            <ul class="clearfix">
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <li onclick='javascript:window.location.href = "@item.Url"'>
+                            <img src="@ViewBag.ImgDomain@item.FrontImage@ViewBag.ImgFm" alt="">
+                            @if (item.Name.Length > 25)
+                            {
+                                <h3>@item.Name.Substring(0, 25)...</h3>
+                            }
+                            else
+                            {
+                                <h3>@item.Name</h3>
+                            }
+
+
+                        </li>
+                    }
+                }
+
+
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</form>
+<div id="page" style="text-align:center;margin-top:30px"></div>
+
+
+@section css{
+    <link href="~/Content/main/courseList.css" rel="stylesheet" />
+    <link href="~/Content/js/plugins/laypage/skin/laypage.css" rel="stylesheet" />
+}
+@section js{
+    <script src="~/Content/js/plugins/laypage/laypage.js"></script>
+    <script>
+
+
+        $(document).ready(function () {
+
+            //排序开始
+            $("#newest").click(function(){
+                var keywords=$("#keywords").val();
+                location.href ='@Url.Action("Projects", "Main")?type=@ViewBag.type&keywords='+keywords+'&order=date';
+            });
+            $("#hotest").click(function(){
+                var keywords=$("#keywords").val();
+                location.href ='@Url.Action("Projects", "Main")?type=@ViewBag.type&keywords='+keywords+'&order=IsRecommend';
+            });
+            if('@ViewBag.order'=="date"){
+                $("#newest").addClass("checked");
+                $("#hotest").removeClass("checked");
+            }else{
+                $("#hotest").addClass("checked");
+                $("#newest").removeClass("checked");
+            }
+            //排序结束
+
+            //分页开始
+            laypage({
+                cont: $('#page'), //容器。值支持id名、原生dom对象，jquery对象,
+                pages: @Model.TotalPageCount, //总页数
+                curr: function(){ //通过url获取当前页，也可以同上（pages）方式获取
+                    var page = location.search.match(/page=(\d+)/);
+                    return page ? page[1] : 1;
+                }(),
+                skip: true, //是否开启跳页
+                skin: '#0b60a2',
+                groups: 3, //连续显示分页数
+                jump: function(e, first){ //触发分页后的回调
+                    if(!first){ //一定要加此判断，否则初始时会无限刷新
+                        location.href = '@Url.Action("Projects","Main")?page='+e.curr+'&type='+@ViewBag.type+'&keywords=@ViewBag.keywords&order=@ViewBag.order';
+                    }
+                }
+            });
+            //分页结束
+
+
+            //点击搜索提交表单
+            $("#search_btn").click(function(){
+                $("#form").submit();
+            });
+        });
+
+    </script>
+}

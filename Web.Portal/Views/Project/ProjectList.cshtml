@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = "项目管理";
+}
+
+<div class="row">
+    <form class="form-horizontal" role="form">
+
+
+        <div class="col-md-1">
+            <button type="button" id="loading-example-btn" v-on:click="getList()" class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> 刷新</button>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group form-group">
+                <label class="col-sm-4 control-label" for="formGroupInputSmall">合作机构：</label>
+                <div class="col-sm-8">
+                    <select class="form-control m-b" name="tenant" v-model="SearchDto.TenantId">
+                        <option value="-1">全部</option>
+                        <option v-for="item in tenantList" value="{{item.Id}}">{{item.NetSysUserName}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group form-group">
+                <label class="col-sm-4 control-label" for="formGroupInputSmall">项目名称：</label>
+                <div class="col-sm-8">
+                    <input class="form-control" v-model="SearchDto.ProjectName" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group form-group">
+                <label class="col-sm-4 control-label" for="formGroupInputSmall">项目审核状态：</label>
+                <div class="col-sm-8">
+                    <select class="form-control m-b" name="Status" v-model="SearchDto.Status">
+                        <option value="-1" selected="selected">全部</option>
+                        <option value="2">待审核</option>
+                        <option value="3">审核通过</option>
+                        <option value="4">审核失败</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2">
+            <div class="form-group form-group">
+                <label class="col-sm-4 control-label" for="formGroupInputSmall"></label>
+                <div class="col-sm-8">
+                    <button type="button" v-on:click="getList()" class="btn btn-w-m btn-primary ">搜索</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <table class="table table-bordered" v-if="list.length>0">
+                    <thead>
+                        <tr>
+                            <th style="width: 45px">序号</th>
+                            <th>项目封面</th>
+                            <th>项目编号</th>
+                            <th style="width: 116px">机构名称</th>
+                            <th>项目名称</th>
+                            <th style="width: 96px">项目分类</th>
+                            <th style="width: 45px">学时</th>
+                            <th style="width: 45px">价格</th>
+                            <th style="width: 70px">报名人数</th>
+                            <th style="width: 70px">审核状态</th>
+                            <th style ="width: 116px">审核时间</th>
+                            <th style="width: 116px">创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list">
+
+                            <td>{{$index+1}}</td>
+                            <td>
+                                <img width="100" v-bind:src="item.FrontImage" />
+                            </td>
+                            <td>{{item.ProjectCode}}</td>
+                            <td>{{item.TenantName}}</td>
+                            <td>{{item.Name}}</td>
+                            <td>{{item.NetProjectTypeName}}</td>
+                            <td>{{item.LearnTime}}</td>
+                            <td>{{item.Price}}</td>
+                            <td>{{item.SignUpNumbers}}</td>
+                            <td>{{item.StatusStr}}</td>
+                            <td>{{item.ExamineTimeStr}}</td>
+                            <td>{{item.CreateTimeStr}}</td>
+                            <td>
+                                @*  未提交审核1 待审核2 审核通过3 审核失败4*@
+                                <button v-if="item.Status==2||item.Status==3" type="button" onclick="javascirpt: window.location.href = '/Org/AdminProjectInfo?&id={{item.Id}}'" class="btn btn-info btn-xs">编辑</button>
+
+                                @*冻结,有通过副本的数据，才存在冻结或者解冻*@
+                                <span v-if="item.IsShowFreezeBtn">
+                                    <button v-if="item.FreezeStatus" v-on:click="setFreezeStatus(item.Id)" type="button" class="btn btn-info btn-xs">解冻</button>
+                                    <button v-if="!item.FreezeStatus" v-on:click="setFreezeStatus(item.Id)" type="button" class="btn btn-danger btn-xs">冻结</button>
+                                    <button v-on:click="ToStudentList(item.ProjectCarbonId,item.TenantName,item.Name)" type="button" class="btn btn-info btn-xs">学员管理</button>
+                                    <button v-on:click="ToExamStudent(item.ProjectCarbonId,item.Name)" type="button" class="btn btn-info btn-xs">报名审批</button>
+                                    <button v-on:click="ToCertificate(item.ProjectCarbonId)" type="button" class="btn btn-info btn-xs">证书管理</button>
+                                </span>
+                                <button type="button" onclick="window.location = '/org/ShowProjectInfo/{{item.Id}}'" class="btn btn-primary btn-xs">查看</button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="pager"></div>
+                <blockquote v-if="list.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询！</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+@section js{
+<script src="~/Scripts/static/jquery.cookie.js"></script>
+    <script src="~/Scripts/app/project/projectList/services.js"></script>
+    <script src="~/Scripts/app/project/projectList/index.js"></script>
+
+}
+

@@ -1,0 +1,37 @@
+﻿@using College.Application.OrgMgtServices.Dtos
+@using College.Application.SystemMgtServices.Dtos
+@model ProjectDto
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.Title = "项目详细信息";
+
+    var tenant = ViewBag.tenant as TenantItem;
+    var otherList = ViewBag.otherProject as List<ProjectDto>;
+}
+@section css{
+
+    <link href="~/Content/main/courseinfo.css" rel="stylesheet" />
+}
+<div class="main clearfix">
+    <!--头部-->
+    <div class="top clearfix">
+        <p>
+            当前位置：<a href="http://edu.mohrss.gov.cn">首页</a>><a href="@Url.Action("Index", "Main")">网络培训</a>><a href="@Url.Action("Projects", "Main", new { type = Model.ProjectType })">@ViewBag.TypeName</a>
+        </p><img src="@Model.FrontImage" alt="">
+        <div class="topitr">
+            <h3 class="overflow_pre">@Model.Name</h3>
+            <div class="teacher">主要讲师：<span>@Model.Teacher</span></div>
+            <div class="time">报名时间：<span>@Model.StartTimeStr - @Model.EndTimeStr</span></div>
+            <div class="courselist">章节：<span>@Model.LearnTime</span></div><a href="#" class="startstudy">进入课程</a>
+        </div>
+    </div>
+
+
+    <!--左侧-->  
+    <div class="left">
+        <div class="topnav">
+        <h3>课程介绍</h3>
+    </div>    
+        <pre style="white-space: pre-wrap;font-size:14px;word-wrap: break-word;font-family: '微软雅黑'">@Html.Raw(Model.Descriptions)</pre>
+    </div> 
+</div>

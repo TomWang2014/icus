@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "新闻管理";
+}
+
+<style type="text/css">
+    .table th,td {
+        word-break: keep-all;
+        white-space: nowrap;
+    }
+    .table tr td:nth-of-type(3) {
+        word-break:normal;
+        white-space: normal;
+    }
+</style>
+
+<div class="row">
+    <form class="form-horizontal" role="form">
+        <div class="col-sm-4">
+            <div class="form-group form-group">
+                <label class="col-sm-4 control-label" for="formGroupInputSmall">新闻标题：</label>
+                <div class="col-sm-8">
+                    <input class="form-control" v-model="SearchDto.Title" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group form-group">
+                <label class="col-sm-4 control-label" for="formGroupInputSmall">新闻栏目：</label>
+                <div class="col-sm-8">
+                    <select class="form-control m-b" name="account" v-model="SearchDto.TypeId">
+                        <option value="-1">全部</option>
+                        <option v-for="item in newsTypeList" value="{{item.Id}}">{{item.Name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group form-group">
+                <div class="col-sm-8">
+                    <button type="button" v-on:click="getList()" class="btn btn-w-m btn-primary">搜索</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>新闻列表</h5>
+                <div class="ibox-tools">
+                    <button v-if="listSelected.length>1" type="button" style="margin-right: 8px;margin-top:-6px;" v-on:click="deleteBatch()" class="btn btn-danger btn-sm">批量删除</button>
+                    <button type="button" v-on:click="addnewsInfo()" style="margin-top:-6px;"  class="btn btn-primary btn-sm">新增新闻信息</button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table" v-if="list.length>0">
+                    <thead>
+                        <tr>
+                            <td style="width: 40px; text-align: center;">
+                                <input v-model="checkAllBool" type="checkbox">
+                            </td>
+                            <th>序号</th>
+                            <th style="cursor: pointer" v-on:click="sort('Title')">标题</th>
+                            <th style="cursor: pointer" v-on:click="sort('CreateUser')">创建人</th>
+                            <th style="cursor: pointer" v-on:click="sort('CreateTime')">创建时间</th>
+                            <th style="cursor: pointer" v-on:click="sort('IsPublish')">是否发布</th>
+                            <th style="cursor: pointer" v-on:click="sort('IsTop')">是否置顶</th>
+                            <th >其他操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list">
+                            <td style="width: 40px; text-align: center;">
+                                <input type="checkbox" v-on:change="change(item.seleced,item.Id);" v-model="item.seleced" />
+                            </td>
+                            <td>{{$index+1}}</td>
+                            <td>{{item.Title}}</td>
+                            <td>{{item.NetSysUserName}}</td>
+                            <td>{{item.CreateTime}}</td>
+                            <td v-if="item.IsPublish==1">已发布</td>
+                            <td v-else>未发布</td>
+                            <td v-if="item.IsTop==1">已置顶</td>
+                            <td v-else>未置顶</td>
+                            <td >
+                                <button class="btn btn-white btn-xs" v-on:click="unpubnewsinfo(item.Id)" type="button" v-if="item.IsPublish==1">撤回</button>
+                                <button class="btn btn-info btn-xs" v-on:click="pubnewsinfo(item.Id)" type="button" v-else>发布</button>
+                                <button class="btn btn-info btn-xs" v-on:click="editnewsinfo(item.Id)" type="button">编辑</button>
+                                <button class="btn btn-danger btn-xs" v-on:click="deleteNewsInfo(item.Id)" type="button">删除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="pager"></div>
+                <blockquote v-if="list.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询添加或<cite title="Source Title"><a data-toggle="modal" v-on:click="addnewsInfo()" href="#">新增数据</a>！</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section js{
+   <script src="~/Scripts/static/jquery.cookie.js"></script>
+    <script src="~/Scripts/app/news/newsType/services.js"></script>
+    <script src="~/Scripts/app/news/newsInfo/services.js"></script>
+    <script src="~/Scripts/app/news/newsInfo/index.js"></script>
+}

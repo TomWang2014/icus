@@ -1,0 +1,30 @@
+2014-10-22 12:01:36,243 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Profiler initialized. Build: 2233
+2014-10-22 12:01:48,955 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Attempt to start HTTP listener
+2014-10-22 12:01:48,955 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - HTTP listener started successfully
+2016-11-22 13:31:55,089 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Profiler initialized. Build: 2233
+2016-11-22 13:31:55,491 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Attempt to start HTTP listener
+2016-11-22 13:31:55,491 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - HTTP listener started successfully
+2016-11-22 13:34:45,970 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Profiler initialized. Build: 2233
+2016-11-22 13:34:46,251 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Attempt to start HTTP listener
+2016-11-22 13:34:46,251 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - HTTP listener started successfully
+2016-12-03 14:16:56,498 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Profiler initialized. Build: 2233
+2016-12-03 14:16:56,859 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Attempt to start HTTP listener
+2016-12-03 14:16:56,859 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - HTTP listener started successfully
+2016-12-06 10:38:36,038 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Profiler initialized. Build: 2233
+2016-12-06 10:38:36,820 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Attempt to start HTTP listener
+2016-12-06 10:38:36,820 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - HTTP listener started successfully
+2016-12-06 14:07:43,158 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Profiler initialized. Build: 2233
+2016-12-06 14:07:43,343 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Attempt to start HTTP listener
+2016-12-06 14:07:43,343 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - HTTP listener started successfully
+2016-12-06 14:17:41,982 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Profiler initialized. Build: 2233
+2016-12-06 14:17:42,141 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Attempt to start HTTP listener
+2016-12-06 14:17:42,141 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - HTTP listener started successfully
+2016-12-06 14:58:17,708 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Profiler initialized. Build: 2233
+2016-12-06 14:58:17,877 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Attempt to start HTTP listener
+2016-12-06 14:58:17,877 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - HTTP listener started successfully
+2016-12-08 10:25:13,753 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Profiler initialized. Build: 2233
+2016-12-08 10:25:14,264 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Attempt to start HTTP listener
+2016-12-08 10:25:14,264 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - HTTP listener started successfully
+2016-12-09 16:09:58,058 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Profiler initialized. Build: 2233
+2016-12-09 16:09:58,562 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Attempt to start HTTP listener
+2016-12-09 16:09:58,563 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - HTTP listener started successfully

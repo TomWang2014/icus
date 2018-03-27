@@ -1,0 +1,241 @@
+﻿@model College.Web.Portal.Models.Main.IndexDataResp
+@{
+    ViewBag.Title = "首页";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="content">
+    <!--顶部区域-->
+
+
+    <div class="top">
+        <div class="focusimg">
+            <div id="fsD1" class="focus">
+                <div id="D1pic1" class="fPic">
+                    @if (Model.ProjectHotList.Count > 0)
+                    {
+                        foreach (var item in Model.ProjectHotList)
+                        {
+                            <div style="display: block;" class="fcon">
+                                <a target="_blank" href="@item.NetProjectCarbonUrl" class="banner-pic"><img src="@ViewBag.ImgDomain@item.FrontImage@ViewBag.ImgYs" width="700" height="320" style="opacity: 0.78;"></a><span class="shadow">
+                                    <a target="_blank" href="@item.NetProjectCarbonUrl">
+                                        @if (item.NetProjectCarbonName.Length > 22)
+                                        {
+                                            <h2>@item.NetProjectCarbonName.Substring(0, 22)...</h2>
+                                        }
+                                        else
+                                        {
+                                            <h2>@item.NetProjectCarbonName</h2>
+                                        }
+                                        @if (item.NetProjectCarbonShortabstract.Length > 148)
+                                        {
+                                            <p>@item.NetProjectCarbonShortabstract.Substring(0, 148)...</p>
+                                        }
+                                        else
+                                        {
+                                            <p>@item.NetProjectCarbonShortabstract</p>
+                                        }
+
+                                    </a>
+                                </span>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="fbg">
+                    <div id="D1fBt" class="D1fBt">
+                        @if (Model.ProjectHotList.Count > 6)
+                        {
+                            <a href="javascript:void(0)" hidefocus="true" target="_self"><i>125250</i></a><a href="javascript:void(0)" hidefocus="true" target="_self"><i>125250</i></a><a href="javascript:void(0)" hidefocus="true" target="_self"><i>125250</i></a><a href="javascript:void(0)" hidefocus="true" target="_self"><i>125250</i></a><a href="javascript:void(0)" hidefocus="true" target="_self"><i>125250</i></a><a href="javascript:void(0)" hidefocus="true" target="_self"><i>125250</i></a>
+                        }
+                        else
+                        {
+                            foreach (var item in Model.ProjectHotList)
+                            {
+                                <a href="javascript:void(0)" hidefocus="true" target="_self"><i>125250</i></a>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--培训动态-->
+    <div class="two">
+        <div class="net left">
+            <h2>
+                <span> </span>网络培训动态
+                <button type="button" class="btn" onclick='ToNewsList()'>MORE+</button>
+            </h2>
+            <ul>
+                @if (Model.WLPXDTNewList.Count > 0)
+                {
+                    foreach (var item in Model.WLPXDTNewList)
+                    {
+                        if (item.newsTypeName == "培训动态")
+                        {
+                            <li> <b class="dontai">@item.newsTypeName</b><a href="@Url.Action("NewsInfo", "Main", new { newid = item.Id })">@item.Title</a><span>@item.CreateTime</span></li>
+                        }
+                        else if (item.newsTypeName == "培训政策")
+                        {
+                            <li> <b class="zhengce">@item.newsTypeName</b><a href="@Url.Action("NewsInfo", "Main", new { newid = item.Id })">@item.Title</a><span>@item.CreateTime</span></li>
+                        }
+
+                    }
+                }
+
+            </ul>
+
+        </div>
+    </div>
+    <!--干部培训和推荐课程-->
+    <div class="three">
+        <div class="left">
+            <h2>
+                <span> </span>系统培训课程
+                <button type="button" class="btn" onclick="ToProjectList(1)">MORE+ </button>
+            </h2>
+            <ul>
+                @if (Model.OfficialProjects.Count > 0)
+                {
+                    foreach (var item in Model.OfficialProjects)
+                    {
+                        <li onclick='javascript:window.location.href = "@item.Url"'><img src="@ViewBag.ImgDomain@item.FrontImage@ViewBag.ImgFm"><h3>@item.Name</h3></li>
+                    }
+                }
+
+
+            </ul>
+        </div>
+    </div>
+
+
+    <!--技能培训和推荐课程-->
+    <div class="five">
+        <div class="left">
+            <h2>
+                <span> </span>技能培训课程
+                <button type="button" class="btn" onclick="ToProjectList(2)">MORE+ </button>
+            </h2>
+            <ul>
+                @if (Model.TechnologyProjects.Count > 0)
+                {
+                    foreach (var item in Model.TechnologyProjects)
+                    {
+                        <li onclick='javascript:window.location.href = "@item.Url"'>
+                            <img src="@ViewBag.ImgDomain@item.FrontImage@ViewBag.ImgFm">
+                            <h3>@item.Name</h3>
+                        </li>
+                    }
+                }
+
+
+            </ul>
+        </div>
+    </div>
+
+    @*<div class="six">
+        <h2>
+            <span> </span>企业培训平台
+            <button type="button" class="btn" onclick="ToTenants()">MORE+</button>
+        </h2>
+        <div class="silder-box silder-box-1">
+            <div class="silder">
+                <ul id="tenantList">
+                    <li onclick='javascript: window.location.href = "#"'>
+                        <img src="/content/main/images/index/dianziliusuo.jpg" alt="">
+                        <h3>电子六所</h3>
+                    </li>
+                    <li onclick='javascript: window.location.href = "#"'>
+                        <img src="/content/main/images/index/yangmeijituan.jpg" alt="">
+                        <h3>阳煤集团</h3>
+                    </li>
+                    <li onclick='javascript: window.location.href = "#"'>
+                        <img src="/content/main/images/index/yulinnengyuan.jpg" alt="">
+                        <h3>榆林能源</h3>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>*@
+
+</div>
+
+@section css{
+    <link rel="stylesheet" href="~/Content/main/index.css" />
+    <link href="~/Content/main/focusimg.css" rel="stylesheet" />
+}
+
+@section js{
+    <script src="~/Scripts/main/index.js"></script>
+    <script src="~/Scripts/main/koala.min.1.5.js"></script>
+    <script src="~/Scripts/main/terminator2.2.min.js"></script>
+
+    <script language="javascript">
+        function _nl_ys_check() {
+            var keyword = document.getElementById('showkeycode125141').value;
+            if (keyword == null || keyword == "") {
+                alert("请输入你要检索的内容！");
+                return false;
+            }
+            if (window.toFF == 1) {
+                document.getElementById("lucenenewssearchkeyword125141").value = Simplized(keyword);
+            } else {
+                document.getElementById("lucenenewssearchkeyword125141").value = keyword;
+            }
+            var base64 = new Base64();
+            document.getElementById("lucenenewssearchkeyword125141").value = base64
+                .encode(document.getElementById("lucenenewssearchkeyword125141").value);
+            new VsbFormFunc().disableAutoEnable(document.getElementById("showkeycode125141"));
+            return true;
+        }
+    </script>
+
+    <script type="text/javascript">
+
+        //跳转到新闻列表页面
+        function ToNewsList() {
+            window.location.href = '@Url.Action("News", "Main")';
+        }
+
+        //跳转到项目列表页面
+        function ToProjectList(typeid) {
+            window.location.href = '@Url.Action("Projects","Main")?type=' + typeid;
+        }
+
+        //合作机构（现在合作机构写死了，先留着这个方法 以后可能有用）
+        @*function BindTenants() {
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: '@Url.Action("GetTenantList", "Main")',
+                success: function (data) {
+                    var list = data.list;
+                    if (list.length > 0) {
+                        for (var i = 0; i < list.length; i++) {
+                            $("#tenantList").append('<li onclick="ToTenantInfo(' + list[i].Id + ')"><img src="' + list[i].Logo + '"> <h3>' + list[i].NetSysUserName + '</h3></li>');
+                        }
+                    }
+                }
+            });
+        }*@
+
+        //跳转到合作机构详情页
+        @*function ToTenantInfo(tenantId) {
+            window.location.href = '@Url.Action("CooperationUnitInfo", "Main")?id=' + tenantId;
+        }*@
+
+        //跳转到合作机构列表页面
+        function ToTenants() {
+            window.location.href = '@Url.Action("CooperationUnit", "Main")';
+        }
+
+
+    </script>
+}
+
+
+
+
+

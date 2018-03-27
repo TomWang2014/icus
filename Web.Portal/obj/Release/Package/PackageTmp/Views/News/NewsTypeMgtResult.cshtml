@@ -1,0 +1,172 @@
+﻿@{
+    ViewBag.Title = "新闻栏目管理";
+}
+
+<div class="row">
+    <form class="form-horizontal" role="form">
+        <div class="col-sm-4">
+            <div class="form-group form-group">
+                <label class="col-sm-4 control-label" for="formGroupInputSmall">栏目编码：</label>
+                <div class="col-sm-8">
+                    <input class="form-control" v-model="SearchDto.Code" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group form-group">
+                <label class="col-sm-4 control-label" for="formGroupInputSmall">栏目名称：</label>
+                <div class="col-sm-8">
+                    <input class="form-control" v-model="SearchDto.Name" type="text" id="formGroupInputSmall" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group form-group">
+                <div class="col-sm-8">
+                    <button type="button" v-on:click="getList()" class="btn btn-w-m btn-primary">搜索</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>新闻栏目列表</h5>
+                <div class="ibox-tools">
+                    <button v-if="listSelected.length>1" type="button" style="margin-right: 8px;margin-top:-6px;" v-on:click="deleteBatch()" class="btn btn-danger btn-sm">批量删除</button>
+                    <button type="button" data-toggle="modal" data-target="#myModal" style="margin-top:-6px;" class="btn btn-primary btn-sm">新增新闻栏目</button>
+                </div>
+            </div>
+
+            <div class="ibox-content">
+                <table class="table" v-if="list.length>0">
+                    <thead>
+                        <tr>
+                            <td style="width: 40px; text-align: center;">
+                                <input v-model="checkAllBool" type="checkbox">
+                            </td>
+                            <th>序号</th>
+                            <th style="cursor: pointer" v-on:click="sort('Code')">栏目编码</th>
+                            <th style="cursor: pointer" v-on:click="sort('Name')">栏目名称</th>
+                            <th style="cursor: pointer" v-on:click="sort('OrderNum')">排序</th>
+                            <th>其他操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list">
+                            <td style="width: 40px; text-align: center;">
+                                <input type="checkbox" v-on:change="change(item.seleced,item.Id);" v-model="item.seleced" />
+                            </td>
+                            <td>{{$index+1}}</td>
+                            <td>{{item.Code}}</td>
+                            <td>{{item.Name}}</td>
+                            <td>{{item.OrderNum}}</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" v-on:click="editNewsType(item)" type="button"><i class="fa fa-paste"></i> 编辑</button>
+                                <button class="btn btn-danger btn-xs" v-on:click="deleteNewsType(item.Id)" type="button"><i class="fa fa-paste"></i> 删除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="pager"></div>
+                <blockquote v-if="list.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询添加或<cite title="Source Title"><a data-toggle="modal" data-target="#myModal" href="#">新增数据</a>！</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">添加新闻栏目</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal m-t" id="signupForm" novalidate="novalidate">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">栏目编码：</label>
+                        <div class="col-sm-8">
+                            <input id="Code" name="Code" v-model="dto.Code" class="form-control" type="text">
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 栏目编码是唯一的，用来区分不同栏目</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">栏目名称：</label>
+                        <div class="col-sm-8">
+                            <input id="Name" name="Name" v-model="dto.Name" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">排序：</label>
+                        <div class="col-sm-8">
+                            <input id="OrderNum" name="OrderNum" v-model="dto.OrderNum" class="form-control" type="tel">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" v-on:click="save()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script src="~/Scripts/app/news/newsType/services.js" charset="utf-8"></script>
+    <script src="~/Scripts/app/news/newsType/index.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        /**
+         * 下面是进行插件初始化
+         * 你只需传入相应的键值对
+         * */
+        $('#signupForm').bootstrapValidator({
+            fields: {
+                Code: {
+                    validators: {
+                        notEmpty: {
+                            /*非空提示*/
+                            message: '栏目编码不能为空！'
+                        },
+                        stringLength: {
+                            /*长度提示*/
+                            max: 10,
+                            message: '栏目编码长度必须在1到10之间'
+                        } /*最后一个没有逗号*/
+                    }
+                },
+                Name: {
+                    validators: {
+                        notEmpty: {
+                            /*非空提示*/
+                            message: '栏目名称不能为空！'
+                        },
+                        stringLength: {
+                            /*长度提示*/
+                            max: 9,
+                            message: '栏目名称长度必须在1到9之间'
+                        } /*最后一个没有逗号*/
+                    }
+                },
+                OrderNum: {
+                    validators: {
+                        notEmpty: {
+                            /*非空提示*/
+                            message: '排序不能为空！'
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+}

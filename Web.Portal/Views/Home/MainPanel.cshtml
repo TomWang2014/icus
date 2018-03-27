@@ -1,0 +1,532 @@
+﻿<div class="row">
+
+    <div class="col-sm-3">
+        <div class="ibox">
+            <div class="ibox-content">
+                <h5 class="m-b-md">合作机构数量</h5>
+                <h2 class="text-navy">
+                    <i class="fa fa-mortar-board"></i> 2家
+                </h2>
+                <small>截至更新时间：@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="ibox">
+            <div class="ibox-content">
+                <h5 class="m-b-md">项目数量</h5>
+                <h2 class="text-navy">
+                    <i class="fa fa-codepen"></i> 10个
+                </h2>
+                <small>截至更新时间：@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="ibox">
+            <div class="ibox-content">
+                <h5 class="m-b-md">学员数量</h5>
+                <h2 class="text-navy">
+                    <i class="fa fa-users"></i> 1000人
+                </h2>
+                <small>截至更新时间：@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="ibox">
+            <div class="ibox-content">
+                <h5 class="m-b-md">累计收到上报数据</h5>
+                <h2 class="text-navy">
+                    <i class="fa fa-database"></i> 100000条
+                </h2>
+                <small>截至更新时间：@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div>
+                    <h3 class="font-bold no-margins">
+                        各个项目学员报名人数统计图
+                    </h3>
+                </div>
+                <div class="m-t-md">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div>
+                                <div class="echarts" id="echarts-user-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-t-md">
+                    <small>截至更新时间：@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="ibox">
+            <div class="ibox-content">
+                <h5>待审核项目</h5>
+                <table class="table table-stripped small m-t-md">
+                    <tbody>
+                        <tr>
+                            <td class="no-borders"></td>
+                            <td class="no-borders">
+                                机构名称
+                            </td>
+                            <td class="no-borders">
+                                项目名称
+                            </td>
+                            <td class="no-borders">
+                                操作
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-circle text-navy"></i>
+                            </td>
+                            <td>
+                                xxxxx机构
+                            </td>
+                            <td>
+                                测试项目
+                            </td>
+                            <td>
+                                审核
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-circle text-navy"></i>
+                            </td>
+                            <td>
+                                xxxxx机构
+                            </td>
+                            <td>
+                                测试项目
+                            </td>
+                            <td>
+                                审核
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-circle text-navy"></i>
+                            </td>
+                            <td>
+                                xxxxx机构
+                            </td>
+                            <td>
+                                测试项目
+                            </td>
+                            <td>
+                                审核
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-circle text-navy"></i>
+                            </td>
+                            <td>
+                                xxxxx机构
+                            </td>
+                            <td>
+                                测试项目
+                            </td>
+                            <td>
+                                审核
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-circle text-navy"></i>
+                            </td>
+                            <td>
+                                xxxxx机构
+                            </td>
+                            <td>
+                                测试项目
+                            </td>
+                            <td>
+                                审核
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-circle text-navy"></i>
+                            </td>
+                            <td>
+                                xxxxx机构
+                            </td>
+                            <td>
+                                测试项目
+                            </td>
+                            <td>
+                                审核
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="m-t-md">
+                    <small>更新时间：@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="ibox">
+            <div class="ibox-content">
+                <h5>待审核学员</h5>
+                <table class="table table-stripped small m-t-md">
+                    <tbody>
+                        <tr>
+                            <td class="no-borders"></td>
+                            <td class="no-borders">
+                                项目名称
+                            </td>
+                            <td class="no-borders">
+                                学员数量
+                            </td>
+                            <td class="no-borders">
+                                操作
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-circle text-navy"></i>
+                            </td>
+                            <td>
+                                测试项目
+                            </td>
+                            <td>
+                                100人
+                            </td>
+                            <td>
+                                审核
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-circle text-navy"></i>
+                            </td>
+                            <td>
+                                测试项目
+                            </td>
+                            <td>
+                                100人
+                            </td>
+                            <td>
+                                审核
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-circle text-navy"></i>
+                            </td>
+                            <td>
+                                测试项目
+                            </td>
+                            <td>
+                                100人
+                            </td>
+                            <td>
+                                审核
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-circle text-navy"></i>
+                            </td>
+                            <td>
+                                测试项目
+                            </td>
+                            <td>
+                                100人
+                            </td>
+                            <td>
+                                审核
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-circle text-navy"></i>
+                            </td>
+                            <td>
+                                测试项目
+                            </td>
+                            <td>
+                                100人
+                            </td>
+                            <td>
+                                审核
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-circle text-navy"></i>
+                            </td>
+                            <td>
+                                测试项目
+                            </td>
+                            <td>
+                                100人
+                            </td>
+                            <td>
+                                审核
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="m-t-md">
+                    <small>更新时间：@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div>
+                    <h3 class="font-bold no-margins">
+                        2015年-2016年报名人数趋势对比图
+                    </h3>
+                </div>
+                <div class="m-t-md">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="echarts" id="echarts-line-chart"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-t-md">
+                    <small>截至更新时间：@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div>
+                    <h3 class="font-bold no-margins">
+                        2016年报名人数与2015年同期对比图
+                    </h3>
+                </div>
+                <div class="m-t-md">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="echarts" id="echarts-bar-chart"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-t-md">
+                    <small>截至更新时间：@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section js{
+    <script src="~/Content/js/jquery.min.js"></script>
+    <!-- 自定义js -->
+    <script src="~/Content/js/content.js?v=1.0.0"></script>
+    <script src="~/Content/js/plugins/echarts/echarts-all.js"></script>
+    <script>
+        vm = new Vue({
+            el: 'body'
+        });
+
+        $(document).ready(function () {
+            loaddata();
+        });
+
+        function loaddata() {
+
+            var lineChart = echarts.init(document.getElementById("echarts-line-chart"));
+            var lineoption = {
+                title: {
+                    show: false,
+                    text: '2016年报名人数趋势同期对比图'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['2015年', '2016年']
+                },
+                grid: {
+                    x: 40,
+                    x2: 40,
+                    y2: 24
+                },
+                calculable: true,
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '2015年',
+                        type: 'line',
+                        data: [1000, 5000, 3000, 4500, 4500, 5500, 2500, 3580, 2580, 1650, 2530, 4328],
+                        markPoint: {
+                            data: [
+                                { type: 'max', name: '最大值' },
+                                { type: 'min', name: '最小值' }
+                            ]
+                        }
+                    },
+                    {
+                        name: '2016年',
+                        type: 'line',
+                        data: [3500, 2000, 3500, 7800, 9000, 5000, 4500, 8000, 4500, 4000, 3500, 7500],
+                        markPoint: {
+                            data: [
+                                { type: 'max', name: '最大值' },
+                                { type: 'min', name: '最小值' }
+                            ]
+                        }
+                    }
+                ]
+            };
+            lineChart.setOption(lineoption);
+            $(window).resize(lineChart.resize);
+
+
+            var barChart = echarts.init(document.getElementById("echarts-bar-chart"));
+            var baroption = {
+                title: {
+                    show: false,
+                    text: '2016年报名人数与2015年同期对比图'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['2015年', '2016年']
+                },
+                grid: {
+                    x: 30,
+                    x2: 40,
+                    y2: 24
+                },
+                calculable: true,
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '2015年',
+                        type: 'bar',
+                        data: [1000, 5000, 3000, 4500, 4500, 5500, 2500, 3580, 2580, 1650, 2530, 4328],
+                        markPoint: {
+                            data: [
+                                { type: 'max', name: '最大值' },
+                                { type: 'min', name: '最小值' }
+                            ]
+                        }
+                    },
+                    {
+                        name: '2016年',
+                        type: 'bar',
+                        data: [3500, 2000, 3500, 7800, 9000, 5000, 4500, 8000, 4500, 4000, 3500, 7500],
+                        markPoint: {
+                            data: [
+                                { type: 'max', name: '最大值' },
+                                { type: 'min', name: '最小值' }
+                            ]
+                        }
+                    }
+                ]
+            };
+            barChart.setOption(baroption);
+            window.onresize = barChart.resize;
+            binduserdata();
+        }
+
+        function binduserdata() {
+            var barChart = echarts.init(document.getElementById("echarts-user-chart"));
+            var baroption = {
+                title: {
+                    show: false,
+                    text: '各个项目学员报名总人数统计图'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    show: false,
+                    data: ['项目名称']
+                },
+                grid: {
+                    x: 30,
+                    x2: 40,
+                    y2: 24
+                },
+                calculable: true,
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: ['x1培训项目', 'x2培训项目', 'x3培训项目', 'x4培训项目', 'x5培训项目', 'x6培训项目', 'x7培训项目', 'x8培训项目', 'x9培训项目', 'x10培训项目', 'x11培训项目', 'x12培训项目', 'x13培训项目', 'x14培训项目', 'x15培训项目']
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '报名总人数',
+                        type: 'bar',
+                        data: [1000, 5000, 3000, 4500, 4500, 5500, 2500, 3580, 2580, 1650, 2530, 4328, 5000, 4200, 6000],
+                        markPoint: {
+                            data: [
+                                { type: 'max', name: '最大值' },
+                                { type: 'min', name: '最小值' }
+                            ]
+                        }
+                    }
+                ]
+            };
+            barChart.setOption(baroption);
+            window.onresize = barChart.resize;
+        }
+
+    </script>
+}

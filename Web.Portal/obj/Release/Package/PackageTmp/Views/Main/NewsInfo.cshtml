@@ -1,0 +1,43 @@
+﻿@using College.Application.NewsMgtServices.Dtos
+@model College.Application.NewsMgtServices.Dtos.ShowNewsInfo
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.Title = "网络培训";
+    ShowNewsInfo backmodel = ViewBag.backmodel == null ? null : ViewBag.backmodel as ShowNewsInfo;
+    ShowNewsInfo nextmodel = ViewBag.nextmodel == null ? null : ViewBag.nextmodel as ShowNewsInfo;
+}
+
+<div class="content">
+    <img src="/content/main/images/news/new-top.png">
+    <div class="main clearfix">
+        <div class="right">           
+            <div class="title">
+                <span> </span>
+                <p>
+                    当前位置：<a href="http://edu.mohrss.gov.cn">首页</a>><a href="@Url.Action("News", "Main")">>新闻列表</a>><a href="#">新闻详情</a>
+                </p>
+            </div>
+            <div class="textcontent">
+                <h2>@Model.Title</h2>
+                <div class="top"> <span class="time">发表时间：@Model.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</span><span class="from">来源：@Model.Source</span></div>
+                <pre style="white-space: pre-wrap;word-wrap: break-word;">@Html.Raw(Model.Contect)</pre>
+                @if (backmodel != null)
+                {
+                    <a href="@Url.Action("NewsInfo", "Main", new { typeid = ViewBag.TypeId, newid = backmodel.Id })" class="nextpage">上一篇：@backmodel.Title</a>
+                }
+                @if (nextmodel != null)
+                {
+                    <a href="@Url.Action("NewsInfo", "Main", new { typeid = ViewBag.TypeId, newid = nextmodel.Id })" class="nextpage">下一篇：@nextmodel.Title</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section css{
+    <link href="~/Content/main/newsinfo.css" rel="stylesheet" />
+}
+
+@section js{
+    <script src="~/Scripts/main/newsinfo.js"></script>
+}

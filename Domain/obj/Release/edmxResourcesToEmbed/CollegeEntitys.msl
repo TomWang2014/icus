@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="collegeModelStoreContainer" CdmEntityContainer="collegeEntities">
+    <EntitySetMapping Name="NetBaseinis">
+      <EntityTypeMapping TypeName="collegeModel.NetBaseini">
+        <MappingFragment StoreEntitySet="NetBaseini">
+          <ScalarProperty Name="IsSendEmail" ColumnName="IsSendEmail" />
+          <ScalarProperty Name="IsautomaticUser" ColumnName="IsautomaticUser" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetExamRecords">
+      <EntityTypeMapping TypeName="collegeModel.NetExamRecord">
+        <MappingFragment StoreEntitySet="NetExamRecord">
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <ScalarProperty Name="CheckCode" ColumnName="CheckCode" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="ExamName" ColumnName="ExamName" />
+          <ScalarProperty Name="ExamTime" ColumnName="ExamTime" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="StuId" ColumnName="StuId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetInterfaces">
+      <EntityTypeMapping TypeName="collegeModel.NetInterface">
+        <MappingFragment StoreEntitySet="NetInterface">
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+          <ScalarProperty Name="SendTimes" ColumnName="SendTimes" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ExplainMsg" ColumnName="ExplainMsg" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
+          <ScalarProperty Name="StudentNo" ColumnName="StudentNo" />
+          <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetLearnRecords">
+      <EntityTypeMapping TypeName="collegeModel.NetLearnRecord">
+        <MappingFragment StoreEntitySet="NetLearnRecord">
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <ScalarProperty Name="CheckCode" ColumnName="CheckCode" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="LearnTime" ColumnName="LearnTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="StuId" ColumnName="StuId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetNewsInfoes">
+      <EntityTypeMapping TypeName="collegeModel.NetNewsInfo">
+        <MappingFragment StoreEntitySet="NetNewsInfo">
+          <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+          <ScalarProperty Name="OperUser" ColumnName="OperUser" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="BrowseNumber" ColumnName="BrowseNumber" />
+          <ScalarProperty Name="IsPublish" ColumnName="IsPublish" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+          <ScalarProperty Name="IsTop" ColumnName="IsTop" />
+          <ScalarProperty Name="Abstract" ColumnName="Abstract" />
+          <ScalarProperty Name="SourceUrl" ColumnName="SourceUrl" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="Editor" ColumnName="Editor" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Contect" ColumnName="Contect" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetNewsTypes">
+      <EntityTypeMapping TypeName="collegeModel.NetNewsType">
+        <MappingFragment StoreEntitySet="NetNewsType">
+          <ScalarProperty Name="OrderNum" ColumnName="OrderNum" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetOperateLogs">
+      <EntityTypeMapping TypeName="collegeModel.NetOperateLog">
+        <MappingFragment StoreEntitySet="NetOperateLog">
+          <ScalarProperty Name="OperatorCreateTime" ColumnName="OperatorCreateTime" />
+          <ScalarProperty Name="OperatorId" ColumnName="OperatorId" />
+          <ScalarProperty Name="Field5" ColumnName="Field5" />
+          <ScalarProperty Name="Field4" ColumnName="Field4" />
+          <ScalarProperty Name="Field3" ColumnName="Field3" />
+          <ScalarProperty Name="Field2" ColumnName="Field2" />
+          <ScalarProperty Name="Field1" ColumnName="Field1" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetPayRecords">
+      <EntityTypeMapping TypeName="collegeModel.NetPayRecord">
+        <MappingFragment StoreEntitySet="NetPayRecord">
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <ScalarProperty Name="CheckCode" ColumnName="CheckCode" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="PayDesc" ColumnName="PayDesc" />
+          <ScalarProperty Name="PayTime" ColumnName="PayTime" />
+          <ScalarProperty Name="PayAmount" ColumnName="PayAmount" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="StuId" ColumnName="StuId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetProjects">
+      <EntityTypeMapping TypeName="collegeModel.NetProject">
+        <MappingFragment StoreEntitySet="NetProject">
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="IsautomaticUser" ColumnName="IsautomaticUser" />
+          <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+          <ScalarProperty Name="OperUser" ColumnName="OperUser" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="BrowseNumber" ColumnName="BrowseNumber" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="ExamineTime" ColumnName="ExamineTime" />
+          <ScalarProperty Name="ExamineUser" ColumnName="ExamineUser" />
+          <ScalarProperty Name="TenantItemId" ColumnName="TenantItemId" />
+          <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ProjectType" ColumnName="ProjectType" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="TrialRange" ColumnName="TrialRange" />
+          <ScalarProperty Name="Teacher" ColumnName="Teacher" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="LearnTime" ColumnName="LearnTime" />
+          <ScalarProperty Name="IsRecommend" ColumnName="IsRecommend" />
+          <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+          <ScalarProperty Name="Shortabstract" ColumnName="Shortabstract" />
+          <ScalarProperty Name="FrontImage" ColumnName="FrontImage" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetProjectCarbons">
+      <EntityTypeMapping TypeName="collegeModel.NetProjectCarbon">
+        <MappingFragment StoreEntitySet="NetProjectCarbon">
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="IsautomaticUser" ColumnName="IsautomaticUser" />
+          <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+          <ScalarProperty Name="OperUser" ColumnName="OperUser" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="BrowseNumber" ColumnName="BrowseNumber" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="ExamineTime" ColumnName="ExamineTime" />
+          <ScalarProperty Name="ExamineUser" ColumnName="ExamineUser" />
+          <ScalarProperty Name="TenantItemId" ColumnName="TenantItemId" />
+          <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ProjectType" ColumnName="ProjectType" />
+          <ScalarProperty Name="TrialRange" ColumnName="TrialRange" />
+          <ScalarProperty Name="Teacher" ColumnName="Teacher" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="LearnTime" ColumnName="LearnTime" />
+          <ScalarProperty Name="IsRecommend" ColumnName="IsRecommend" />
+          <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+          <ScalarProperty Name="Shortabstract" ColumnName="Shortabstract" />
+          <ScalarProperty Name="FrontImage" ColumnName="FrontImage" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
+          <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+          <ScalarProperty Name="SourceCode" ColumnName="SourceCode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetProjectSettings">
+      <EntityTypeMapping TypeName="collegeModel.NetProjectSetting">
+        <MappingFragment StoreEntitySet="NetProjectSetting">
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="FrontImage" ColumnName="FrontImage" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetProjectTypes">
+      <EntityTypeMapping TypeName="collegeModel.NetProjectType">
+        <MappingFragment StoreEntitySet="NetProjectType">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetStuCertificationRecords">
+      <EntityTypeMapping TypeName="collegeModel.NetStuCertificationRecord">
+        <MappingFragment StoreEntitySet="NetStuCertificationRecord">
+          <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+          <ScalarProperty Name="OperUser" ColumnName="OperUser" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="CerGrantTime" ColumnName="CerGrantTime" />
+          <ScalarProperty Name="CertificationCode" ColumnName="CertificationCode" />
+          <ScalarProperty Name="CertificationName" ColumnName="CertificationName" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="StuId" ColumnName="StuId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetStudents">
+      <EntityTypeMapping TypeName="collegeModel.NetStudent">
+        <MappingFragment StoreEntitySet="NetStudent">
+          <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+          <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+          <ScalarProperty Name="OperUser" ColumnName="OperUser" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="Nation" ColumnName="Nation" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="RealName" ColumnName="RealName" />
+          <ScalarProperty Name="StudentNo" ColumnName="StudentNo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetStudentCards">
+      <EntityTypeMapping TypeName="collegeModel.NetStudentCard">
+        <MappingFragment StoreEntitySet="NetStudentCard">
+          <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+          <ScalarProperty Name="OperUser" ColumnName="OperUser" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="CertificateNum" ColumnName="CertificateNum" />
+          <ScalarProperty Name="CertificateType" ColumnName="CertificateType" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetStudentLogs">
+      <EntityTypeMapping TypeName="collegeModel.NetStudentLog">
+        <MappingFragment StoreEntitySet="NetStudentLog">
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+          <ScalarProperty Name="ChangeType" ColumnName="ChangeType" />
+          <ScalarProperty Name="CertificateNum" ColumnName="CertificateNum" />
+          <ScalarProperty Name="CertificateType" ColumnName="CertificateType" />
+          <ScalarProperty Name="Nation" ColumnName="Nation" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="RealName" ColumnName="RealName" />
+          <ScalarProperty Name="StudentNo" ColumnName="StudentNo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetStudentProjects">
+      <EntityTypeMapping TypeName="collegeModel.NetStudentProject">
+        <MappingFragment StoreEntitySet="NetStudentProject">
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <ScalarProperty Name="IsCertificate" ColumnName="IsCertificate" />
+          <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+          <ScalarProperty Name="OperUser" ColumnName="OperUser" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="IsFreeze" ColumnName="IsFreeze" />
+          <ScalarProperty Name="Examinemsg" ColumnName="Examinemsg" />
+          <ScalarProperty Name="ExamineStatus" ColumnName="ExamineStatus" />
+          <ScalarProperty Name="ExamineTime" ColumnName="ExamineTime" />
+          <ScalarProperty Name="ExamineUser" ColumnName="ExamineUser" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="StuId" ColumnName="StuId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetSysFuncs">
+      <EntityTypeMapping TypeName="collegeModel.NetSysFunc">
+        <MappingFragment StoreEntitySet="NetSysFunc">
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="IsDisplay" ColumnName="IsDisplay" />
+          <ScalarProperty Name="FuncType" ColumnName="FuncType" />
+          <ScalarProperty Name="IsTenantFunc" ColumnName="IsTenantFunc" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ParentFuncId" ColumnName="ParentFuncId" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+          <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetSysRoles">
+      <EntityTypeMapping TypeName="collegeModel.NetSysRole">
+        <MappingFragment StoreEntitySet="NetSysRole">
+          <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetSysUsers">
+      <EntityTypeMapping TypeName="collegeModel.NetSysUser">
+        <MappingFragment StoreEntitySet="NetSysUser">
+          <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="SysRoleId" ColumnName="SysRoleId" />
+          <ScalarProperty Name="IdCardNo" ColumnName="IdCardNo" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Account" ColumnName="Account" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetTenants">
+      <EntityTypeMapping TypeName="collegeModel.NetTenant">
+        <MappingFragment StoreEntitySet="NetTenant">
+          <ScalarProperty Name="TokenUrl" ColumnName="TokenUrl" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Gateway" ColumnName="Gateway" />
+          <ScalarProperty Name="AesKey" ColumnName="AesKey" />
+          <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+          <ScalarProperty Name="OperUser" ColumnName="OperUser" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="FrontImage" ColumnName="FrontImage" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetTenantIpWhites">
+      <EntityTypeMapping TypeName="collegeModel.NetTenantIpWhite">
+        <MappingFragment StoreEntitySet="NetTenantIpWhite">
+          <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+          <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetTenantSettings">
+      <EntityTypeMapping TypeName="collegeModel.NetTenantSetting">
+        <MappingFragment StoreEntitySet="NetTenantSetting">
+          <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="NetNewsInfoType" TypeName="collegeModel.NetNewsInfoType" StoreEntitySet="NetNewsInfoType">
+      <EndProperty Name="NetNewsType">
+        <ScalarProperty Name="Id" ColumnName="NewsTypeId" />
+      </EndProperty>
+      <EndProperty Name="NetNewsInfo">
+        <ScalarProperty Name="Id" ColumnName="NewsId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="NetStudentCardRel" TypeName="collegeModel.NetStudentCardRel" StoreEntitySet="NetStudentCardRel">
+      <EndProperty Name="NetStudentCard">
+        <ScalarProperty Name="Id" ColumnName="CardId" />
+      </EndProperty>
+      <EndProperty Name="NetStudent">
+        <ScalarProperty Name="Id" ColumnName="StuId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="NetSysFuncSysRoles" TypeName="collegeModel.NetSysFuncSysRoles" StoreEntitySet="NetSysFuncSysRoles">
+      <EndProperty Name="NetSysRole">
+        <ScalarProperty Name="Id" ColumnName="SysRoleId" />
+      </EndProperty>
+      <EndProperty Name="NetSysFunc">
+        <ScalarProperty Name="Id" ColumnName="SysFuncId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

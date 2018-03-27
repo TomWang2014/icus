@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "项目管理";
+}
+<style type="text/css">
+    .table th, td {
+        word-break: keep-all;
+        white-space: nowrap;
+    }
+
+    .table tr td:nth-of-type(2) {
+        word-break: normal;
+        white-space: normal;
+    }
+</style>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            @*<div class="ibox-title">
+                    <h5>用户列表</h5>
+                    <div class="ibox-tools">
+                        <button v-if="userSelected.length>1" type="button" style="margin-right: 8px" v-on:click="deleteBatch()" class="btn btn-danger btn-xs">批量删除</button>
+                        <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-xs">新增用户</button>
+                    </div>
+                </div>*@
+            <div class="ibox-title">
+                <h5>项目列表</h5>
+                <div class="ibox-tools">
+                    <a href="@Url.Action("ProjectInfo",new{isAdmin=0})" class="btn btn-primary btn-sm">新增项目</a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row m-b-sm m-t-sm">
+                    <div class="col-md-1">
+                        <button type="button" id="loading-example-btn" v-on:click="getList()" class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> 刷新</button>
+                    </div>
+                    <div class="col-md-11">
+                        <div class="input-group">
+                            <input type="text" placeholder="请输入项目名称" v-model="sysSearchDto.Name" class="input-sm form-control"> <span class="input-group-btn">
+                                <button type="button" v-on:click="getList()" class="btn btn-sm btn-primary">  搜索</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-list">
+                    <table class="table" v-if="list.length>0">
+                        <thead>
+                            <tr>
+                                <th>项目封面</th>
+                                @*<th>项目编号</th>*@
+                                <th>项目名称</th>
+                                <th>章节</th>
+                                <th>项目分类</th>
+                                @*<th>价格</th>*@
+                                <th>审核状态
+                                <th>审核时间</th>
+                                <th>创建时间</th>
+                                <th style="width: 200px">其他操作</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="item in list">
+                                <td>
+                                    <img width="100" v-bind:src="item.FrontImage" />
+                                </td>
+                                @*<td>{{item.ProjectCode}}</td>*@
+                                <td>{{item.Name}}</td>
+                                <td>{{item.LearnTime}}</td>
+                                <td>{{item.NetProjectTypeName}}</td>
+                                @*<td><i class="fa fa-rmb"></i>{{item.Price}}</td>*@
+                                <td>{{item.StatusStr}}</td>
+                                <td>{{item.ExamineTimeStr}}</td>
+                                <td>{{item.CreateTime}}</td>
+                                <td>
+
+                                    @*  未提交审核1 待审核2 审核通过3 审核失败4*@
+
+                                    <button v-if="item.Status==1" type="button" v-on:click="submitAudit(item.Id)" class="btn btn-info btn-xs">提交审核</button>
+
+                                    @*失败后再次提交审核*@
+                                    <button v-if="item.Status==4" type="button" v-on:click="submitAudit(item.Id)" class="btn btn-info btn-xs">提交审核</button>
+
+                                    <button v-if="item.Status!=2" type="button" onclick="javascirpt: window.location.href = '/Org/ProjectInfo?isAdmin=0&id={{item.Id}}'" class="btn btn-white btn-xs">编辑</button>
+
+                                    @*审核中的数据可以撤回*@
+                                    <button v-if="item.Status==2" v-on:click="withdrawalAudit(item.Id)" type="button" class="btn btn-white btn-xs">撤回</button>
+                                    <button v-if="item.Status==1||item.Status==4" type="button" v-on:click="deleteItem(item.Id)" class="btn btn-danger btn-xs">删除</button>
+
+
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="pager"></div>
+                    <blockquote v-if="list.length==0">
+                        <p>暂无任何数据。</p>
+                        <footer>抱歉，没有查询到任何数据，请更改查询添加或<cite title="Source Title"><a data-toggle="modal" data-target="#myModal" href="#">新增数据</a>！</cite></footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section js{
+    <script src="~/Scripts/static/jquery.cookie.js"></script>
+    <script src="~/Scripts/app/org/project/services.js"></script>
+    <script src="~/Scripts/app/org/project/index.js"></script>
+
+}

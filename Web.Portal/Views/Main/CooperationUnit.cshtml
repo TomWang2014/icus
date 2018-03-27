@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.Title = "合作机构";
+}
+
+<img src="~/content/main/images/tsl/tslbc.png" alt="">
+<div class="main">
+    <p>
+        当前位置：<a href="http://edu.mohrss.gov.cn">首页</a>><a href="@Url.Action("CooperationUnit", "Main")">企业培训平台</a>
+    </p>
+    <h1>培训平台</h1>
+    <ul class="clearfix">
+        <li onclick='javascript: window.location.href = "#"'>
+            <img src="/content/main/images/index/dianziliusuo.jpg" alt="">
+            <h3>电子六所</h3>
+        </li>
+        <li onclick='javascript: window.location.href = "#"'>
+            <img src="/content/main/images/index/yangmeijituan.jpg" alt="">
+            <h3>阳煤集团</h3>
+        </li>
+        <li onclick='javascript: window.location.href = "#"'>
+            <img src="/content/main/images/index/yulinnengyuan.jpg" alt="">
+            <h3>榆林能源</h3>
+        </li>
+    </ul>
+</div>
+
+@section css{
+    <link href="~/Content/main/cooperation.css" rel="stylesheet" />
+}

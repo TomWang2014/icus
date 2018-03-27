@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "学员管理";
+}
+
+<style type="text/css">
+    .table th, td {
+        word-break: keep-all;
+        white-space: nowrap;
+    }
+
+    .table tr td:nth-of-type(3) {
+        word-break: normal;
+        white-space: normal;
+    }
+</style>
+<div class="row">
+    <form class="form-horizontal" role="form">
+        <div class="col-sm-12">
+            <div class="col-sm-4">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">合作机构：</label>
+                    <div class="col-sm-8">
+                        <select class="form-control m-b" name="tenant" v-model="SearchDto.TenantId" v-on:change="getProjectList()">
+                            <option value="-1">全部</option>
+                            <option v-for="item in tenantList" value="{{item.Id}}">{{item.NetSysUserName}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">项目名称：</label>
+                    <div class="col-sm-8">
+                        <select class="form-control m-b" name="projectCarbon" v-model="SearchDto.ProjectId">
+                            <option value="-1">全部</option>
+                            <option v-for="item in projectList" value="{{item.Id}}">{{item.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">学号：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" v-model="SearchDto.StudentNo" placeholder="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-4">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">证件类型：</label>
+                    <div class="col-sm-8">
+                        <select class="form-control m-b" name="CertificateType" v-model="SearchDto.CertificateType">
+                            <option value="-1">全部</option>
+                            <option value="0">身份证</option>
+                            <option value="1">士兵证</option>
+                            <option value="2">军官证</option>
+                            <option value="3">警官证</option>
+                            <option value="4">护照</option>
+                            <option value="5">其他</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">证件号码：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" v-model="SearchDto.CertificateNum" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">姓名：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" v-model="SearchDto.RealName" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-1">
+                <div class="form-group form-group">
+                    <div class="col-sm-8">
+                        <button type="button" v-on:click="getList()" class="btn btn-w-m btn-primary">搜索</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>学员列表</h5>
+            </div>
+            <div class="ibox-content">
+                <table class="table" v-if="list.length>0">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th style="cursor: pointer" v-on:click="sort('StudentNo')">学号</th>
+                            <th style="cursor: pointer" v-on:click="sort('RealName')">姓名</th>
+                            <th style="cursor: pointer" v-on:click="sort('Sex')">性别</th>
+                            <th style="cursor: pointer" v-on:click="sort('Phone')">手机号</th>
+                            <th style="cursor: pointer" v-on:click="sort('TenantId')">上报机构</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.StudentNo}}</td>
+                            <td>{{item.RealName}}</td>
+                            <td>{{item.Sex=="1"?"男":(item.Sex=="2"?"女":"未知")}}</td>
+                            <td>{{item.Phone}}</td>
+                            <td>{{item.NetTenantNetSysUserName}}</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" v-on:click='EditStudentInfo(item.Id)' type="button">编辑学员信息</button>
+                                <button class="btn btn-info btn-xs" v-on:click="StudentInfo(item.Id)" type="button">查看学员信息</button>
+                                <button class="btn btn-info btn-xs" v-on:click="StudentHistory(item.StudentNo)" type="button">查看学员信息变更历史</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="pager"></div>
+                <blockquote v-if="list.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询！</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section js{
+    <script src="~/Scripts/static/jquery.cookie.js"></script>
+    <script src="~/Scripts/app/student/studentList/services.js" charset="utf-8"></script>
+    <script src="~/Scripts/app/student/studentList/index.js" charset="utf-8"></script>
+}

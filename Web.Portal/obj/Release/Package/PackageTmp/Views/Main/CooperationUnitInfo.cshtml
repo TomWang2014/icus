@@ -1,0 +1,55 @@
+﻿@model College.Web.Portal.Models.Main.CooperationUnitInfoResp
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.Title = "合作机构详情";
+}
+
+<div class="content">
+    <img src="~/content/main/images/tsl/tslbc.png">
+    <div class="main clearfix">
+        <h2>
+            合作机构简介<span></span>
+            <p>当前位置：<a href="http://edu.mohrss.gov.cn">首页</a>><a href="@Url.Action("Index", "Main")">网络培训</a>><a href="@Url.Action("Projects", "Main")">合作机构</a></p>
+        </h2>
+        <div class="infmain clearfix">
+            <div class="left"><img src="@(Model.TenanetInfo.Logo == null ? "" : Url.Content(Model.TenanetInfo.Logo))" alt=""></div>
+            <div class="right">
+                <h2>@Model.TenanetInfo.NetSysUserName</h2>
+                <div class="text">
+                    <pre>&nbsp;&nbsp;@Html.Raw(Model.TenanetInfo.Descriptions)</pre>
+                </div>
+            </div>
+        </div>
+        <h2>相关课程<span></span></h2>
+        <ul>
+            @if (Model.ProjectList != null)
+            {
+                foreach (var item in Model.ProjectList)
+                {
+                    <li class="clearfix">
+                        <img src="@(item.FrontImage==null?"":Url.Content(item.FrontImage))" onclick="javascript: ToProjectInfo(@item.Id);" alt="">
+                        <div class="itr">
+                            <h2 class="overflow_pre" onclick="javascript: ToProjectInfo(@item.Id);">@item.Name</h2>
+                            <div class="clearfix"> <span class="price">@(item.Price == 0 ? "免费" : "￥" + item.Price.ToString("0.00"))</span><span class="list">章节：@(item.LearnTime)章节</span><span class="time">时间：@item.StartTime.ToString("yyyy-MM-dd")</span></div>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;@(item.Shortabstract.Length < 260 ? item.Shortabstract : item.Shortabstract.Substring(0, 260) + "...")</p>
+                            <button type="button" name="button" onclick='javascript:window.location.href="@Url.Action("ProjectInfo", "Main", new { id = @item.Id })"'>查看详情</button>
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+
+@section css{
+    <link href="~/Content/main/tslinf.css" rel="stylesheet" />
+}
+
+@section js{
+    <script type="text/javascript">
+        //跳转到项目详情
+        function ToProjectInfo(id) {
+            window.location.href = '@Url.Action("ProjectInfo", "Main")?id=' + id;
+        }
+    </script>
+}

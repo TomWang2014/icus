@@ -1,0 +1,168 @@
+﻿@model ICusCRM.Application.OrgMgtServices.Dtos.ProjectDto
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <dl class="dl-horizontal">
+                <dt>项目名称</dt>
+                <dd>@Model.Name</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-4 column">
+            <dl class="dl-horizontal">
+                <dt>项目编号</dt>
+                <dd>@Model.ProjectCode</dd>
+            </dl>
+        </div>
+        <div class="col-md-4 column">
+            <dl class="dl-horizontal">
+                <dt>开始时间</dt>
+                <dd>@Model.StartTimeStr</dd>
+            </dl>
+        </div>
+        <div class="col-md-4 column">
+            <dl class="dl-horizontal">
+                <dt>结束时间</dt>
+                <dd>@Model.EndTimeStr</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-4 column">
+            <dl class="dl-horizontal">
+                <dt>讲师</dt>
+                <dd>@Model.Teacher</dd>
+            </dl>
+        </div>
+        <div class="col-md-4 column">
+            <dl class="dl-horizontal">
+                <dt>项目章节</dt>
+                <dd>@Model.LearnTime</dd>
+            </dl>
+        </div>
+        <div class="col-md-4 column">
+            <dl class="dl-horizontal">
+                <dt>项目分类</dt>
+                <dd>@Model.NetProjectTypeName</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-4 column">
+            <dl class="dl-horizontal">
+                <dt>价格</dt>
+                <dd>@Model.PriceStr</dd>
+            </dl>
+        </div>
+        <div class="col-md-4 column">
+            <dl class="dl-horizontal">
+                <dt>项目地址</dt>
+                <dd>@Model.Url</dd>
+            </dl>
+        </div>
+        <div class="col-md-4 column">
+            <dl class="dl-horizontal">
+                <dt>审核类型</dt>
+                <dd>
+                    @if (Model.IsautomaticUser)
+                    {
+                        <p>自动</p>
+                    }
+                    else
+                    {
+                        <p>手动</p>
+                    }
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-md-4 ">
+            <dl class="dl-horizontal">
+                <dt>审核状态</dt>
+                <dd>@Model.StatusStr</dd>
+            </dl>
+        </div>
+        <div class="col-md-4 ">
+            <dl class="dl-horizontal">
+                <dt>适用人群</dt>
+                <dd>@Model.TrialRange</dd>
+            </dl>
+        </div>
+        <div class="col-md-4 ">
+            <dl class="dl-horizontal">
+                <dt>封面图片</dt>
+                <dd> <img width="100" src="@Model.FrontImage" /> </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <h1>项目摘要</h1>
+        <div>
+            @Html.Raw(Model.Shortabstract)
+        </div>
+    </div>
+
+    <hr />
+    <div class="row clearfix">
+        <h1>项目详细信息</h1>
+        <div>
+            @Html.Raw(Model.Descriptions)
+        </div>
+    </div>
+    <hr />
+
+    <div class="row clearfix" style="text-align: center">
+        <div class="col-md-12">
+            @*按钮显示逻辑 未提交审核1 待审核2 审核通过3 审核失败4 *@
+            @if (Model.Status == 2)
+            {
+                <button type="button" onclick="adoptStatus(@Model.Id);" class="btn btn-default">审核通过</button>
+                <button type="button" onclick="defeatedStatus(@Model.Id)" class="btn btn-primary">审核拒绝</button>
+                <button type="button" onclick="edit(@Model.Id)" class="btn btn-success">编辑</button>
+            }
+
+            @if (Model.Status == 3)
+            {
+                <button type="button" onclick="edit(@Model.Id)" class="btn btn-success">编辑</button>
+            }
+
+            <button type="button" onclick="window.location='/Project/ProjectList'" class="btn btn-info">返回列表</button>
+        </div>
+    </div>
+</div>
+
+@section js
+{
+
+    <script src="~/Scripts/app/org/audit/services.js"></script>
+
+    <script>
+
+        new Vue({ el: 'body' });
+
+        // 审核通过
+        function adoptStatus(id) {
+            service.audit.io.adoptStatus(id).then(function () {
+                ICusCRM.Msg.showSuccess();
+                window.location.reload();
+            });
+        }
+
+        // 审核失败
+        function defeatedStatus(id) {
+            service.audit.io.defeatedStatus(id).then(function () {
+                ICusCRM.Msg.showSuccess();
+                window.location.reload();
+            });
+        }
+
+        // 编辑
+        function edit(id) {
+            window.location = "/Org/AdminProjectInfo?id=" + id;
+        }
+    </script>
+}

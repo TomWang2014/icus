@@ -1,0 +1,131 @@
+﻿@model ICusCRM.Application.StudentMgtServices.Dtos.StudentDetailDto
+@{
+    ViewBag.Title = "学员基本信息";
+}
+
+<style type="text/css">
+    .table th, td {
+        word-break: keep-all;
+        white-space: nowrap;
+    }
+
+    .table tr td:nth-of-type(3) {
+        word-break: normal;
+        white-space: normal;
+    }
+</style>
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>基本信息</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="project-list">
+                    @if (Model.StudentInfo != null)
+                    {
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>姓名：@Model.StudentInfo.RealName</td>
+                                    <td>性别：@(Model.StudentInfo.Sex == 1 ? "男" : (Model.StudentInfo.Sex == 2 ? "女" : "未知"))</td>
+                                    <td>学号：@Model.StudentInfo.StudentNo</td>
+                                </tr>
+                                <tr>
+                                    <td>手机号：@Model.StudentInfo.Phone</td>
+                                    <td>邮箱：@Model.StudentInfo.Email</td>
+                                    <td>民族：@Model.StudentInfo.Nation</td>
+                                </tr>
+                                <tr>
+                                    <td>创建时间：@Model.StudentInfo.CreateTime</td>
+                                    <td>更新时间：@ViewBag.UpdateTime</td>
+                                    <td>更新机构：@ViewBag.UpdateTenant</td>
+                                </tr>
+                                @if (Model.StudentInfo.CardInfoStr != null)
+                                {
+                                    <tr>
+                                        @foreach (var item in Model.StudentInfo.CardInfoStr.Take(3))
+                                        {
+
+                                            <td>@item.Split('|')[0]:@item.Split('|')[1]</td>
+
+                                        }
+                                    </tr>
+
+                                }
+
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>已报名项目</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="project-list">
+                    @if (Model.SignUpProjects != null && Model.SignUpProjects.Count > 0)
+                    {
+                        <table class="table  table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>机构名称</th>
+                                    <th>项目名称</th>
+                                    <th>报名时间</th>
+                                    <th>审核状态</th>
+                                    <th>审核时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                                    @foreach (var item in Model.SignUpProjects)
+                                    {
+
+                                        <tr>
+                                            <td>@(Model.SignUpProjects.IndexOf(item) + 1)</td>
+                                            <td>@item.NetStudentNetTenantNetSysUserName</td>
+                                            <td>@item.ProjectName</td>
+                                            <td>@item.CreateTime</td>
+                                            <td>@(item.ExamineStatus == 0 ? "审核中" : (item.ExamineStatus == 1 ? "审核通过" : "审核未通过"))</td>
+                                            <td>@item.ExamineTime</td>
+                                            <td>
+                                                <a href='@Url.Action("StudentLearnDetail", "Student", new { stuId =item.StuId,projectId=item.ProjectId})' class="btn btn btn-primary btn-xs">查看学习详情</a>
+                                            </td>
+                                        </tr>
+                                    }
+                              
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <blockquote>
+                            <p>暂无任何数据。</p>
+                            <footer>抱歉，没有查询到任何数据！</footer>
+                        </blockquote>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script>
+        var vm = new Vue({
+            el: 'body'
+        });
+    </script>
+}

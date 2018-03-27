@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8bfff5ba8b954a5684a94eda16b8d7ac" Name="Diagram1">
+        <EntityTypeShape EntityType="icusModel.Area" Width="1.5" PointX="7.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="icusModel.BalanceLog" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="icusModel.CallBatch" Width="1.5" PointX="3.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="icusModel.CallBatchToCustomer" Width="1.5" PointX="6" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="icusModel.CallRemarks" Width="1.5" PointX="8.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="icusModel.Company" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="icusModel.CustomerIntention" Width="1.5" PointX="5.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="icusModel.Customers" Width="1.5" PointX="3" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="icusModel.Funcs" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="icusModel.ImportTelephone" Width="1.5" PointX="7.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="icusModel.Orders" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="icusModel.ProjectToArea" Width="1.5" PointX="9.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="icusModel.Roles" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="icusModel.Users" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="icusModel.VirtualNumbers" Width="1.5" PointX="9.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="icusModel.BusinessToCustomers" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="icusModel.Commission" Width="1.5" PointX="8.25" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="icusModel.FK_BalanceLog_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_BalanceLog_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_BalanceLog_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_CallBatchToCustomer_CallBatch" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_CallBatchToCustomer_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_CallBatchToCustomer_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_CallBatchToCustomer_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_CallRemarks_CallBatchToCustomer" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_BusinessToCustomers_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_Commission_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_Users_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_CustomerIntention_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_BusinessToCustomers_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_Commission_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_Orders_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_Orders_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_Users_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_BusinessToCustomers_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.FK_Commission_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="icusModel.CusFuncCusRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

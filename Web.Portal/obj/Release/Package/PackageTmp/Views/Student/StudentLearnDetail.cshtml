@@ -1,0 +1,218 @@
+﻿@model College.Application.StudentMgtServices.Dtos.NetSignUpProjectItem
+@{
+    ViewBag.Title = "学员学习记录";
+}
+
+<style type="text/css">
+    .table th, td {
+        word-break: keep-all;
+        white-space: nowrap;
+    }
+
+    .table tr td:nth-of-type(3) {
+        word-break: normal;
+        white-space: normal;
+    }
+</style>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>基本信息</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="project-list">
+                    @if (Model != null)
+                    {
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>合作机构：@Model.NetStudentNetTenantNetSysUserName</td>
+                                    <td>项目名称：@Model.ProjectName</td>
+                                    <td>学号：@Model.NetStudentStudentNo</td>
+                                </tr>
+                                <tr>
+                                    <td>姓名：@Model.NetStudentRealName</td>
+                                    <td>手机：@Model.NetStudentPhone</td>
+                                    <td>报名时间：@Model.CreateTime</td>
+                                </tr>
+                                <tr>
+                                    <td>审核状态：@(Model.ExamineStatus == 1 ? "审核通过" : (Model.ExamineStatus == 0 ? "审核中" : "审核未通过"))</td>
+                                    <td colspan="2">审核时间：@Model.ExamineTime</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>考试记录</h5>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-bordered" v-if="examlist.length>0">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>试卷名称</th>
+                            <th>考试时间</th>
+                            <th>分数</th>
+                            <th>记录创建时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in examlist">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.ExamName}}</td>
+                            <td>{{item.ExamTimeStr}}</td>
+                            <td>{{item.Score}}</td>
+                            <td>{{item.CreateTimeStr}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <blockquote v-if="examlist.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询！</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>缴费记录</h5>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-bordered" v-if="paylist.length>0">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>缴费时间</th>
+                            <th>缴费金额</th>
+                            <th>描述</th>
+                            <th>记录创建时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in paylist">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.PayTimeStr}}</td>
+                            <td>{{item.PayAmount}}</td>
+                            <td>{{item.PayDesc}}</td>
+                            <td>{{item.CreateTimeStr}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <blockquote v-if="paylist.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询！</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <form class="form-horizontal" role="form">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">开始时间：</label>
+                <div class="col-sm-8">
+                    <input id="StartTime" name="StartTime" v-model="SearchDto.StartTime" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">结束时间：</label>
+                <div class="col-sm-8">
+                    <input id="EndTime" name="EndTime" class="form-control" v-model="SearchDto.EndTime" type="text" aria-required="true" aria-invalid="false">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group form-group">
+                <label class="col-sm-4 control-label" for="formGroupInputSmall"></label>
+                <div class="col-sm-8">
+                    <button type="button" v-on:click="getLearnList()" class="btn btn-w-m btn-primary ">搜索</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>学习记录</h5>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-bordered" v-if="learnlist.length>0">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th style="cursor: pointer" v-on:click="sort('StartTime')">开始时间</th>
+                            <th style="cursor: pointer" v-on:click="sort('EndTime')">结束时间</th>
+                            <th style="cursor: pointer" v-on:click="sort('LearnTime')">学习时长（分钟）</th>
+                            <th style="cursor: pointer" v-on:click="sort('CreateTime')">记录创建时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in learnlist">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.StartTimeStr}}</td>
+                            <td>{{item.EndTimeStr}}</td>
+                            <td>{{item.LearnTime}}</td>
+                            <td>{{item.CreateTimeStr}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="pager"></div>
+                <blockquote v-if="learnlist.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询！</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section js{
+    <script>
+        var stuId=@ViewBag.stuId;
+        var projectId=@ViewBag.projectId;
+    </script>
+    <script src="~/Scripts/app/student/studentLearn/services.js"></script>
+    <script src="~/Scripts/app/student/studentLearn/index.js"></script>
+    <script src="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script src="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script>
+
+        $('#StartTime,#EndTime').datetimepicker({
+            language: 'zh-CN',
+            format: "yyyy-mm-dd hh:ii:ss",
+            autoclose: 1,
+            minView: 2,
+        });
+
+    </script>
+}
+
+@section css{
+    <link href="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+}

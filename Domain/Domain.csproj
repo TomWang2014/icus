@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C3BEE9EB-CF1A-4471-8774-A363E3F17DCD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ICusCRM.Domain</RootNamespace>
+    <AssemblyName>ICusCRM.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Area.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BalanceLog.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessToCustomers.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CallBatch.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CallBatchToCustomer.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CallRemarks.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Commission.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Company.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerIntention.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customers.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Funcs.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ICus.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ICus.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ICus.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ICus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ICus.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportTelephone.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Orders.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectToArea.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roles.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Systems\IFuncsRepository.cs" />
+    <Compile Include="Systems\IRolesRepository.cs" />
+    <Compile Include="Systems\IUsersRepository.cs" />
+    <Compile Include="Users.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VirtualNumbers.cs">
+      <DependentUpon>ICus.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{962e8bc0-60c0-48cf-a339-a1caaa4adfd7}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="ICus.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ICus.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ICus.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ICus.edmx</DependentUpon>
+      <LastGenOutput>ICus.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ICus.edmx.diagram">
+      <DependentUpon>ICus.edmx</DependentUpon>
+    </None>
+    <None Include="ICus.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ICus.edmx</DependentUpon>
+      <LastGenOutput>ICus.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

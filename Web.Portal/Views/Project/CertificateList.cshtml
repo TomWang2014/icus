@@ -1,0 +1,179 @@
+﻿@{
+    ViewBag.Title = "证书管理";
+}
+<style type="text/css">
+    .table th, td {
+        word-break: keep-all;
+        white-space: nowrap;
+    }
+
+    .table tr td:nth-of-type(3) {
+        word-break: normal;
+        white-space: normal;
+    }
+</style>
+<div class="row">
+    <form class="form-horizontal" role="form">
+        <div class="col-sm-12">
+            <div class="col-sm-4">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">学号：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" v-model="SearchDto.StudentNo" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">报名开始时间：</label>
+                    <div class="col-sm-8">
+                        <input id="StartTime" name="StartTime" v-model="SearchDto.StartTime" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">报名结束时间：</label>
+                    <div class="col-sm-8">
+                        <input id="EndTime" name="EndTime" class="form-control" v-model="SearchDto.EndTime" type="text" aria-required="true" aria-invalid="false">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col-sm-12">
+            <div class="col-sm-4">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">累积学习时长大于：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" v-model="SearchDto.LearnTimeTotal" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">累积缴费金额大于：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" v-model="SearchDto.PayTotal" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">考试平均成绩大于：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" v-model="SearchDto.AvgScore" placeholder="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+
+            <div class="col-sm-4">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">考试最高成绩：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" v-model="SearchDto.MaxScore" placeholder="">
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group form-group">
+                    <div class="col-sm-8">
+                        <button type="button" v-on:click="getList()" class="btn btn-w-m btn-primary">搜索</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>学员证书管理</h5>
+                <div class="ibox-tools">
+                    <button v-if="listSelected.length>1" type="button" style="margin-right: 8px;margin-top:-6px;" v-on:click="SetCertificateBatch()" class="btn btn-info btn-sm">批量标记为可领证</button>
+
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table" v-if="list.length>0">
+                    <thead>
+                        <tr>
+                            <td style="width: 40px; text-align: center;">
+                                <input v-model="checkAllBool" type="checkbox">
+                            </td>
+                            <th>序号</th>
+                            <th>姓名</th>
+                            <th>学号</th>
+                            <th>报名时间</th>
+                            <th>累积学习时长（分钟）</th>
+                            <th>累积缴费金额（元）</th>
+                            <th>考试最高成绩</th>
+                            <th>考试最低成绩</th>
+                            <th>考试平均成绩</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list">
+                            <td style="width: 40px; text-align: center;">
+                                <input type="checkbox" v-on:change="change(item.seleced,item.Id);" v-model="item.seleced" />
+                            </td>
+                            <td>{{$index+1}}</td>
+                            <td>{{item.NetStudentRealName}}</td>
+                            <td>{{item.NetStudentStudentNo}}</td>
+                            <td>{{item.CreateTimeStr}}</td>
+                            <td>{{item.LearnTimeTotal}}</td>
+                            <td>{{item.PayTotal}}</td>
+                            <td>{{item.MaxScore}}</td>
+                            <td>{{item.MinScore}}</td>
+                            <td>{{item.AvgScore}}</td>
+                            <td>
+                                <button v-on:click="SetCertificateStatus(item.Id)" type="button" class="btn btn-info btn-xs">标记为可领证</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="pager"></div>
+                <blockquote v-if="list.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询！</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section js{
+    <script>
+        var projectId=@ViewBag.projectId;
+    </script>
+    <script src="~/Scripts/app/project/certificatesList/services.js"></script>
+    <script src="~/Scripts/app/project/certificatesList/index.js"></script>
+    <script src="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script src="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script>
+
+        $('#StartTime,#EndTime').datetimepicker({
+            language: 'zh-CN',
+            format: "yyyy-mm-dd hh:ii:ss",
+            autoclose: 1,
+            minView: 2,
+        });
+
+    </script>
+}
+
+@section css{
+    <link href="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+}

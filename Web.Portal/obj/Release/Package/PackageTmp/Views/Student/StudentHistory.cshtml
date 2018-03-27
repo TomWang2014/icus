@@ -1,0 +1,63 @@
+﻿@model List<College.Application.StudentMgtServices.Dtos.StudentLogDto>
+@{
+    ViewBag.Title = "学员信息变更历史";
+}
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>@item.CreateTimeStr@item.TenantName@(item.ChangeType == 0 ? "创建" : "修改")</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="project-list">
+
+                            <table class="table  table-bordered">
+
+                                <tbody>
+                                    <tr>
+                                        <td>姓名：@item.RealName</td>
+                                        <td>学号：@item.StudentNo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>性别：@(item.Sex == 1 ? "男" : (item.Sex == 2 ? "女" : "未知"))</td>
+                                        <td>手机：@item.Phone</td>
+                                    </tr>
+                                    <tr>
+                                        <td>邮箱：@item.Email</td>
+                                        <td>民族：@item.Nation</td>
+                                    </tr>
+                                    <tr>
+                                        <td>证件类型：@item.CertificateTypeName</td>
+                                        <td>证件编号：@item.CertificateNum</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <blockquote>
+        <p>暂无任何数据。</p>
+        <footer>抱歉，没有查询到任何数据！</footer>
+    </blockquote>
+}
+@section js{
+    <script>
+        var vm = new Vue({
+            el: 'body'
+        });
+
+    </script>
+}

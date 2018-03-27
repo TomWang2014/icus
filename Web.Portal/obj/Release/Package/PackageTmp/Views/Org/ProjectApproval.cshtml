@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "项目管理";
+}
+
+
+<style type="text/css">
+    .table th, td {
+        word-break: keep-all;
+        white-space: nowrap;
+    }
+
+    .table tr td:nth-of-type(3) {
+        word-break: normal;
+        white-space: normal;
+    }
+</style>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>所有项目</h5>
+                <div class="ibox-tools">
+
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row m-b-sm m-t-sm">
+                    <div class="col-md-1">
+                        <button type="button" id="loading-example-btn" v-on:click="getList()" class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> 刷新</button>
+                    </div>
+                    <div class="col-md-11">
+                        <div class="input-group">
+                            <input type="text" placeholder="请输入项目名称" v-model="sysSearchDto.Name" class="input-sm form-control"> <span class="input-group-btn">
+                                <button type="button" v-on:click="getList()" class="btn btn-sm btn-primary">  搜索</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-list">
+                    <table class="table" v-if="list.length>0">
+                        <thead>
+                            <tr>
+                                <th>项目封面</th>
+                                <th>项目编号</th>
+                                <th>项目名称</th>
+                                <th>学时</th>
+                                <th>项目分类</th>
+                                <th>价格</th>
+                                <th>审核状态
+                                <th>审核时间</th>
+                                <th>创建时间</th>
+                                <th>其他操作</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="item in list">
+                                <td>
+                                    <img width="100" v-bind:src="item.FrontImage" />
+                                </td>
+                                <td>{{item.ProjectCode}}</td>
+                                <td>{{item.Name}}</td>
+                                <td>{{item.LearnTime}}</td>
+                                <td>{{item.NetProjectTypeName}}</td>
+                                <td>{{item.Price}}</td>
+                                <td>{{item.StatusStr}}</td>
+                                <td>{{item.ExamineTimeStr}}</td>
+                                <td>{{item.CreateTime}}</td>
+                                <td>
+                                    @*  未提交审核1 待审核2 审核通过3 审核失败4*@
+                                    @*<button v-if="item.Status==2" v-on:click="adoptStatus(item.Id)" type="button" class="btn btn-primary btn-xs">通过审核</button>
+                                        <button v-if="item.Status==2" v-on:click="defeatedStatus(item.Id)" type="button" class="btn btn-danger btn-xs">驳回审核</button>*@
+                                    <button v-if="item.Status==2||item.Status==3" type="button" onclick="javascirpt: window.location.href = '/Org/AdminProjectInfo?&id={{item.Id}}'" class="btn btn-info btn-xs">编辑</button>
+
+                                    @*冻结,有通过副本的数据，才存在冻结或者解冻*@
+                                    <span v-if="item.IsShowFreezeBtn">
+                                        <button v-if="item.FreezeStatus" v-on:click="setFreezeStatus(item.Id)" type="button" class="btn btn-info btn-xs">解冻</button>
+                                        <button v-if="!item.FreezeStatus" v-on:click="setFreezeStatus(item.Id)" type="button" class="btn btn-danger btn-xs">冻结</button>
+                                    </span>
+                                    <button type="button" onclick="window.location = '/org/ShowProjectInfo/{{item.Id}}'" class="btn btn-primary btn-xs">查看</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="pager"></div>
+                    <blockquote v-if="list.length==0">
+                        <p>暂无任何数据。</p>
+                        <footer>抱歉，没有查询到任何数据，请更改查询添加或<cite title="Source Title"><a data-toggle="modal" data-target="#myModal" href="#">新增数据</a>！</cite></footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section js{
+    <script src="~/Scripts/app/org/audit/services.js"></script>
+    <script src="~/Scripts/app/org/audit/index.js"></script>
+}

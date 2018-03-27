@@ -1,0 +1,699 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="collegeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="collegeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="NetBaseinis" EntityType="collegeModel.NetBaseini" />
+    <EntitySet Name="NetExamRecords" EntityType="collegeModel.NetExamRecord" />
+    <EntitySet Name="NetInterfaces" EntityType="collegeModel.NetInterface" />
+    <EntitySet Name="NetLearnRecords" EntityType="collegeModel.NetLearnRecord" />
+    <EntitySet Name="NetNewsInfoes" EntityType="collegeModel.NetNewsInfo" />
+    <EntitySet Name="NetNewsTypes" EntityType="collegeModel.NetNewsType" />
+    <EntitySet Name="NetOperateLogs" EntityType="collegeModel.NetOperateLog" />
+    <EntitySet Name="NetPayRecords" EntityType="collegeModel.NetPayRecord" />
+    <EntitySet Name="NetProjects" EntityType="collegeModel.NetProject" />
+    <EntitySet Name="NetProjectCarbons" EntityType="collegeModel.NetProjectCarbon" />
+    <EntitySet Name="NetProjectSettings" EntityType="collegeModel.NetProjectSetting" />
+    <EntitySet Name="NetProjectTypes" EntityType="collegeModel.NetProjectType" />
+    <EntitySet Name="NetStuCertificationRecords" EntityType="collegeModel.NetStuCertificationRecord" />
+    <EntitySet Name="NetStudents" EntityType="collegeModel.NetStudent" />
+    <EntitySet Name="NetStudentCards" EntityType="collegeModel.NetStudentCard" />
+    <EntitySet Name="NetStudentLogs" EntityType="collegeModel.NetStudentLog" />
+    <EntitySet Name="NetStudentProjects" EntityType="collegeModel.NetStudentProject" />
+    <EntitySet Name="NetSysFuncs" EntityType="collegeModel.NetSysFunc" />
+    <EntitySet Name="NetSysRoles" EntityType="collegeModel.NetSysRole" />
+    <EntitySet Name="NetSysUsers" EntityType="collegeModel.NetSysUser" />
+    <EntitySet Name="NetTenants" EntityType="collegeModel.NetTenant" />
+    <EntitySet Name="NetTenantIpWhites" EntityType="collegeModel.NetTenantIpWhite" />
+    <EntitySet Name="NetTenantSettings" EntityType="collegeModel.NetTenantSetting" />
+    <AssociationSet Name="FK_Net_ExamRecord_Net_Student" Association="collegeModel.FK_Net_ExamRecord_Net_Student">
+      <End Role="NetStudent" EntitySet="NetStudents" />
+      <End Role="NetExamRecord" EntitySet="NetExamRecords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetLearnRecord_NetStudent" Association="collegeModel.FK_NetLearnRecord_NetStudent">
+      <End Role="NetStudent" EntitySet="NetStudents" />
+      <End Role="NetLearnRecord" EntitySet="NetLearnRecords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetNewsInfo_NetSysUser" Association="collegeModel.FK_NetNewsInfo_NetSysUser">
+      <End Role="NetSysUser" EntitySet="NetSysUsers" />
+      <End Role="NetNewsInfo" EntitySet="NetNewsInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetPayRecord_NetStudent" Association="collegeModel.FK_NetPayRecord_NetStudent">
+      <End Role="NetStudent" EntitySet="NetStudents" />
+      <End Role="NetPayRecord" EntitySet="NetPayRecords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetProject_NetProjectType" Association="collegeModel.FK_NetProject_NetProjectType">
+      <End Role="NetProjectType" EntitySet="NetProjectTypes" />
+      <End Role="NetProject" EntitySet="NetProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetProjectCarbon_NetProject" Association="collegeModel.FK_NetProjectCarbon_NetProject">
+      <End Role="NetProject" EntitySet="NetProjects" />
+      <End Role="NetProjectCarbon" EntitySet="NetProjectCarbons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetProjectCarbon_NetProjectType" Association="collegeModel.FK_NetProjectCarbon_NetProjectType">
+      <End Role="NetProjectType" EntitySet="NetProjectTypes" />
+      <End Role="NetProjectCarbon" EntitySet="NetProjectCarbons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetProjectSetting_NetProjectCarbon" Association="collegeModel.FK_NetProjectSetting_NetProjectCarbon">
+      <End Role="NetProjectCarbon" EntitySet="NetProjectCarbons" />
+      <End Role="NetProjectSetting" EntitySet="NetProjectSettings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetStu_CertificationRecord_NetStudent" Association="collegeModel.FK_NetStu_CertificationRecord_NetStudent">
+      <End Role="NetStudent" EntitySet="NetStudents" />
+      <End Role="NetStuCertificationRecord" EntitySet="NetStuCertificationRecords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetStudent_NetTenant" Association="collegeModel.FK_NetStudent_NetTenant">
+      <End Role="NetTenant" EntitySet="NetTenants" />
+      <End Role="NetStudent" EntitySet="NetStudents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetStudentProject_NetStudent" Association="collegeModel.FK_NetStudentProject_NetStudent">
+      <End Role="NetStudent" EntitySet="NetStudents" />
+      <End Role="NetStudentProject" EntitySet="NetStudentProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId" Association="collegeModel.FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId">
+      <End Role="NetSysFunc" EntitySet="NetSysFuncs" />
+      <End Role="NetSysFunc1" EntitySet="NetSysFuncs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetSysUser_NetSysRole1" Association="collegeModel.FK_NetSysUser_NetSysRole1">
+      <End Role="NetSysRole" EntitySet="NetSysRoles" />
+      <End Role="NetSysUser" EntitySet="NetSysUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetTenant_NetSysUser" Association="collegeModel.FK_NetTenant_NetSysUser">
+      <End Role="NetSysUser" EntitySet="NetSysUsers" />
+      <End Role="NetTenant" EntitySet="NetTenants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NetTenant__Tenan__318258D2" Association="collegeModel.FK__NetTenant__Tenan__318258D2">
+      <End Role="NetTenant" EntitySet="NetTenants" />
+      <End Role="NetTenantSetting" EntitySet="NetTenantSettings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NetTenantIpWhite_NetTenant" Association="collegeModel.FK_NetTenantIpWhite_NetTenant">
+      <End Role="NetTenant" EntitySet="NetTenants" />
+      <End Role="NetTenantIpWhite" EntitySet="NetTenantIpWhites" />
+    </AssociationSet>
+    <AssociationSet Name="NetNewsInfoType" Association="collegeModel.NetNewsInfoType">
+      <End Role="NetNewsInfo" EntitySet="NetNewsInfoes" />
+      <End Role="NetNewsType" EntitySet="NetNewsTypes" />
+    </AssociationSet>
+    <AssociationSet Name="NetStudentCardRel" Association="collegeModel.NetStudentCardRel">
+      <End Role="NetStudent" EntitySet="NetStudents" />
+      <End Role="NetStudentCard" EntitySet="NetStudentCards" />
+    </AssociationSet>
+    <AssociationSet Name="NetSysFuncSysRoles" Association="collegeModel.NetSysFuncSysRoles">
+      <End Role="NetSysFunc" EntitySet="NetSysFuncs" />
+      <End Role="NetSysRole" EntitySet="NetSysRoles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="NetBaseini">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IsautomaticUser" Type="Int32" />
+    <Property Name="IsSendEmail" Type="Int32" />
+  </EntityType>
+  <EntityType Name="NetExamRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StuId" Type="Int32" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="Score" Type="Double" />
+    <Property Name="ExamTime" Type="DateTime" Precision="3" />
+    <Property Name="ExamName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CheckCode" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NetStudent" Relationship="collegeModel.FK_Net_ExamRecord_Net_Student" FromRole="NetExamRecord" ToRole="NetStudent" />
+    <Property Name="ClassId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="NetInterface">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenantId" Type="Int32" />
+    <Property Name="StudentNo" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectCode" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="Value" Type="Int32" Nullable="false" />
+    <Property Name="ExplainMsg" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="SendTimes" Type="Int32" />
+    <Property Name="SendTime" Type="DateTime" Precision="3" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="ClassId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="NetLearnRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StuId" Type="Int32" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="StartTime" Type="DateTime" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Precision="3" />
+    <Property Name="LearnTime" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CheckCode" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NetStudent" Relationship="collegeModel.FK_NetLearnRecord_NetStudent" FromRole="NetLearnRecord" ToRole="NetStudent" />
+    <Property Name="ClassId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="NetNewsInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Contect" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Editor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SourceUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Abstract" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IsTop" Type="Int32" />
+    <Property Name="Thumbnail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelete" Type="Int32" />
+    <Property Name="IsPublish" Type="Int32" />
+    <Property Name="BrowseNumber" Type="Int32" />
+    <Property Name="CreateUser" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="OperUser" Type="Int32" />
+    <Property Name="OperTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="NetSysUser" Relationship="collegeModel.FK_NetNewsInfo_NetSysUser" FromRole="NetNewsInfo" ToRole="NetSysUser" />
+    <NavigationProperty Name="NetNewsTypes" Relationship="collegeModel.NetNewsInfoType" FromRole="NetNewsInfo" ToRole="NetNewsType" />
+  </EntityType>
+  <EntityType Name="NetNewsType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OrderNum" Type="Int32" />
+    <NavigationProperty Name="NetNewsInfoes" Relationship="collegeModel.NetNewsInfoType" FromRole="NetNewsType" ToRole="NetNewsInfo" />
+  </EntityType>
+  <EntityType Name="NetOperateLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Field1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Field2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Field3" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Field4" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Field5" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OperatorId" Type="Int32" />
+    <Property Name="OperatorCreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="NetPayRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StuId" Type="Int32" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="PayAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PayTime" Type="DateTime" Precision="3" />
+    <Property Name="PayDesc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CheckCode" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NetStudent" Relationship="collegeModel.FK_NetPayRecord_NetStudent" FromRole="NetPayRecord" ToRole="NetStudent" />
+    <Property Name="ClassId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="NetProject">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectCode" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FrontImage" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Shortabstract" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsRecommend" Type="Boolean" />
+    <Property Name="LearnTime" Type="Int32" Nullable="false" />
+    <Property Name="StartTime" Type="DateTime" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Precision="3" />
+    <Property Name="Teacher" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TrialRange" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="ProjectType" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="TenantId" Type="Int32" Nullable="false" />
+    <Property Name="TenantItemId" Type="Int32" />
+    <Property Name="ExamineUser" Type="Int32" />
+    <Property Name="ExamineTime" Type="DateTime" Precision="3" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="BrowseNumber" Type="Int32" Nullable="false" />
+    <Property Name="CreateUser" Type="Int32" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperUser" Type="Int32" />
+    <Property Name="OperTime" Type="DateTime" Precision="3" />
+    <Property Name="IsautomaticUser" Type="Boolean" />
+    <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="NetProjectType" Relationship="collegeModel.FK_NetProject_NetProjectType" FromRole="NetProject" ToRole="NetProjectType" />
+    <NavigationProperty Name="NetProjectCarbons" Relationship="collegeModel.FK_NetProjectCarbon_NetProject" FromRole="NetProject" ToRole="NetProjectCarbon" />
+  </EntityType>
+  <EntityType Name="NetProjectCarbon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SourceCode" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="SourceId" Type="Int32" Nullable="false" />
+    <Property Name="ProjectCode" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FrontImage" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Shortabstract" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsRecommend" Type="Boolean" />
+    <Property Name="LearnTime" Type="Int32" Nullable="false" />
+    <Property Name="StartTime" Type="DateTime" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Precision="3" />
+    <Property Name="Teacher" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TrialRange" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectType" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="TenantId" Type="Int32" Nullable="false" />
+    <Property Name="TenantItemId" Type="Int32" />
+    <Property Name="ExamineUser" Type="Int32" />
+    <Property Name="ExamineTime" Type="DateTime" Precision="3" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="BrowseNumber" Type="Int32" Nullable="false" />
+    <Property Name="CreateUser" Type="Int32" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperUser" Type="Int32" />
+    <Property Name="OperTime" Type="DateTime" Precision="3" />
+    <Property Name="IsautomaticUser" Type="Boolean" />
+    <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="NetProject" Relationship="collegeModel.FK_NetProjectCarbon_NetProject" FromRole="NetProjectCarbon" ToRole="NetProject" />
+    <NavigationProperty Name="NetProjectType" Relationship="collegeModel.FK_NetProjectCarbon_NetProjectType" FromRole="NetProjectCarbon" ToRole="NetProjectType" />
+    <NavigationProperty Name="NetProjectSettings" Relationship="collegeModel.FK_NetProjectSetting_NetProjectCarbon" FromRole="NetProjectCarbon" ToRole="NetProjectSetting" />
+  </EntityType>
+  <EntityType Name="NetProjectSetting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FrontImage" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ProjectId" Type="Int32" />
+    <NavigationProperty Name="NetProjectCarbon" Relationship="collegeModel.FK_NetProjectSetting_NetProjectCarbon" FromRole="NetProjectSetting" ToRole="NetProjectCarbon" />
+  </EntityType>
+  <EntityType Name="NetProjectType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NetProjects" Relationship="collegeModel.FK_NetProject_NetProjectType" FromRole="NetProjectType" ToRole="NetProject" />
+    <NavigationProperty Name="NetProjectCarbons" Relationship="collegeModel.FK_NetProjectCarbon_NetProjectType" FromRole="NetProjectType" ToRole="NetProjectCarbon" />
+  </EntityType>
+  <EntityType Name="NetStuCertificationRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StuId" Type="Int32" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="CertificationName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CertificationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CerGrantTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateUser" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="OperUser" Type="Int32" />
+    <Property Name="OperTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="NetStudent" Relationship="collegeModel.FK_NetStu_CertificationRecord_NetStudent" FromRole="NetStuCertificationRecord" ToRole="NetStudent" />
+  </EntityType>
+  <EntityType Name="NetStudent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentNo" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="RealName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sex" Type="Int32" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Nation" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelete" Type="Int32" />
+    <Property Name="CreateUser" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="OperUser" Type="Int32" />
+    <Property Name="OperTime" Type="DateTime" Precision="3" />
+    <Property Name="TenantId" Type="Int32" />
+    <NavigationProperty Name="NetExamRecords" Relationship="collegeModel.FK_Net_ExamRecord_Net_Student" FromRole="NetStudent" ToRole="NetExamRecord" />
+    <NavigationProperty Name="NetLearnRecords" Relationship="collegeModel.FK_NetLearnRecord_NetStudent" FromRole="NetStudent" ToRole="NetLearnRecord" />
+    <NavigationProperty Name="NetPayRecords" Relationship="collegeModel.FK_NetPayRecord_NetStudent" FromRole="NetStudent" ToRole="NetPayRecord" />
+    <NavigationProperty Name="NetStuCertificationRecords" Relationship="collegeModel.FK_NetStu_CertificationRecord_NetStudent" FromRole="NetStudent" ToRole="NetStuCertificationRecord" />
+    <NavigationProperty Name="NetTenant" Relationship="collegeModel.FK_NetStudent_NetTenant" FromRole="NetStudent" ToRole="NetTenant" />
+    <NavigationProperty Name="NetStudentProjects" Relationship="collegeModel.FK_NetStudentProject_NetStudent" FromRole="NetStudent" ToRole="NetStudentProject" />
+    <NavigationProperty Name="NetStudentCards" Relationship="collegeModel.NetStudentCardRel" FromRole="NetStudent" ToRole="NetStudentCard" />
+  </EntityType>
+  <EntityType Name="NetStudentCard">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CertificateType" Type="Int32" />
+    <Property Name="CertificateNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateUser" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="OperUser" Type="Int32" />
+    <Property Name="OperTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="NetStudents" Relationship="collegeModel.NetStudentCardRel" FromRole="NetStudentCard" ToRole="NetStudent" />
+  </EntityType>
+  <EntityType Name="NetStudentLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentNo" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="RealName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sex" Type="Int32" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Nation" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CertificateType" Type="Int32" />
+    <Property Name="CertificateNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChangeType" Type="Int32" />
+    <Property Name="TenantId" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="NetStudentProject">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StuId" Type="Int32" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="ExamineUser" Type="Int32" />
+    <Property Name="ExamineTime" Type="DateTime" Precision="3" />
+    <Property Name="ExamineStatus" Type="Int32" />
+    <Property Name="Examinemsg" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IsFreeze" Type="Int32" />
+    <Property Name="CreateUser" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="OperUser" Type="Int32" />
+    <Property Name="OperTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="NetStudent" Relationship="collegeModel.FK_NetStudentProject_NetStudent" FromRole="NetStudentProject" ToRole="NetStudent" />
+    <Property Name="IsCertificate" Type="Boolean" />
+    <Property Name="ClassId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="NetSysFunc">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OrderNumber" Type="Int32" Nullable="false" />
+    <Property Name="AreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ControllerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ActionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ParentFuncId" Type="Int32" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsTenantFunc" Type="Boolean" />
+    <Property Name="FuncType" Type="Int32" Nullable="false" />
+    <Property Name="IsDisplay" Type="Boolean" Nullable="false" />
+    <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NetSysFunc1" Relationship="collegeModel.FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId" FromRole="NetSysFunc" ToRole="NetSysFunc1" />
+    <NavigationProperty Name="NetSysFunc2" Relationship="collegeModel.FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId" FromRole="NetSysFunc1" ToRole="NetSysFunc" />
+    <NavigationProperty Name="NetSysRoles" Relationship="collegeModel.NetSysFuncSysRoles" FromRole="NetSysFunc" ToRole="NetSysRole" />
+  </EntityType>
+  <EntityType Name="NetSysRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="NetSysUsers" Relationship="collegeModel.FK_NetSysUser_NetSysRole1" FromRole="NetSysRole" ToRole="NetSysUser" />
+    <NavigationProperty Name="NetSysFuncs" Relationship="collegeModel.NetSysFuncSysRoles" FromRole="NetSysRole" ToRole="NetSysFunc" />
+  </EntityType>
+  <EntityType Name="NetSysUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Account" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="Gender" Type="Int32" />
+    <Property Name="IdCardNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SysRoleId" Type="Int32" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="NetNewsInfoes" Relationship="collegeModel.FK_NetNewsInfo_NetSysUser" FromRole="NetSysUser" ToRole="NetNewsInfo" />
+    <NavigationProperty Name="NetSysRole" Relationship="collegeModel.FK_NetSysUser_NetSysRole1" FromRole="NetSysUser" ToRole="NetSysRole" />
+    <NavigationProperty Name="NetTenants" Relationship="collegeModel.FK_NetTenant_NetSysUser" FromRole="NetSysUser" ToRole="NetTenant" />
+  </EntityType>
+  <EntityType Name="NetTenant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FrontImage" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Logo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="CreateUser" Type="Int32" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperUser" Type="Int32" />
+    <Property Name="OperTime" Type="DateTime" Precision="3" />
+    <Property Name="AesKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gateway" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="TokenUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="NetStudents" Relationship="collegeModel.FK_NetStudent_NetTenant" FromRole="NetTenant" ToRole="NetStudent" />
+    <NavigationProperty Name="NetSysUser" Relationship="collegeModel.FK_NetTenant_NetSysUser" FromRole="NetTenant" ToRole="NetSysUser" />
+    <NavigationProperty Name="NetTenantSettings" Relationship="collegeModel.FK__NetTenant__Tenan__318258D2" FromRole="NetTenant" ToRole="NetTenantSetting" />
+    <NavigationProperty Name="NetTenantIpWhites" Relationship="collegeModel.FK_NetTenantIpWhite_NetTenant" FromRole="NetTenant" ToRole="NetTenantIpWhite" />
+  </EntityType>
+  <EntityType Name="NetTenantIpWhite">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenantId" Type="Int32" />
+    <Property Name="IpAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="NetTenant" Relationship="collegeModel.FK_NetTenantIpWhite_NetTenant" FromRole="NetTenantIpWhite" ToRole="NetTenant" />
+  </EntityType>
+  <EntityType Name="NetTenantSetting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Logo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TenantId" Type="Int32" />
+    <NavigationProperty Name="NetTenant" Relationship="collegeModel.FK__NetTenant__Tenan__318258D2" FromRole="NetTenantSetting" ToRole="NetTenant" />
+  </EntityType>
+  <Association Name="FK_Net_ExamRecord_Net_Student">
+    <End Type="collegeModel.NetStudent" Role="NetStudent" Multiplicity="0..1" />
+    <End Type="collegeModel.NetExamRecord" Role="NetExamRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetStudent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetExamRecord">
+        <PropertyRef Name="StuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetLearnRecord_NetStudent">
+    <End Type="collegeModel.NetStudent" Role="NetStudent" Multiplicity="0..1" />
+    <End Type="collegeModel.NetLearnRecord" Role="NetLearnRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetStudent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetLearnRecord">
+        <PropertyRef Name="StuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetNewsInfo_NetSysUser">
+    <End Type="collegeModel.NetSysUser" Role="NetSysUser" Multiplicity="0..1" />
+    <End Type="collegeModel.NetNewsInfo" Role="NetNewsInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetSysUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetNewsInfo">
+        <PropertyRef Name="CreateUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetPayRecord_NetStudent">
+    <End Type="collegeModel.NetStudent" Role="NetStudent" Multiplicity="0..1" />
+    <End Type="collegeModel.NetPayRecord" Role="NetPayRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetStudent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetPayRecord">
+        <PropertyRef Name="StuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetProject_NetProjectType">
+    <End Type="collegeModel.NetProjectType" Role="NetProjectType" Multiplicity="1" />
+    <End Type="collegeModel.NetProject" Role="NetProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetProjectType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetProject">
+        <PropertyRef Name="ProjectType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetProjectCarbon_NetProject">
+    <End Type="collegeModel.NetProject" Role="NetProject" Multiplicity="1" />
+    <End Type="collegeModel.NetProjectCarbon" Role="NetProjectCarbon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetProject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetProjectCarbon">
+        <PropertyRef Name="SourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetProjectCarbon_NetProjectType">
+    <End Type="collegeModel.NetProjectType" Role="NetProjectType" Multiplicity="1" />
+    <End Type="collegeModel.NetProjectCarbon" Role="NetProjectCarbon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetProjectType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetProjectCarbon">
+        <PropertyRef Name="ProjectType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetProjectSetting_NetProjectCarbon">
+    <End Type="collegeModel.NetProjectCarbon" Role="NetProjectCarbon" Multiplicity="0..1" />
+    <End Type="collegeModel.NetProjectSetting" Role="NetProjectSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetProjectCarbon">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetProjectSetting">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetStu_CertificationRecord_NetStudent">
+    <End Type="collegeModel.NetStudent" Role="NetStudent" Multiplicity="0..1" />
+    <End Type="collegeModel.NetStuCertificationRecord" Role="NetStuCertificationRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetStudent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetStuCertificationRecord">
+        <PropertyRef Name="StuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetStudent_NetTenant">
+    <End Type="collegeModel.NetTenant" Role="NetTenant" Multiplicity="0..1" />
+    <End Type="collegeModel.NetStudent" Role="NetStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetTenant">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetStudent">
+        <PropertyRef Name="TenantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetStudentProject_NetStudent">
+    <End Type="collegeModel.NetStudent" Role="NetStudent" Multiplicity="0..1" />
+    <End Type="collegeModel.NetStudentProject" Role="NetStudentProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetStudent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetStudentProject">
+        <PropertyRef Name="StuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId">
+    <End Type="collegeModel.NetSysFunc" Role="NetSysFunc" Multiplicity="0..1" />
+    <End Type="collegeModel.NetSysFunc" Role="NetSysFunc1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetSysFunc">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetSysFunc1">
+        <PropertyRef Name="ParentFuncId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetSysUser_NetSysRole1">
+    <End Type="collegeModel.NetSysRole" Role="NetSysRole" Multiplicity="1" />
+    <End Type="collegeModel.NetSysUser" Role="NetSysUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetSysRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetSysUser">
+        <PropertyRef Name="SysRoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetTenant_NetSysUser">
+    <End Type="collegeModel.NetSysUser" Role="NetSysUser" Multiplicity="1" />
+    <End Type="collegeModel.NetTenant" Role="NetTenant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetSysUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetTenant">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NetTenant__Tenan__318258D2">
+    <End Type="collegeModel.NetTenant" Role="NetTenant" Multiplicity="0..1" />
+    <End Type="collegeModel.NetTenantSetting" Role="NetTenantSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetTenant">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetTenantSetting">
+        <PropertyRef Name="TenantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NetTenantIpWhite_NetTenant">
+    <End Type="collegeModel.NetTenant" Role="NetTenant" Multiplicity="0..1" />
+    <End Type="collegeModel.NetTenantIpWhite" Role="NetTenantIpWhite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetTenant">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetTenantIpWhite">
+        <PropertyRef Name="TenantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NetNewsInfoType">
+    <End Type="collegeModel.NetNewsInfo" Role="NetNewsInfo" Multiplicity="*" />
+    <End Type="collegeModel.NetNewsType" Role="NetNewsType" Multiplicity="*" />
+  </Association>
+  <Association Name="NetStudentCardRel">
+    <End Type="collegeModel.NetStudent" Role="NetStudent" Multiplicity="*" />
+    <End Type="collegeModel.NetStudentCard" Role="NetStudentCard" Multiplicity="*" />
+  </Association>
+  <Association Name="NetSysFuncSysRoles">
+    <End Type="collegeModel.NetSysFunc" Role="NetSysFunc" Multiplicity="*" />
+    <End Type="collegeModel.NetSysRole" Role="NetSysRole" Multiplicity="*" />
+  </Association>
+</Schema>

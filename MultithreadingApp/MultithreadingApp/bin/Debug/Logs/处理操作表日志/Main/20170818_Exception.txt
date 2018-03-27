@@ -1,0 +1,30 @@
+调用接口数据时出现异常：远程服务器返回错误: (500) 内部服务器错误。; Url=http://edu.zjzx.com/api/User/Add;projectCode=PS80420254;encryption=Tf0OYoBsel+YCJ3XLhW15sD5XxhjbvGmWbhVbsIXMEq+MlCLYi79r63gLamlXb3w7Fg8WWDJwz4Iy2Ze31VNYEXRyJnAXGv7a9RLaMfJPm7AuxdT72lZsGhjxWWoz0by
+---------------------------------------------------------
+调用接口数据时出现异常：远程服务器返回错误: (500) 内部服务器错误。; Url=http://edu.zjzx.com/api/User/StudySubmit;projectCode=PS80420254;encryption=OiABAaRa97KLiNcUPu+HaU6FbWErPTa72TgwVNVlzja/QPhQSmqFh07AuLyu1bL9QWao8qnPw5yR37bOExGKg7eJfLk4V301ZzOm1U0DQz3aqUvVudmCTXRpDo0qyQSatCyL8R5QVyfuvm3AqVP7WiqB2v4gXa3z8g+HYhUVvSfLXudvA4XHuxskEl/OVL1KGoqm3Q7xTY1ZtgzbKNRv0Q==
+---------------------------------------------------------
+调用接口数据时出现异常：远程服务器返回错误: (500) 内部服务器错误。; Url=http://edu.zjzx.com/api/User/Add;projectCode=PS80420254;encryption=Tf0OYoBsel+YCJ3XLhW15sD5XxhjbvGmWbhVbsIXMEq+MlCLYi79r63gLamlXb3w7Fg8WWDJwz4Iy2Ze31VNYEXRyJnAXGv7a9RLaMfJPm7AuxdT72lZsGhjxWWoz0by
+---------------------------------------------------------
+调用接口数据时出现异常：远程服务器返回错误: (500) 内部服务器错误。; Url=http://edu.zjzx.com/api/User/StudySubmit;projectCode=PS94978512;encryption=OiABAaRa97KLiNcUPu+HaU6FbWErPTa72TgwVNVlzja7VbyF4mURbsEjO9s5Kw28
+---------------------------------------------------------
+调用接口数据时出现异常：无法连接到远程服务器; Url=http://localhost:8080/api/User/Add;projectCode=PS12476644;encryption=
+---------------------------------------------------------
+调用接口数据时出现异常：无法连接到远程服务器; Url=http://localhost:8080/api/User/Add;projectCode=PS12476644;encryption=
+---------------------------------------------------------
+调用接口数据时出现异常：远程服务器返回错误: (500) 内部服务器错误。; Url=http://edu.zjzx.com/api/User/Add;projectCode=PS80420254;encryption=jIqONU1PJ6ZpiXERGnUPE/CR96+gbRWZlzWhdXKRk9d0O7LCp6+6KSTdiZdYFnUEtLyKx5mL0RSweZeTq3mVd09qfaXUreV20T3Aix772QB3YXr/oOaReftX3OGYukQL
+---------------------------------------------------------
+调用接口数据时出现异常：无法连接到远程服务器; Url=http://localhost:8080/api/User/Add;projectCode=PS48808908;encryption=
+---------------------------------------------------------
+调用接口数据时出现异常：无法连接到远程服务器; Url=http://localhost:8080/api/User/Add;projectCode=PS48808908;encryption=
+---------------------------------------------------------
+调用接口数据时出现异常：远程服务器返回错误: (500) 内部服务器错误。; Url=http://edu.zjzx.com/api/User/StudySubmit;projectCode=PS80420254;encryption=OiABAaRa97KLiNcUPu+HaW4LI9rZWLq898u9K1IlLNIsq1MYigJQuQmwm5W9+CFdWqlAJvq7cSYzIvwCcwLyn5wT1VGfC59ngm2iQn+hnipGyk0kvkcHITy9u1eE5JujFwU4NWQ8pnFfj9FeZgjolbYZYXmKhHTPcM2loTvT+wKCqaV8A4zFaxcGmNVn+FOGkBqv9b/+cXUmzZltf/vZXQ==
+---------------------------------------------------------
+调用接口数据时出现异常：远程服务器返回错误: (500) 内部服务器错误。; Url=http://edu.zjzx.com/api/User/StudySubmit;projectCode=PS94978512;encryption=OiABAaRa97KLiNcUPu+HaW4LI9rZWLq898u9K1IlLNKYNcOFiW3jBeKMNmdL62QE
+---------------------------------------------------------
+调用接口数据时出现异常：远程服务器返回错误: (500) 内部服务器错误。; Url=http://edu.zjzx.com/api/User/StudySubmit;projectCode=PS80420254;encryption=OiABAaRa97KLiNcUPu+Habi3sgA8zzMsORq4aUg/5p0LKkAs+p3rCShGW8zNt/d378Y3aNIoeJalQFMENM81XT3Fu3HKQb3F47jBer9dXsbMGrSWSNR9kXQ2EuD7p+spgpF3zNS+k2iH5BTS1QrI/ALsu6r12GoaQg6CWxhENpVcXQcqNA44UAop5Xm7sMN3pW7nlmREzTytlUeBtGgeuw==
+---------------------------------------------------------
+调用接口数据时出现异常：远程服务器返回错误: (500) 内部服务器错误。; Url=http://edu.zjzx.com/api/User/StudySubmit;projectCode=PS94978512;encryption=OiABAaRa97KLiNcUPu+Habi3sgA8zzMsORq4aUg/5p3oJmQOz06JFno8FktBVD/+
+---------------------------------------------------------
+调用接口数据时出现异常：远程服务器返回错误: (500) 内部服务器错误。; Url=http://edu.zjzx.com/api/User/StudySubmit;projectCode=PS80420254;encryption=OiABAaRa97KLiNcUPu+Haa6ymys9VqjlQ1G/eGBFHRdtqQgY4RCwHyhzk/4ewmrLqDCUD9yAJlcrcd7qKkBshaVLfu8tBr3TgoQ4xKL78aBXhPeUhv8OsNSFSxT7Bx70RbqdlX+K6e3I79sXWnIfREQL5Boeb4nxm58HSkxlu6FUYiW6xYDbqpVpnSw7E/R2v43gy6hN348ouEvMC2OqhA==
+---------------------------------------------------------
+调用接口数据时出现异常：远程服务器返回错误: (500) 内部服务器错误。; Url=http://edu.zjzx.com/api/User/StudySubmit;projectCode=PS94978512;encryption=OiABAaRa97KLiNcUPu+Haa6ymys9VqjlQ1G/eGBFHRffCgKDB9u/qnRY/ORfSY5F
+---------------------------------------------------------
