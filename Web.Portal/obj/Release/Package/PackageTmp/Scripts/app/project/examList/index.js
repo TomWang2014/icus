@@ -26,7 +26,7 @@ var vm = new Vue({
         //审核通过/审核不通过
         setExamStatus: function (id, type) {
             service.project.io.setExamStatus(id, type).then(function (data) {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
@@ -42,7 +42,7 @@ var vm = new Vue({
         PassBatch: function () {
             var ids = JSON.stringify(this.listSelected);
             service.project.io.ExamPassBatch(ids).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
@@ -50,7 +50,7 @@ var vm = new Vue({
         UnPassBatch: function () {
             var ids = JSON.stringify(this.listSelected);
             service.project.io.ExamUnPassBatch(ids).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         }

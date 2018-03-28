@@ -1,5 +1,5 @@
-﻿@using College.Web.Portal.Toolkits
-@model List<College.Application.SystemMgtServices.Dtos.SysFuncItem>
+﻿@using ICusCRM.Web.Portal.Toolkits
+@model List<ICusCRM.Application.SystemMgtServices.Dtos.FuncsItem>
 @{
     Layout = null;
 }
@@ -11,9 +11,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
-
-    <title>教培网 - 主页</title>
-
+    <title>教培网 - 主页</title
     <meta name="keywords" content="后台管理">
     <meta name="description" content="教培网后台管理系统">
 
@@ -41,7 +39,7 @@
                             <span><img alt="image" class="img-circle" src="~/Content/img/profile_small.jpg" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
-                                    <span class="block m-t-xs"><strong class="font-bold">@UserIdentity.CurrentUser.Name</strong></span>
+                                    <span class="block m-t-xs"><strong class="font-bold">@UserIdentity.CurrentUser.RealName</strong></span>
                                     <span class="text-muted text-xs block">@UserIdentity.CurrentUser.ToString()<b class="caret"></b></span>
                                 </span>
                             </a>
@@ -76,7 +74,7 @@
                                 <span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
-                                @foreach (var c in f.NetSysFunc1)
+                                @foreach (var c in f.SysFunc1)
                                 {
                                     <li>
                                         <a class="J_menuItem" href="@Url.Action(c.ActionName,c.ControllerName,new{area=c.AreaName})" data-index="0">@c.Name</a>
@@ -139,7 +137,7 @@
             </div>
             <!-- iframe区域 -->
             <div class="row J_mainContent" id="content-main">
-                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="@(UserIdentity.CurrentUser.IsTenant == false ? Url.Action("MainPanel") : Url.Action("TenantMainPanel"))" frameborder="0" data-id="index_v1.html" seamless></iframe>
+                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="@Url.Action("MainPanel"))" frameborder="0" data-id="index_v1.html" seamless></iframe>
             </div>
             <div class="footer">
                 <div class="pull-right">

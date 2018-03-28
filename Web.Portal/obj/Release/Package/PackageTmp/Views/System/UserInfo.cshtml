@@ -61,7 +61,7 @@
         // 修改密码
         function SavePwd(oldPwd, newPwd, newPwd2) {
             $.post('@Url.Action("UpdataPassword")', { 'oldPwd': oldPwd, 'newPwd': newPwd, 'newPwd2': newPwd2 }, function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 $("#oldPwd,#newPwd,#newPwd2").val("");
             });
         }

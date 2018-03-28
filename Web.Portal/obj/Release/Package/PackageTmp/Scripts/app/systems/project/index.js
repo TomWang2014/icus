@@ -35,7 +35,7 @@ var vm = new Vue({
         // 取消推荐
         cancel: function (id) {
             service.project.io.cancel(id).then(function (data) {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
@@ -60,7 +60,7 @@ var vm = new Vue({
                 url: '/system/SetProjetHost',
                 type: "post",
                 success: function () {
-                    college.Msg.showSuccess();
+                    ICusCRM.Msg.showSuccess();
                     $("#myModal").modal("hide");
                     vm.getList();
                     vm.getProjectItemList();

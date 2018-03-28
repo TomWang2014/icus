@@ -33,12 +33,12 @@ var vm = new Vue({
             });
 
             // 表单是否通过前端验证
-            if (college.Validator.isValid("#signupForm")) {
+            if (ICusCRM.Validator.isValid("#signupForm")) {
 
                 var model = JSON.stringify(vm.dto);
                 service.sysRole.io.modifyRoleInfo(model).then(function () {
                     $("#myModal").modal("hide");
-                    college.Msg.showSuccess("编辑角色信息成功");
+                    ICusCRM.Msg.showSuccess("编辑角色信息成功");
                     vm.getList();
                 });
             }
@@ -69,7 +69,7 @@ var vm = new Vue({
         // 删除用户
         deleteRole: function (id) {
             service.sysRole.io.deleteRole(id).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         }

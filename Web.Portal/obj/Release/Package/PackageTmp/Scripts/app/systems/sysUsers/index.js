@@ -25,10 +25,10 @@ var vm = new Vue({
 
             var model = JSON.stringify(this.dto);
             // 表单是否通过前端验证
-            if (college.Validator.isValid("#signupForm")) {
+            if (ICusCRM.Validator.isValid("#signupForm")) {
                 service.sysUser.io.modifyUserInfo(model).then(function() {
                     $("#myModal").modal("hide");
-                    college.Msg.showSuccess("编辑用户成功");
+                    ICusCRM.Msg.showSuccess("编辑用户成功");
                     vm.getList();
                 });
             }
@@ -67,7 +67,7 @@ var vm = new Vue({
         // 删除用户
         deleteuser: function (id) {
             service.sysUser.io.deleteuser(id).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
@@ -76,7 +76,7 @@ var vm = new Vue({
         deleteBatch: function () {
             var ids = JSON.stringify(this.userSelected);
             service.sysUser.io.deleteBatch(ids).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },

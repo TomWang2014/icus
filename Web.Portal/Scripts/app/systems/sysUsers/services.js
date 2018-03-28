@@ -1,11 +1,4 @@
-﻿/*
- *------------------------------------------------------------------
- 模块描述说明：
- 用户管理功能模块对应的services文件
- 作者：李天赐
- 时间：2016-11-11 09:42:53
- ----------------------------------------------------------------- */
-var service = service || {};
+﻿var service = service || {};
 
 (function () {
     var adminService = function (serviceName) {
@@ -14,21 +7,46 @@ var service = service || {};
     };
 
     adminService.prototype.dto = {
-        // dto 
+        // 新增或者编辑模型
         sysUserDto: function () {
             this.Id = 0;
-            this.Name = '';
-            this.Account = '';
-            this.SysRoleId = 0;
+            this.City = '';
+            this.IdentityCard = '';//身份证号
+            this.Email = '';//邮箱
+            this.Phone = '';//手机号
+            this.RealName = '';//真实姓名
+            this.CompanyName = '';//公司名称
+            this.CompanyId = 0;//公司id
+            this.License = '';//营业执照编号
+            this.SellerID = '';//所属销售id
+            this.BuyCount = '';//购买条数
+            this.BuyPrice = '';//购买金额
+            this.Percentage = '';//提成比例
+            this.DealImg = '';//交易图片地址
+            
         },
-
+        sysSellerDto:function(){
+            this.Id = 0;
+            this.IdentityCard = '';//身份证号
+            this.Email = '';//邮箱
+            this.Phone = '';//手机号
+            this.RealName = '';//真实姓名
+            this.BankCard = '';//银行卡号
+            this.BankName = '';//开户银行名称
+        },
+        //搜索条件
         sysSearchDto: function () {
             this.PageIndex = 1;
             this.PageSize = 10;
-            this.Name = '';
-            this.Number = '';
-            this.Account = '';
-            this.Orderby = "CreationTime";
+            this.Role = 0;
+            this.City = '';
+            this.RealName = '';
+            this.Company = '';
+            this.UserID = '';
+            this.Phone = '';
+            this.StartTime = '';
+            this.EndTime = '';
+            this.Orderby = "CreateTime";
             this.Desc = true;
         }
     };

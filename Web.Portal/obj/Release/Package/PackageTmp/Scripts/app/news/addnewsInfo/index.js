@@ -40,7 +40,7 @@ var vm = new Vue({
             vm.dto.Thumbnail = "";
         },
         save: function () {
-            if (college.Validator.isValid("#signupForm")) {
+            if (ICusCRM.Validator.isValid("#signupForm")) {
                 vm.dto.IsTop = $("input[name='IsTop']:checked").val();
                 vm.dto.NewsTypeIds = [];
                 $("input[name='newsType']:checked").each(function () {
@@ -52,13 +52,13 @@ var vm = new Vue({
                 }
                 service.addnewsInfo.io.modifyNewsInfo(JSON.stringify(this.dto)).then(function () {
                     if (vm.dto.Id > 0) {
-                        college.Msg.showSuccess("编辑新闻成功");
+                        ICusCRM.Msg.showSuccess("编辑新闻成功");
                         setTimeout(function () {
                             window.document.location.href = "/News/NewsInfoMgtResult";
                         }, 1000);
                     }
                     else {
-                        college.Msg.showSuccess("新增新闻成功");
+                        ICusCRM.Msg.showSuccess("新增新闻成功");
                         setTimeout(function () {
                             if (window.document.location.href.indexOf("/News/AddNewsInfo?Id") > -1) {
                                 window.document.location.href = "/News/NewsInfoMgtResult";
@@ -109,12 +109,12 @@ var vm = new Vue({
             },
             success: function (data) {
                 if (data.state == "200") {
-                    college.Msg.showSuccess("上传新闻缩略图成功");
+                    ICusCRM.Msg.showSuccess("上传新闻缩略图成功");
                     vm.dto.Thumbnail = data.imgurl;
                     $("#myModal").modal("hide");
                 }
                 else {
-                    college.Msg.showError("上传新闻缩略图失败");
+                    ICusCRM.Msg.showError("上传新闻缩略图失败");
                 }
             }
         });

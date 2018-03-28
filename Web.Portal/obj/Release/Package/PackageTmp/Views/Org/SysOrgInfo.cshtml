@@ -1,4 +1,4 @@
-﻿@model College.Application.SystemMgtServices.Dtos.TenantItem
+﻿@model ICusCRM.Application.SystemMgtServices.Dtos.TenantItem
 
 <div class="row">
     <div class="tabs-container">
@@ -177,7 +177,7 @@
         // 添加白名单
         function SaveIpWhite(one, two, three, tokenUrl) {
             $.post('@Url.Action("SaveIpWhite")', { 'one': one, 'two': two, 'three': three, 'tokenUrl': tokenUrl }, function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
             });
         }
 
@@ -185,7 +185,7 @@
         function update() {
             $.post('@Url.Action("updateAesKey")', {}, function (str) {
                 $("#AesKey").html(str);
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
             });
         }
     </script>

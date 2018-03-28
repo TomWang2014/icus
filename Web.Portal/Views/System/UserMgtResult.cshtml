@@ -1,0 +1,408 @@
+﻿@{
+    ViewBag.Title = "系统管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <form class="form-horizontal" role="form">
+        <div class="col-sm-12">
+            @if (ViewBag.UserType != "销售")
+            {
+                <div class="col-sm-4">
+                    <div class="form-group form-group">
+                        <label class="col-sm-4 control-label" for="formGroupInputSmall">角色：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control m-b" name="account" v-model="SearchDto.Role">
+                                <option value="2" selected="selected">用户</option>
+                                <option value="3">销售</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="col-sm-4">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">城市：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" v-model="SearchDto.City" placeholder="请输入城市">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">姓名：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" v-model="SearchDto.RealName" placeholder="请输入姓名">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="col-sm-12">
+            <div class="col-sm-4">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">公司：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" v-model="SearchDto.Company" placeholder="请输入公司名称或ID">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">账号ID：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" v-model="SearchDto.UserID" placeholder="请输入账号ID">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">手机：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" v-model="SearchDto.Phone" placeholder="请输入手机号">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">账号创建时间：</label>
+                    <div class="col-sm-8">
+                        <input id="StartTime" name="StartTime" v-model="SearchDto.StartTime" class="form-control" type="text" aria-required="true" aria-invalid="false" placeholder="请输入开始时间">
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">账号创建时间：</label>
+                    <div class="col-sm-8">
+                        <input id="EndTime" name="EndTime" class="form-control" v-model="SearchDto.EndTime" type="text" aria-required="true" aria-invalid="false" placeholder="请输入结束时间">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-sm-4" style="text-align:right">
+                <div class="form-group form-group">
+                    <div class="col-sm-12">
+                        <button type="button" v-on:click="getList()" class="btn btn-w-m btn-primary">查询</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>账号列表</h5>
+                <div class="ibox-tools">
+                    <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary  btn-sm">新增账号</button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table" v-if="list.length>0">
+                    <thead>
+                        <tr>
+                            <th>角色</th>
+                            <th>账号ID</th>
+                            <th>城市</th>
+                            <th>姓名</th>
+                            <th>手机号</th>
+                            <th>公司名称</th>
+                            <th>公司ID</th>
+                            <th>所属销售ID</th>
+                            <th>所属销售姓名</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list">
+                            <td>{{item.RoleName}}</td>
+                            <td>{{item.Id}}</td>
+                            <td>{{item.City}}</td>
+                            <td>{{item.RealName}}</td>
+                            <td>{{item.Phone}}</td>
+                            <td>{{item.CompanyName}}</td>
+                            <td>{{item.CompanyId}}</td>
+                            <td>{{item.SellerId}}</td>
+                            <td>{{item.SellerName}}</td>
+                            <td>{{item.CreateTimeStr}}</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" v-on:click="edituser(item)" type="button"><i class="fa fa-paste"></i> 编辑</button>
+                                <button class="btn btn-info btn-xs" v-on:click="userdetail(item)" type="button"><i class="fa fa-paste"></i> 编辑</button>
+                                <button class="btn btn-danger btn-xs" v-on:click="changeuser(item.Id)" type="button"><i class="fa fa-paste" v-if="item.IsDelete==1">启用</i><i class="fa fa-paste" v-else>禁用</i></button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="pager"></div>
+                <blockquote v-if="list.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询添加或<cite title="Source Title"><a data-toggle="modal" data-target="#myModal" href="#">新增数据</a>！</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="crop-avatar">
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">编辑账号信息</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="tabs-container">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a data-toggle="tab" href="#tab-1" id="baseInfo" aria-expanded="true"> 用户</a>
+                            </li>
+                            @if (ViewBag.UserType != "销售")
+                            {
+                                <li class="">
+                                    <a data-toggle="tab" href="#tab-2" id="tab1" class="faUploadTab" aria-expanded="false">销售</a>
+                                </li>
+                            }
+                        </ul>
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane active">
+                                <div class="panel-body">
+                                    <form class="form-inline" id="signupForm" novalidate="novalidate">
+                                        <div class="form-group">
+                                            <label class="control-label" style="width:100px;text-align:right"><span style="color:red">*</span>城市：</label>
+                                            <input id="City" name="City" v-model="dto.City" class="form-control" type="text">
+                                        </div>
+                                        <div class="form-group" style="margin-left:10px">
+                                            <label class="control-label" style="width:100px;text-align:right"><span style="color:red">*</span>真实姓名：</label>
+                                            <input id="RealName" name="RealName" v-model="dto.RealName" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                                        </div><br />
+                                        <div class="form-group" style="margin-top:10px">
+                                            <label class="control-label" style="width:100px;text-align:right"><span style="color:red">*</span>身份证号：</label>
+
+                                            <input id="IdentityCard" name="IdentityCard" v-model="dto.IdentityCard" class="form-control" type="text" aria-required="true" aria-invalid="false">
+
+                                        </div>
+                                        <div class="form-group" style="margin-top:10px;margin-left:10px">
+                                            <label class="control-label" style="width:100px;text-align:right"><span style="color:red">*</span>联系邮箱：</label>
+                                            <input id="Email" name="Email" v-model="dto.Email" class="form-control" type="text" aria-required="true" aria-invalid="false">
+
+                                        </div>
+
+                                        <div class="form-group" style="margin-top:10px;">
+                                            <label class="control-label" style="width:100px;text-align:right"><span style="color:red">*</span>手机号：</label>
+                                            <input id="Phone" name="Phone" v-model="dto.Phone" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <div class="form-group" style="margin-top:10px;margin-left:10px">
+                                            <label class="control-label" style="width:100px;text-align:right">&nbsp;公司名称：</label>
+                                            <input id="CompanyName" name="CompanyName" v-model="dto.CompanyName" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <br />
+                                        <div class="form-group" style="margin-top:10px;">
+                                            <label class="control-label" style="width:100px;text-align:right"><span style="color:red">*</span>公司ID：</label>
+                                            <input id="CompanyId" name="CompanyId" v-model="dto.CompanyId" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <div class="form-group" style="margin-top:10px;margin-left:10px">
+                                            <label class="control-label" style="width:100px;text-align:right">营业执照编号：</label>
+                                            <input id="License" name="License" v-model="dto.License" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <br />
+                                        <div class="form-group" style="margin-top:10px;">
+                                            <label class="control-label" style="width:100px;text-align:right"><span style="color:red">*</span>所属销售ID：</label>
+                                            <input id="SellerID" name="SellerID" v-model="dto.SellerID" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <div class="form-group" style="margin-top:10px;margin-left:10px">
+                                            <label class="control-label" style="width:100px;text-align:right">购买条数：</label>
+                                            <input id="BuyCount" name="BuyCount" v-model="dto.BuyCount" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <br />
+                                        <div class="form-group" style="margin-top:10px;">
+                                            <label class="control-label" style="width:100px;text-align:right"><span style="color:red">*</span>购买金额：</label>
+                                            <input id="BuyPrice" name="BuyPrice" v-model="dto.BuyPrice" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        @if (ViewBag.UserType != "销售")
+                                        {
+                                            <div class="form-group" style="margin-top:10px;margin-left:10px">
+                                                <label class="control-label" style="width:100px;text-align:right">提成比例：</label>
+                                                <input id="Percentage" name="Percentage" v-model="dto.Percentage" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                                            </div>
+                                        }
+                                    </form>
+                                </div>
+                                <div style="border-top: 0" class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" class="btn btn-primary" v-on:click="save()">保存</button>
+                                </div>
+                            </div>
+                            @if (ViewBag.UserType != "销售")
+                            {
+                                <div id="tab-2" class="tab-pane">
+                                    <div class="panel-body">
+                                        <form class="avatar-form" id="avatarForm" action="@Url.Action("SetTenantLogoOrIoc", "System")" enctype="multipart/form-data" method="post">
+                                            <div class="modal-body">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> {{logoMsg}}</span>
+                                                <div class="avatar-body">
+                                                    <!-- Upload image and data -->
+                                                    <div class="avatar-upload">
+                                                        <input type="hidden" class="avatar-src" name="avatar_src">
+                                                        <input type="hidden" class="avatar-data" name="avatar_data">
+                                                        <input type="hidden" v-model="dto.Id" name="id">
+                                                        <input type="hidden" v-model="setLogoType" name="type">
+
+
+                                                        <input type="file" style="display: none" class="avatar-input" id="avatarInput" name="avatar_file">
+                                                    </div>
+                                                    <!-- Crop and preview -->
+                                                    <div class="row">
+                                                        <div class="col-md-9">
+                                                            <div style="background-image: url('/Content/img/course.jpg')" class="avatar-wrapper"></div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div style="background-image: url('/Content/img/course.jpg');background-size: cover" class="avatar-preview preview-lg"></div>
+                                                            <p style="width: 100%;text-align: center;margin-top: 30px">
+
+                                                                <button type="button" id="btnSelectFile" class="btn btn-default btn-sm">选择图片</button>
+                                                                <button type="submit" class="btn btn-primary btn-sm">剪辑上传</button>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script src="~/Scripts/app/systems/sysUsers/services.js"></script>
+    <script src="~/Scripts/app/systems/sysRole/services.js"></script>
+    <script src="~/Scripts/app/systems/sysUsers/index.js"></script>
+    <script src="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script src="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script>
+
+        $('#StartTime,#EndTime').datetimepicker({
+            language: 'zh-CN',
+            format: "yyyy-mm-dd",
+            autoclose: 1,
+            minView: 2,
+        });
+
+        $(function () {
+            $("#baseInfo").on("click", function () {
+                alert("123");
+            })
+        })
+
+    </script>
+
+
+
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                /**
+                 * 下面是进行插件初始化
+                 * 你只需传入相应的键值对
+                 * */
+                $('#signupForm').bootstrapValidator({
+                    fields: {
+                        account: {
+                            validators: {
+                                notEmpty: {
+                                    /*非空提示*/
+                                    message: '登录账号不能为空！'
+                                },
+                                stringLength: {
+                                    /*长度提示*/
+                                    min: 6,
+                                    max: 15,
+                                    message: '登录账号长度必须在6到15之间'
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z0-9_]+$/,
+                                    message: '用户名只能包含字母、数字和下划线'
+                                }
+                            }
+                        },
+                        nickName: {
+                            validators: {
+                                notEmpty: {
+                                    /*非空提示*/
+                                    message: '昵称字段不能为空！'
+                                },
+                                stringLength: {
+                                    /*长度提示*/
+                                    min: 4,
+                                    max: 16,
+                                    message: '昵称长度必须在4到16之间'
+                                }
+                            }
+                        },
+                        phone: {
+                            validators: {
+                                //notEmpty: {
+                                //    /*非空提示*/
+                                //    message: '电话号码不能为空！'
+                                //},
+                                stringLength: {
+                                    /*长度提示*/
+                                    min: 0,
+                                    max: 12,
+                                    message: '电话号码长度最多12位'
+                                },
+                                regexp: {
+                                    regexp: /^[0-9-]+$/,
+                                    message: '电话号码格式不正确'
+                                }
+                            }
+                        },
+                        email: {
+                            validators: {
+                                //notEmpty: {
+                                //    /*非空提示*/
+                                //    message: '邮箱不能为空！'
+                                //}
+                                stringLength: {
+                                    /*长度提示*/
+                                    min: 0,
+                                    max: 32,
+                                    message: '邮箱长度最多32位'
+                                } /*最后一个没有逗号*/
+                            }
+                        },
+                        roleName: {
+                            validators: {
+                                notEmpty: {
+                                    /*非空提示*/
+                                    message: '用户角色不能为空！'
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        </script>*@
+}

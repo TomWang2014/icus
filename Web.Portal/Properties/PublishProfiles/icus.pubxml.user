@@ -5,7 +5,8 @@
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>E:\collegeweb</_PublishTargetUrl>
+    <_PublishTargetUrl>G:\个人\iscusgenerate</_PublishTargetUrl>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
   </PropertyGroup>
   <ItemGroup>
     <File Include="Areas/TestArea/Views/Test/Index.cshtml">
@@ -46,6 +47,21 @@
     </File>
     <File Include="bin/HtmlAgilityPack.dll">
       <publishTime>08/15/2017 15:37:44</publishTime>
+    </File>
+    <File Include="bin/ICusCRM.Application.dll">
+      <publishTime>03/27/2018 16:37:22</publishTime>
+    </File>
+    <File Include="bin/ICusCRM.Domain.dll">
+      <publishTime>03/27/2018 16:37:21</publishTime>
+    </File>
+    <File Include="bin/ICusCRM.Infrastructure.dll">
+      <publishTime>03/27/2018 16:37:21</publishTime>
+    </File>
+    <File Include="bin/ICusCRM.Repository.dll">
+      <publishTime>03/27/2018 16:37:22</publishTime>
+    </File>
+    <File Include="bin/ICusCRM.Web.Portal.dll">
+      <publishTime>03/27/2018 16:37:23</publishTime>
     </File>
     <File Include="bin/Log4Mongo.dll">
       <publishTime>08/15/2017 15:37:45</publishTime>
@@ -159,10 +175,10 @@
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="config/authority.config">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 17:13:21</publishTime>
     </File>
     <File Include="config/Log4Net.config">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Content/css/animate.css">
       <publishTime>08/15/2017 15:37:44</publishTime>
@@ -238,6 +254,30 @@
     </File>
     <File Include="Content/docs/js/prettify.js">
       <publishTime>08/15/2017 15:37:44</publishTime>
+    </File>
+    <File Include="Content/enter/enter.css">
+      <publishTime>03/25/2018 19:16:38</publishTime>
+    </File>
+    <File Include="Content/enter/imgs/bc.png">
+      <publishTime>03/25/2018 19:16:38</publishTime>
+    </File>
+    <File Include="Content/enter/imgs/logo.png">
+      <publishTime>03/25/2018 19:16:38</publishTime>
+    </File>
+    <File Include="Content/enter/imgs/password.png">
+      <publishTime>03/25/2018 19:16:38</publishTime>
+    </File>
+    <File Include="Content/enter/imgs/phone.png">
+      <publishTime>03/25/2018 19:16:38</publishTime>
+    </File>
+    <File Include="Content/enter/imgs/rbc.png">
+      <publishTime>03/25/2018 19:16:38</publishTime>
+    </File>
+    <File Include="Content/enter/imgs/safe.png">
+      <publishTime>03/25/2018 19:16:38</publishTime>
+    </File>
+    <File Include="Content/enter/imgs/yes.png">
+      <publishTime>03/25/2018 19:16:38</publishTime>
     </File>
     <File Include="Content/fonts/fontawesome-webfont.eot">
       <publishTime>08/15/2017 15:37:44</publishTime>
@@ -921,7 +961,7 @@
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>08/15/2017 15:37:44</publishTime>
@@ -951,7 +991,7 @@
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Scripts/app/news/addnewsInfo/index.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/news/addnewsInfo/main.js">
       <publishTime>08/15/2017 15:37:44</publishTime>
@@ -960,49 +1000,49 @@
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Scripts/app/news/newsInfo/index.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/news/newsInfo/services.js">
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Scripts/app/news/newsType/index.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/news/newsType/services.js">
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Scripts/app/org/audit/index.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/org/audit/services.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/org/project/index.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/org/project/services.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/project/certificatesList/index.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/project/certificatesList/services.js">
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Scripts/app/project/examList/index.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/project/examList/services.js">
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Scripts/app/project/projectList/index.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/project/projectList/services.js">
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Scripts/app/project/studentList/index.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/project/studentList/services.js">
       <publishTime>08/15/2017 15:37:44</publishTime>
@@ -1020,28 +1060,28 @@
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Scripts/app/systems/project/index.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/systems/project/services.js">
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Scripts/app/systems/sysRole/index.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/systems/sysRole/services.js">
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Scripts/app/systems/sysTenant/index.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/systems/sysTenant/main.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/systems/sysTenant/services.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/systems/sysUsers/index.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/app/systems/sysUsers/services.js">
       <publishTime>08/15/2017 15:37:44</publishTime>
@@ -1071,7 +1111,7 @@
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Scripts/situation.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/static/jquery.cookie.js">
       <publishTime>08/15/2017 15:37:44</publishTime>
@@ -1080,7 +1120,7 @@
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Scripts/toolkit.js">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Scripts/vue.config.js">
       <publishTime>08/15/2017 15:37:44</publishTime>
@@ -1092,7 +1132,7 @@
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 19:28:56</publishTime>
     </File>
     <File Include="Views/DataStat/AnalysisSummary.cshtml">
       <publishTime>08/15/2017 15:37:44</publishTime>
@@ -1110,7 +1150,7 @@
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 18:45:03</publishTime>
     </File>
     <File Include="Views/Home/MainPanel.cshtml">
       <publishTime>08/15/2017 15:37:44</publishTime>
@@ -1122,25 +1162,25 @@
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Views/Main/CooperationUnitInfo.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Main/Index.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Main/News.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Main/NewsInfo.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Main/NewsTypeList.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Main/ProjectInfo.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Main/Projects.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Main/Test.cshtml">
       <publishTime>08/15/2017 15:37:44</publishTime>
@@ -1155,25 +1195,25 @@
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Views/Org/AdminProjectInfo.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Org/ModifyProjectInfo.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Org/ProjectApproval.cshtml">
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Views/Org/ProjectInfo.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Org/ProjectMgtResul.cshtml">
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Views/Org/ShowProjectInfo.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Org/SysOrgInfo.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Project/CertificateList.cshtml">
       <publishTime>08/15/2017 15:37:44</publishTime>
@@ -1200,16 +1240,16 @@
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Views/Student/EditStudentInfo.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Student/StudentDetail.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Student/StudentHistory.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Student/StudentLearnDetail.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Student/StudentList.cshtml">
       <publishTime>08/15/2017 15:37:44</publishTime>
@@ -1230,7 +1270,7 @@
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Views/System/UserInfo.cshtml">
-      <publishTime>08/15/2017 15:37:44</publishTime>
+      <publishTime>03/25/2018 15:38:13</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>08/15/2017 15:37:44</publishTime>
@@ -1239,7 +1279,7 @@
       <publishTime>08/15/2017 15:37:44</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/21/2017 13:14:13</publishTime>
+      <publishTime>03/27/2018 16:55:53</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -227,6 +227,7 @@
     <Content Include="Content\docs\js\prettify.js" />
     <Content Include="Content\enter\enter.css" />
     <Content Include="Content\enter\imgs\bc.png" />
+    <Content Include="Content\enter\imgs\icuslogo.png" />
     <Content Include="Content\enter\imgs\logo.png" />
     <Content Include="Content\enter\imgs\password.png" />
     <Content Include="Content\enter\imgs\phone.png" />
@@ -553,9 +554,6 @@
     <Content Include="Views\Home\MainPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\System\SysUserMgtResult.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\System\SysRoleMgtResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -617,7 +615,7 @@
     <Content Include="config\Log4Net.config">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Properties\PublishProfiles\collage.pubxml" />
+    <None Include="Properties\PublishProfiles\icus.pubxml" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\Main\News.cshtml" />
     <Content Include="Views\Main\Projects.cshtml" />
@@ -646,6 +644,7 @@
     <Content Include="Views\DataStat\LearnRecordReportStat.cshtml" />
     <Content Include="Views\DataStat\ExaminationReportStat.cshtml" />
     <Content Include="Views\DataStat\PayReportStat.cshtml" />
+    <Content Include="Views\System\UserMgtResult.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -679,7 +678,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>63570</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://icus.test.cn</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

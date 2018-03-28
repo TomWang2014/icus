@@ -45,14 +45,14 @@
             return this.View();
         }
 
-        ///// <summary>
-        ///// 租户首页面板展示
-        ///// </summary>
-        ///// <returns></returns>
-        //public ActionResult TenantMainPanel()
-        //{
-        //    return View();
-        //}
+        /// <summary>
+        /// 租户首页面板展示
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TenantMainPanel()
+        {
+            return View();
+        }
 
     }
 }

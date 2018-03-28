@@ -6,13 +6,13 @@
  * http://jraiser.org/ | Released under MIT license
  */
 
-var college = window.college || {};
+var ICusCRM = window.ICusCRM || {};
 
 /*响应操作消息相关功能
 @info：操作的详细描述
 @title：标题描述
  */
-college.Msg = new function () {
+ICusCRM.Msg = new function () {
 
     var self = this;
     toastr.options = {
@@ -51,7 +51,7 @@ college.Msg = new function () {
     };
 };
 
-college.Path = new function () {
+ICusCRM.Path = new function () {
 
     var self = this;
 
@@ -69,7 +69,7 @@ college.Path = new function () {
         });
 
         if (url == "") {
-            college.Msg.showError("没有找到路径:area:" + areaName + ",controller:" + controllerName, "action:" + actionName);
+            ICusCRM.Msg.showError("没有找到路径:area:" + areaName + ",controller:" + controllerName, "action:" + actionName);
         }
         return url;
     }
@@ -77,7 +77,7 @@ college.Path = new function () {
 /*
   其他工具辅助类
  */
-college.Toolkit = new function () {
+ICusCRM.Toolkit = new function () {
 
     var self = this;
 
@@ -102,7 +102,7 @@ college.Toolkit = new function () {
     }
 };
 
-college.Validator = new function () {
+ICusCRM.Validator = new function () {
     var self = this;
     // 表单是否符合验证规则
     self.isValid = function (fromId) {

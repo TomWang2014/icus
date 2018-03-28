@@ -346,7 +346,7 @@
             this.$avatarUpload.after($alert);
         },
         alertOk: function (msg) {
-            college.Msg.showSuccess("设置图标成功，刷新页面生效,即将自动刷新！");
+            ICusCRM.Msg.showSuccess("设置图标成功，刷新页面生效,即将自动刷新！");
             setTimeout("window.location.reload()", 3000);
             //$(".alert-dismissable").hide();
             //var $alert = [

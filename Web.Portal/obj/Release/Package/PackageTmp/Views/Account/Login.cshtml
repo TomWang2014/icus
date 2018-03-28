@@ -1,82 +1,62 @@
-﻿@*<div class="middle-box text-center loginscreen">
-        <div>
-            <h2>欢迎访问国培后台管理系统</h2>
-            <label>@ViewBag.msg</label>
-            <form class="m-t" role="form" method="POST" action="@Url.Action("Login", "Account")">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="account" name="account" placeholder="用户名" required="">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" id="Password" name="password" placeholder="密码" required="">
-                </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
-
-            </form>
-        </div>
-    </div>*@
-@{
+﻿@{
     Layout = null;
 }
 <!DOCTYPE html>
 <html>
-
 <head>
-
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>教培中心 - 登录</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link href="/Content/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/Content/css/font-awesome.css" rel="stylesheet">
-    <link href="/Content/css/animate.css" rel="stylesheet">
-    <link href="/Content/css/plugins/toastr/toastr.min.css" rel="stylesheet" />
-    <link href="/Content/css/plugins/bootstrapValidator.css" rel="stylesheet" />
-    <link href="/Content/css/index.css" rel="stylesheet" />
-    <link href="~/Content/css/log.css" rel="stylesheet" />
+    <title>登陆</title>
+    <link rel="stylesheet" href="~/Content/enter/enter.css" />
 </head>
-
-<body class="gray-bg">
-    <img src="/Content/img/logo-bc.png" alt="" class="bcimg">
-    <img src="/Content/img/logo.png" alt="" class="logoimg">
-    <div class="middle-box text-center loginscreen  ">
-        <div>
-
-            <h3>@ViewBag.msg</h3>
-            <form class="m-t" role="form" method="POST" action="@Url.Action("Login", "Account")">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="account" name="account" placeholder="用户名" required=""><i class="fa fa-user"></i>
+<body>
+    <div class="lay_left">
+        <img src="/Content/enter/imgs/logo.png" alt="" class="mod_logo">
+        <h1>爱客思源客户管理系统</h1>
+        <h2>The Ministry of Human Resources and Social Security Education Enterprise</h2>
+        <ul class="mod_funct">
+            <li><i></i><span>考勤数据导入导出</span></li>
+            <li><i></i><span>考勤数据统计分析</span></li>
+        </ul>
+        @*<p class="mod_number">
+                10,000,0条
+            </p>*@
+        @*<h5 class="mod_data">
+                累计收到上报数据
+            </h5>*@
+    </div>
+    <div class="lay_right">
+        <div class="mod_inner">
+            <h2>爱客思源客户管理系统</h2>
+            <form class="mod_form" method="POST" action="@Url.Action("Login", "Account")">
+                <div class="admin">
+                    <i></i>
+                    <input type="text" placeholder="请输入账号" id="account" name="account" required="" value="@ViewBag.account">
                 </div>
-                <div class="form-group">
-                    <input type="password" id="password" class="form-control" name="password" placeholder="请输入密码" required=""><i class="fa fa-lock"></i>
+                <div class="pass">
+                    <i></i>
+                    <input placeholder="请输入密码" type="password" id="password" name="password" required="" value="@ViewBag.password">
                 </div>
-                <div class="form-group">
-                    <input type="text" id="verCode" name="VerCode" class="form-control" placeholder="请输入验证码" required="">
-                    @*<img src="/Content/img/vercode.png" alt="">*@
+                <div class="safe">
+                    <i></i>
+                    <input type="text" placeholder="请输入验证码" id="verCode" name="VerCode" class="form-control" required="">
                     <img onclick="NextCode();" id="VerificationCode" style="cursor: pointer" src="@Url.Action("GetImgVerificationCode", "Account")" />
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+                <h3 style="color:#e8001b;font-size:12px;font-weight:400;text-align:left;margin-bottom:5px">@ViewBag.msg</h3>
+                <div class="mod_btn" style="border-bottom:none">
+                    <button type="submit">登陆</button>
+                </div>
             </form>
+
+
         </div>
     </div>
-    <p>
-        Copyright 2017. All right reserved e.ethrss.cn <br>
-        技术支持：北京中教在线科技有限公司
-    </p>
-    <!-- 全局js -->
-    <!--统计代码，可删除-->
-
-
-    <script type="text/javascript" charset="utf-8">if (window.top !== window.self) { window.top.location = window.location; }</script>
-
-    <script src="/Content/js/jquery.min.js"></script>
-    <script src="/Content/js/bootstrap.min.js?v=3.3.6"></script>
 
 </body>
-
 </html>
+<script type="text/javascript" charset="utf-8">if (window.top !== window.self) { window.top.location = window.location; }</script>
+
+<script src="/Content/js/jquery.min.js"></script>
+<script src="~/Content/js/bootstrap.min.js"></script>
 <script>
     // 刷新验证码
     function NextCode() {
@@ -85,5 +65,12 @@
     }
     $(document).ready(function () {
         NextCode();
+        var timeout = setTimeout(function () {  //使用  setTimeout（）方法设定定时2000毫秒
+            window.location.reload();//页面刷新
+        }, 200);
+        clearTimeout(timeout);
     });
+
+
+
 </script>

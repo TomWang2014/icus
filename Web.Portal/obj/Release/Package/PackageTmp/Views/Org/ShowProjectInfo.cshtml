@@ -1,4 +1,4 @@
-﻿@model College.Application.OrgMgtServices.Dtos.ProjectDto
+﻿@model ICusCRM.Application.OrgMgtServices.Dtos.ProjectDto
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
@@ -147,7 +147,7 @@
         // 审核通过
         function adoptStatus(id) {
             service.audit.io.adoptStatus(id).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 window.location.reload();
             });
         }
@@ -155,7 +155,7 @@
         // 审核失败
         function defeatedStatus(id) {
             service.audit.io.defeatedStatus(id).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 window.location.reload();
             });
         }

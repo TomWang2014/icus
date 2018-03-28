@@ -27,7 +27,7 @@
 
         if (xhr.status == 401) {
             // ajax返回请求没有通过登录身份验证
-            college.Msg.showError("抱歉，您的登录验证失效，3秒后刷新页面！");
+            ICusCRM.Msg.showError("抱歉，您的登录验证失效，3秒后刷新页面！");
             setTimeout("window.location.reload()", 3000);
             return;
         }
@@ -37,13 +37,13 @@
             try {
                 var obj = JSON.parse(xhr.responseText);
                 if (obj) {
-                    college.Msg.showError(obj.errorMessage);
+                    ICusCRM.Msg.showError(obj.errorMessage);
                 } else {
-                    college.Msg.showError("抱歉，当前请求发生错误!");
+                    ICusCRM.Msg.showError("抱歉，当前请求发生错误!");
                 }
 
             } catch (e) {
-                college.Msg.showError("抱歉，当前请求发生错误!");
+                ICusCRM.Msg.showError("抱歉，当前请求发生错误!");
             }
         }
     });

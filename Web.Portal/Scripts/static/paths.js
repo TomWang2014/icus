@@ -1,1 +1,1 @@
-var allPaths =[{"Area":"","Controller":"home","Action":"index","Url":"/"},{"Area":"","Controller":"home","Action":"mainpanel","Url":"/home/mainpanel"}]
+var allPaths =[{"Area":"","Controller":"home","Action":"index","Url":"/"},{"Area":"","Controller":"home","Action":"mainpanel","Url":"/home/mainpanel"},{"Area":"","Controller":"home","Action":"tenantmainpanel","Url":"/home/tenantmainpanel"},{"Area":"","Controller":"system","Action":"usermgtresult","Url":"/system/usermgtresult"},{"Area":"","Controller":"system","Action":"refreshsession","Url":"/system/refreshsession"}]

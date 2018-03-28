@@ -44,7 +44,7 @@ var service = service || {};
         modifyInfo: function (model) {
             return $.ajax({
                 //url: '/system/modifyTenantInfo',
-                url: college.Path.url('system', 'modifyTenantInfo'),
+                url: ICusCRM.Path.url('system', 'modifyTenantInfo'),
                 data: { "model": model },
                 type: "post",
                 cache: false
@@ -54,7 +54,7 @@ var service = service || {};
         // 获得集合
         getList: function (model) {
             return $.ajax({
-                url: college.Path.url('system', 'getTenantList'),
+                url: ICusCRM.Path.url('system', 'getTenantList'),
                 data: { "model": model },
                 type: "get",
                 cache: false
@@ -64,7 +64,7 @@ var service = service || {};
         // 删除记录
         deleteInfo: function (id) {
             return $.ajax({
-                url: college.Path.url('system', 'deleteTenantInfo'),
+                url: ICusCRM.Path.url('system', 'deleteTenantInfo'),
                 data: { "id": id },
                 type: "post",
                 cache: false

@@ -25,10 +25,10 @@ var vm = new Vue({
 
             var model = JSON.stringify(this.dto);
 
-            if (college.Validator.isValid("#signupForm")) {
+            if (ICusCRM.Validator.isValid("#signupForm")) {
                 service.sysTenant.io.modifyInfo(model).then(function () {
                     $("#avatar-modal").modal("hide");
-                    college.Msg.showSuccess("编辑机构信息成功");
+                    ICusCRM.Msg.showSuccess("编辑机构信息成功");
                     vm.getList();
                 });
             }
@@ -65,7 +65,7 @@ var vm = new Vue({
         // 删除用户
         deleteInfo: function (id) {
             service.sysTenant.io.deleteInfo(id).then(function (data) {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
@@ -100,7 +100,7 @@ $("#btnSelectFile").click(function () {
 $(document).ready(function () {
     $('#tab1,#tab2').on('click', function (e) {
         if (vm.dto.Id == 0) {
-            college.Msg.showInfo("请先保存基本信息后，再设置机构图标");
+            ICusCRM.Msg.showInfo("请先保存基本信息后，再设置机构图标");
             return false;
         }
     });
@@ -113,7 +113,7 @@ $(document).ready(function () {
         vm.dto = new service.sysTenant.dto.sysTenantDto();
 
         // 重置选项卡
-        college.Toolkit.resetting();
+        ICusCRM.Toolkit.resetting();
 
         $("#signupForm").data('bootstrapValidator').resetForm();
 

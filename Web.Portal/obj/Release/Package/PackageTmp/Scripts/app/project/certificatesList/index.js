@@ -22,7 +22,7 @@ var vm = new Vue({
         //标记为可领证
         SetCertificateStatus: function (id, type) {
             service.project.io.SetCertificateStatus(id).then(function (data) {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
@@ -38,7 +38,7 @@ var vm = new Vue({
         SetCertificateBatch: function () {
             var ids = JSON.stringify(this.listSelected);
             service.project.io.SetCertificateBatch(ids).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         }

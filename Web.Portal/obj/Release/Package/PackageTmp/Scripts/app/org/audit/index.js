@@ -25,19 +25,19 @@ var vm = new Vue({
 
         submitAudit: function (id) {
             service.audit.io.submitAudit(id).then(function (data) {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
         adoptStatus: function (id) {
             service.audit.io.adoptStatus(id).then(function (data) {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
         defeatedStatus: function (id) {
             service.audit.io.defeatedStatus(id).then(function (data) {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
@@ -50,7 +50,7 @@ var vm = new Vue({
         // 设置冻结/解冻
         setFreezeStatus: function(id) {
             service.audit.io.setFreezeStatus(id).then(function (data) {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         }
@@ -107,7 +107,7 @@ function fromSubmit() {
 
             },
             success: function (path) {
-                college.Msg.showSuccess("新增项目成功，即将跳转到列表页。");
+                ICusCRM.Msg.showSuccess("新增项目成功，即将跳转到列表页。");
                 window.location.href = "/Org/ProjectMgtResul";
             }
         });

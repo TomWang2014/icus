@@ -26,7 +26,7 @@ var service = service || {};
         // 获得类别
         getType: function () {
             return $.ajax({
-                url: college.Path.url("org", 'GetProjectType'),
+                url: ICusCRM.Path.url("org", 'GetProjectType'),
                 type: "post",
                 cache: false
             });

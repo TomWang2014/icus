@@ -32,10 +32,10 @@ var vm = new Vue({
             $("#myModal").modal("show");
         },
         save: function () {
-            if (college.Validator.isValid("#signupForm")) {
+            if (ICusCRM.Validator.isValid("#signupForm")) {
                 service.newsType.io.modifyNewsType(JSON.stringify(this.dto)).then(function () {
                     $("#myModal").modal("hide");
-                    college.Msg.showSuccess("编辑新闻栏目成功");
+                    ICusCRM.Msg.showSuccess("编辑新闻栏目成功");
                     vm.getList();
                 });
             }
@@ -44,7 +44,7 @@ var vm = new Vue({
         // 删除栏目
         deleteNewsType: function (id) {
             service.newsType.io.deleteNewsType(id).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
@@ -53,7 +53,7 @@ var vm = new Vue({
         deleteBatch: function () {
             var ids = JSON.stringify(this.listSelected);
             service.newsType.io.deleteBatch(ids).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },

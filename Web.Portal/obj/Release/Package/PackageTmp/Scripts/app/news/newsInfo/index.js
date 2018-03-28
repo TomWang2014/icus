@@ -38,14 +38,14 @@ var vm = new Vue({
         //发布新闻
         pubnewsinfo: function (id) {
             service.newsInfo.io.pubNewsInfo(id).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
         //取消发布
         unpubnewsinfo:function (id) {
             service.newsInfo.io.unpubNewsInfo(id).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
@@ -58,7 +58,7 @@ var vm = new Vue({
         // 删除新闻
         deleteNewsInfo: function (id) {
             service.newsInfo.io.deleteNewsInfo(id).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
@@ -66,7 +66,7 @@ var vm = new Vue({
         deleteBatch: function () {
             var ids = JSON.stringify(this.listSelected);
             service.newsInfo.io.deleteBatch(ids).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },

@@ -1,0 +1,621 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="icusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AreaName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BalanceLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BId" Type="bigint" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="OrderId" Type="bigint" Nullable="false" />
+    <Property Name="ChangeNumbers" Type="int" />
+    <Property Name="ChangeTime" Type="datetime" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“icus.dbo.BusinessToCustomers”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="BusinessToCustomers">
+    <Key>
+      <PropertyRef Name="BId" />
+      <PropertyRef Name="CompanyId" />
+      <PropertyRef Name="CustomerId" />
+      <PropertyRef Name="CreateTime" />
+    </Key>
+    <Property Name="BId" Type="bigint" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="CustomerId" Type="bigint" Nullable="false" />
+    <Property Name="RealName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sex" Type="int" />
+    <Property Name="Age" Type="int" />
+    <Property Name="City" Type="int" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="UpdateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CallBatch">
+    <Key>
+      <PropertyRef Name="BatchId" />
+    </Key>
+    <Property Name="BatchId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BatchName" Type="nvarchar" MaxLength="128" />
+    <Property Name="CustomerNumbers" Type="int" />
+    <Property Name="CallLeader" Type="int" />
+    <Property Name="CalledNumbers" Type="int" />
+    <Property Name="Creator" Type="int" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CallBatchToCustomer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BatchId" Type="bigint" Nullable="false" />
+    <Property Name="CustomerId" Type="bigint" />
+    <Property Name="BId" Type="bigint" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="CallStatus" Type="int" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CallRemarks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BatchToCustomerId" Type="bigint" />
+    <Property Name="RealName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sex" Type="int" />
+    <Property Name="Age" Type="int" />
+    <Property Name="MinPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MaxPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CallStatus" Type="int" />
+    <Property Name="Intension" Type="int" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="256" />
+    <Property Name="CallTime" Type="datetime" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“icus.dbo.Commission”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Commission">
+    <Key>
+      <PropertyRef Name="SellerId" />
+      <PropertyRef Name="CompanyId" />
+      <PropertyRef Name="OrderId" />
+      <PropertyRef Name="CreateTime" />
+    </Key>
+    <Property Name="SellerId" Type="bigint" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="OrderId" Type="bigint" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ComputeTime" Type="datetime" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="License" Type="nvarchar" MaxLength="128" />
+    <Property Name="IsDelete" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CusFuncCusRoles">
+    <Key>
+      <PropertyRef Name="FuncId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="FuncId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerIntention">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="bigint" Nullable="false" />
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="128" />
+    <Property Name="NewCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProjectCity" Type="int" />
+    <Property Name="ProjectArea" Type="int" />
+    <Property Name="BehaviorType" Type="int" />
+    <Property Name="BehaviorTime" Type="datetime" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RealName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sex" Type="int" />
+    <Property Name="Age" Type="int" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDelete" Type="int" Nullable="false" />
+    <Property Name="GenerateTime" Type="datetime" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Funcs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AreaName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ControllerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ActionName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ParentFuncId" Type="int" />
+    <Property Name="IsDisPlay" Type="int" Nullable="false" />
+    <Property Name="ICon" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ImportTelephone">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="128" />
+    <Property Name="NewCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProjectCity" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProjectArea" Type="nvarchar" MaxLength="50" />
+    <Property Name="Location" Type="nvarchar" MaxLength="50" />
+    <Property Name="BehaviorTime" Type="datetime" />
+    <Property Name="IsDelete" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BId" Type="bigint" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="BuyNumbers" Type="int" />
+    <Property Name="SellerId" Type="bigint" />
+    <Property Name="Percentage" Type="float" />
+    <Property Name="PayTime" Type="datetime" />
+    <Property Name="IsPay" Type="int" />
+    <Property Name="Status" Type="int" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectToArea">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="128" />
+    <Property Name="NewCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsDelete" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Account" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="type" Type="int" Nullable="false" />
+    <Property Name="RealName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="128" />
+    <Property Name="Email" Type="nvarchar" MaxLength="128" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdentityCard" Type="nvarchar" MaxLength="50" />
+    <Property Name="BankCard" Type="nvarchar" MaxLength="50" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UsedTimes" Type="bigint" />
+    <Property Name="LastTimes" Type="bigint" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="IsDelete" Type="int" Nullable="false" />
+    <Property Name="CreatorId" Type="bigint" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VirtualNumbers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_BalanceLog_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="BalanceLog" Type="Self.BalanceLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BalanceLog">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BalanceLog_Orders">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+    <End Role="BalanceLog" Type="Self.BalanceLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BalanceLog">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BalanceLog_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="BalanceLog" Type="Self.BalanceLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BalanceLog">
+        <PropertyRef Name="BId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessToCustomers_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="BusinessToCustomers" Type="Self.BusinessToCustomers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessToCustomers">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessToCustomers_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="BusinessToCustomers" Type="Self.BusinessToCustomers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessToCustomers">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessToCustomers_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="BusinessToCustomers" Type="Self.BusinessToCustomers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessToCustomers">
+        <PropertyRef Name="BId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CallBatchToCustomer_CallBatch">
+    <End Role="CallBatch" Type="Self.CallBatch" Multiplicity="1" />
+    <End Role="CallBatchToCustomer" Type="Self.CallBatchToCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CallBatch">
+        <PropertyRef Name="BatchId" />
+      </Principal>
+      <Dependent Role="CallBatchToCustomer">
+        <PropertyRef Name="BatchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CallBatchToCustomer_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="CallBatchToCustomer" Type="Self.CallBatchToCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CallBatchToCustomer">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CallBatchToCustomer_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="CallBatchToCustomer" Type="Self.CallBatchToCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CallBatchToCustomer">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CallBatchToCustomer_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="CallBatchToCustomer" Type="Self.CallBatchToCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CallBatchToCustomer">
+        <PropertyRef Name="BId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CallRemarks_CallBatchToCustomer">
+    <End Role="CallBatchToCustomer" Type="Self.CallBatchToCustomer" Multiplicity="0..1" />
+    <End Role="CallRemarks" Type="Self.CallRemarks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CallBatchToCustomer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CallRemarks">
+        <PropertyRef Name="BatchToCustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Commission_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="Commission" Type="Self.Commission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Commission">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Commission_Orders">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+    <End Role="Commission" Type="Self.Commission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Commission">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Commission_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Commission" Type="Self.Commission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Commission">
+        <PropertyRef Name="SellerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CusFuncCusRoles_Funcs">
+    <End Role="Funcs" Type="Self.Funcs" Multiplicity="1" />
+    <End Role="CusFuncCusRoles" Type="Self.CusFuncCusRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Funcs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CusFuncCusRoles">
+        <PropertyRef Name="FuncId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CusFuncCusRoles_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="CusFuncCusRoles" Type="Self.CusFuncCusRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CusFuncCusRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerIntention_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="CustomerIntention" Type="Self.CustomerIntention" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerIntention">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="BId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="SellerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="icusModelStoreContainer">
+    <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BalanceLog" EntityType="Self.BalanceLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CallBatch" EntityType="Self.CallBatch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CallBatchToCustomer" EntityType="Self.CallBatchToCustomer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CallRemarks" EntityType="Self.CallRemarks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CusFuncCusRoles" EntityType="Self.CusFuncCusRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerIntention" EntityType="Self.CustomerIntention" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Funcs" EntityType="Self.Funcs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ImportTelephone" EntityType="Self.ImportTelephone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectToArea" EntityType="Self.ProjectToArea" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VirtualNumbers" EntityType="Self.VirtualNumbers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessToCustomers" EntityType="Self.BusinessToCustomers" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [BusinessToCustomers].[BId] AS [BId], 
+    [BusinessToCustomers].[CompanyId] AS [CompanyId], 
+    [BusinessToCustomers].[CustomerId] AS [CustomerId], 
+    [BusinessToCustomers].[RealName] AS [RealName], 
+    [BusinessToCustomers].[Phone] AS [Phone], 
+    [BusinessToCustomers].[Sex] AS [Sex], 
+    [BusinessToCustomers].[Age] AS [Age], 
+    [BusinessToCustomers].[City] AS [City], 
+    [BusinessToCustomers].[CreateTime] AS [CreateTime], 
+    [BusinessToCustomers].[UpdateTime] AS [UpdateTime]
+    FROM [dbo].[BusinessToCustomers] AS [BusinessToCustomers]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Commission" EntityType="Self.Commission" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Commission].[SellerId] AS [SellerId], 
+    [Commission].[CompanyId] AS [CompanyId], 
+    [Commission].[OrderId] AS [OrderId], 
+    [Commission].[Price] AS [Price], 
+    [Commission].[ComputeTime] AS [ComputeTime], 
+    [Commission].[CreateTime] AS [CreateTime]
+    FROM [dbo].[Commission] AS [Commission]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_BalanceLog_Company" Association="Self.FK_BalanceLog_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="BalanceLog" EntitySet="BalanceLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BalanceLog_Orders" Association="Self.FK_BalanceLog_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="BalanceLog" EntitySet="BalanceLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BalanceLog_Users" Association="Self.FK_BalanceLog_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="BalanceLog" EntitySet="BalanceLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessToCustomers_Company" Association="Self.FK_BusinessToCustomers_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="BusinessToCustomers" EntitySet="BusinessToCustomers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessToCustomers_Customers" Association="Self.FK_BusinessToCustomers_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="BusinessToCustomers" EntitySet="BusinessToCustomers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessToCustomers_Users" Association="Self.FK_BusinessToCustomers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="BusinessToCustomers" EntitySet="BusinessToCustomers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CallBatchToCustomer_CallBatch" Association="Self.FK_CallBatchToCustomer_CallBatch">
+      <End Role="CallBatch" EntitySet="CallBatch" />
+      <End Role="CallBatchToCustomer" EntitySet="CallBatchToCustomer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CallBatchToCustomer_Company" Association="Self.FK_CallBatchToCustomer_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="CallBatchToCustomer" EntitySet="CallBatchToCustomer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CallBatchToCustomer_Customers" Association="Self.FK_CallBatchToCustomer_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="CallBatchToCustomer" EntitySet="CallBatchToCustomer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CallBatchToCustomer_Users" Association="Self.FK_CallBatchToCustomer_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CallBatchToCustomer" EntitySet="CallBatchToCustomer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CallRemarks_CallBatchToCustomer" Association="Self.FK_CallRemarks_CallBatchToCustomer">
+      <End Role="CallBatchToCustomer" EntitySet="CallBatchToCustomer" />
+      <End Role="CallRemarks" EntitySet="CallRemarks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Commission_Company" Association="Self.FK_Commission_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="Commission" EntitySet="Commission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Commission_Orders" Association="Self.FK_Commission_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Commission" EntitySet="Commission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Commission_Users" Association="Self.FK_Commission_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Commission" EntitySet="Commission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CusFuncCusRoles_Funcs" Association="Self.FK_CusFuncCusRoles_Funcs">
+      <End Role="Funcs" EntitySet="Funcs" />
+      <End Role="CusFuncCusRoles" EntitySet="CusFuncCusRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CusFuncCusRoles_Roles" Association="Self.FK_CusFuncCusRoles_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="CusFuncCusRoles" EntitySet="CusFuncCusRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerIntention_Customers" Association="Self.FK_CustomerIntention_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="CustomerIntention" EntitySet="CustomerIntention" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Users1" Association="Self.FK_Orders_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Company" Association="Self.FK_Users_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -28,6 +28,7 @@ namespace ICusCRM.Application.SystemMgtServices
     using ICusCRM.Infrastructure.Runtime.Session;
     using ICusCRM.Infrastructure.Toolkit;
     using ICusCRM.Infrastructure.Unity.Aop;
+    using ICusCRM.Application.SystemMgtServices.Dtos;
 
     /// <summary>
     /// 系统设置服务
@@ -76,7 +77,7 @@ namespace ICusCRM.Application.SystemMgtServices
             this.unitOfWork = unitOfWork;
             this.rolesRepository = rolesRepository;
             this.usersRepository = usersRepository;
-            
+
         }
 
         #region 用户相关操作
@@ -96,45 +97,44 @@ namespace ICusCRM.Application.SystemMgtServices
         /// <returns>
         /// 结果 
         /// </returns>
-        //public CurrentUserDto UserLogin(string account, string password, out string errorMsg)
-        //{
-        //    errorMsg = string.Empty;
-        //    if (string.IsNullOrWhiteSpace(account) || string.IsNullOrWhiteSpace(password))
-        //    {
-        //        errorMsg = "登录账号和密码不能为空。";
-        //        return null;
-        //    }
+        public CurrentUserDto UserLogin(string account, string password, out string errorMsg)
+        {
+            errorMsg = string.Empty;
+            if (string.IsNullOrWhiteSpace(account) || string.IsNullOrWhiteSpace(password))
+            {
+                errorMsg = "登录账号和密码不能为空。";
+                return null;
+            }
 
-        //    var users =
-        //        this.usersRepository.GetFilteredElements(a => a.Account == account && a.IsDeleted == false).ToList();
-        //    if (users.Count == 0)
-        //    {
-        //        errorMsg = "登录失败，不存在该用户。";
-        //        return null;
-        //    }
+            var users = this.usersRepository.GetFilteredElements(a => a.Account == account && a.IsDelete == 0).ToList();
+            if (users.Count == 0)
+            {
+                errorMsg = "登录失败，不存在该用户。";
+                return null;
+            }
 
-        //    foreach (var sysUser in users)
-        //    {
-        //        var md5Pwd = Hasher.GetMd5Hash(password).ToUpper();
-        //        if (sysUser.Password.ToUpper() == md5Pwd)
-        //        {
-        //            // 登录成功
-        //            var temp = sysUser.MapTo<CurrentUserDto>();
-        //            temp.FuncItems = this.GetFuncByUser(sysUser.Account);
+            foreach (var sysUser in users)
+            {
+                var md5Pwd = Hasher.GetMd5Hash(password).ToUpper();
+                if (sysUser.Password.ToUpper() == md5Pwd)
+                {
+                    // 登录成功
+                    var temp = sysUser.MapTo<CurrentUserDto>();
+                    temp.FuncItems = this.GetFuncByUser(sysUser.Account);
 
-        //            // admin账号特殊处理，拥有全部权限
-        //            // if (sysUser.Account.ToLower() == "admin")
-        //            // {
-        //            // temp.FuncItems = this.GetAllNotTenantFuncs();
-        //            // }
-        //            temp.IsTenant = CheckUserIsTenant(temp.Id);
-        //            return temp;
-        //        }
-        //    }
+                    // admin账号特殊处理，拥有全部权限
+                    // if (sysUser.Account.ToLower() == "admin")
+                    // {
+                    // temp.FuncItems = this.GetAllNotTenantFuncs();
+                    // }
+                    // temp.IsTenant = CheckUserIsTenant(temp.Id);
+                    return temp;
+                }
+            }
 
-        //    errorMsg = "登录失败，账号或者密码不匹配。";
-        //    return null;
-        //}
+            errorMsg = "登录失败，账号或者密码不匹配。";
+            return null;
+        }
 
         /// <summary>
         /// 新增用户信息
@@ -413,53 +413,57 @@ namespace ICusCRM.Application.SystemMgtServices
         //    return list.MapTo<List<SysFuncItem>>();
         //}
 
-        ///// <summary>
-        ///// 获得用户权限列表
-        ///// </summary>
-        ///// <param name="account">
-        ///// 用户账号
-        ///// </param>
-        ///// <returns>
-        ///// 返回权限 
-        ///// </returns>
-        //public List<SysFuncItem> GetFuncByUser(string account)
-        //{
-        //    var list = new List<SysFuncItem>();
-        //    var user = this.usersRepository.GetFilteredElements(a => a.Account == account).FirstOrDefault();
+        /// <summary>
+        /// 获得用户权限列表
+        /// </summary>
+        /// <param name="account">
+        /// 用户账号
+        /// </param>
+        /// <returns>
+        /// 返回权限 
+        /// </returns>
+        public List<FuncsItem> GetFuncByUser(string account)
+        {
+            var list = new List<FuncsItem>();
+            var user = this.usersRepository.GetFilteredElements(a => a.Account == account).FirstOrDefault();
 
-        //    if (user == null)
-        //    {
-        //        throw new UserFriendlyException(account + "账号未能查找到用户信息。");
-        //    }
+            if (user == null)
+            {
+                throw new UserFriendlyException(account + "账号未能查找到用户信息。");
+            }
 
-        //    // 用户没有任何角色
-        //    if (user.Roles == null)
-        //    {
-        //        return list;
-        //    }
+            // 用户没有任何角色
+            if (user.Roles == null)
+            {
+                return list;
+            }
 
-        //    var allFunc = user.Roles.NetSysFuncs.MapTo<List<SysFuncItem>>();
+            var allFunc = user.Roles.Funcs.MapTo<List<FuncsItem>>();
 
-        //    // 该用户实际拥有的权限idj集合
-        //    var allFuncIds = allFunc.Select(a => a.Id).ToList();
+            // 该用户实际拥有的权限idj集合
+            var allFuncIds = allFunc.Select(a => a.Id).ToList();
 
-        //    // 只过滤一级菜单
-        //    foreach (var f in allFunc.Where(a => a.FuncType == 1))
-        //    {
-        //        var model = f;
-        //        var sonFuns = f.NetSysFunc1.ToList();
+            // 只过滤一级菜单
+            foreach (var f in allFunc.Where(a => a.ParentFuncId == 0 && a.IsDisplay == true))
+            {
+                var model = f;
+                if (f.SysFunc1 != null)
+                {
+                    var sonFuns = f.SysFunc1.ToList();
 
-        //        model.NetSysFunc1.Clear();
-        //        foreach (var func in sonFuns.Where(func => allFuncIds.Contains(func.Id)&&func.IsDisplay==true))
-        //        {
-        //            model.NetSysFunc1.Add(func);
-        //        }
+                    model.SysFunc1.Clear();
+                    foreach (var func in sonFuns.Where(func => allFuncIds.Contains(func.Id) && func.IsDisplay == true))
+                    {
+                        model.SysFunc1.Add(func);
+                    }
+                }
+                
 
-        //        list.Add(model);
-        //    }
+                list.Add(model);
+            }
 
-        //    return list;
-        //}
+            return list;
+        }
 
         //#endregion
 
@@ -798,9 +802,9 @@ namespace ICusCRM.Application.SystemMgtServices
 
         #endregion
 
-      
 
-      
+
+
     }
 
 }

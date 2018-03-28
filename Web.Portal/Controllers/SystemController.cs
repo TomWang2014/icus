@@ -8,58 +8,59 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace ICusCRM.Web.Portal.Controllers
 {
-    //using System;
-    //using System.Collections.Generic;
-    //using System.Drawing;
-    //using System.Drawing.Imaging;
-    //using System.Globalization;
-    //using System.IO;
-    //using System.Linq;
-    //using System.Web.Mvc;
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Drawing.Imaging;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Web.Mvc;
 
 
-    //using ICusCRM.Application.SystemMgtServices;
-    //using ICusCRM.Infrastructure.Dto;
-    //using ICusCRM.Infrastructure.Exceptions;
-    //using ICusCRM.Infrastructure.Mvc.Authorization;
-    //using ICusCRM.Infrastructure.Mvc.ModelBinder;
-    //using ICusCRM.Infrastructure.Toolkit;
-    //using ICusCRM.Web.Portal.Toolkits;
+    using ICusCRM.Application.SystemMgtServices;
+    using ICusCRM.Infrastructure.Dto;
+    using ICusCRM.Infrastructure.Exceptions;
+    using ICusCRM.Infrastructure.Mvc.Authorization;
+    using ICusCRM.Infrastructure.Mvc.ModelBinder;
+    using ICusCRM.Infrastructure.Toolkit;
+    using ICusCRM.Web.Portal.Toolkits;
 
-    ///// <summary>
-    ///// 系统管理
-    ///// </summary>
-    //public class SystemController : AppAuthorizeController
-    //{
-    //    /// <summary>
-    //    /// 系统服务
-    //    /// </summary>
-    //    private readonly SystemServices systemServices;
+    /// <summary>
+    /// 系统管理
+    /// </summary>
+    public class SystemController : AppAuthorizeController
+    {
+        /// <summary>
+        /// 系统服务
+        /// </summary>
+        private readonly SystemServices systemServices;
 
 
 
-    //    /// <summary>
-    //    /// 构造函数
-    //    /// </summary>
-    //    /// <param name="systemServices">
-    //    /// 系统服务
-    //    /// </param>
-    //    /// <param name="orgMgtService">机构设置</param>
-    //    public SystemController(SystemServices systemServices)
-    //    {
-    //        this.systemServices = systemServices;
-    //    }
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="systemServices">
+        /// 系统服务
+        /// </param>
+        /// <param name="orgMgtService">机构设置</param>
+        public SystemController(SystemServices systemServices)
+        {
+            this.systemServices = systemServices;
+        }
 
         //#region 用户管理相关
 
-        ///// <summary>
-        ///// 系统用户管理
-        ///// </summary>
-        ///// <returns>用户管理界面</returns>
-        //public ActionResult SysUserMgtResult()
-        //{
-        //    return View();
-        //}
+        /// <summary>
+        /// 系统用户管理
+        /// </summary>
+        /// <returns>用户管理界面</returns>
+        public ActionResult UserMgtResult()
+        {
+            this.ViewBag.UserType = UserIdentity.CurrentUser.ToString();
+            return View();
+        }
 
         ///// <summary>
         ///// 编辑用户信息
@@ -175,17 +176,17 @@ namespace ICusCRM.Web.Portal.Controllers
         ///// <param name="model">
         ///// 模型
         ///// </param>
-        //public void ModifyRoleInfo([FromJson] AddRole model)
-        //{
-        //    if (model.Id == 0)
-        //    {
-        //        this.systemServices.AddRoleInfo(model);
-        //    }
-        //    else
-        //    {
-        //        this.systemServices.UpdateRoleInfo(model);
-        //    }
-        //}
+        ////public void ModifyRoleInfo([FromJson] AddRole model)
+        ////{
+        ////    if (model.Id == 0)
+        ////    {
+        ////        this.systemServices.AddRoleInfo(model);
+        ////    }
+        ////    else
+        ////    {
+        ////        this.systemServices.UpdateRoleInfo(model);
+        ////    }
+        ////}
 
         ///// <summary>
         ///// 删除用户信息
@@ -193,10 +194,10 @@ namespace ICusCRM.Web.Portal.Controllers
         ///// <param name="id">
         ///// 角色Id
         ///// </param>
-        //public void DeleteRole(int id)
-        //{
-        //    this.systemServices.DeleteRole(id);
-        //}
+        ////public void DeleteRole(int id)
+        ////{
+        ////    this.systemServices.DeleteRole(id);
+        ////}
 
         //#endregion
 
@@ -503,13 +504,13 @@ namespace ICusCRM.Web.Portal.Controllers
         //}
 
 
-        ///// <summary>
-        ///// 刷新session
-        ///// </summary>
-        //[AnonymousAttribute]
-        //public void RefreshSession()
-        //{
-        //    var obj = UserIdentity.CurrentUser.Account;
-        //}
-    //}
+        /// <summary>
+        /// 刷新session
+        /// </summary>
+        [AnonymousAttribute]
+        public void RefreshSession()
+        {
+            var obj = UserIdentity.CurrentUser.Account;
+        }
+    }
 }

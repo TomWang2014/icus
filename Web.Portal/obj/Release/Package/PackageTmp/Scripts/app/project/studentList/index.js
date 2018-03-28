@@ -30,7 +30,7 @@ var vm = new Vue({
         // 设置停课/复课
         setProjectStatus: function (id, type) {
             service.project.io.setProjectStatus(id, type).then(function (data) {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
@@ -46,7 +46,7 @@ var vm = new Vue({
         RecoverStatusBatch: function () {
             var ids = JSON.stringify(this.listSelected);
             service.project.io.RecoverStatusBatch(ids).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
@@ -54,7 +54,7 @@ var vm = new Vue({
         StopStatusBatch: function () {
             var ids = JSON.stringify(this.listSelected);
             service.project.io.StopStatusBatch(ids).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         }

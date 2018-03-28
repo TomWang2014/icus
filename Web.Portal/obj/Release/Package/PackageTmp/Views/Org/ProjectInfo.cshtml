@@ -1,6 +1,6 @@
 ﻿@using System.Diagnostics
-@using College.Infrastructure.Entity
-@model College.Application.OrgMgtServices.Dtos.ProjectDto
+@using ICusCRM.Infrastructure.Entity
+@model ICusCRM.Application.OrgMgtServices.Dtos.ProjectDto
 @{
     var projectType = ViewBag.projectType as List<ComboboxItemDto>;
 }
@@ -242,7 +242,7 @@
             }
         });
         if ("@ViewBag.msg" === "ok") {
-            college.Msg.showSuccess("操作成功，即将调回列表页面");
+            ICusCRM.Msg.showSuccess("操作成功，即将调回列表页面");
             window.setTimeout(back, 1000);
         }
 
@@ -300,7 +300,7 @@
         // 保存信息
         function save() {
 
-            var from = college.Validator.isValid("#signupForm");
+            var from = ICusCRM.Validator.isValid("#signupForm");
             if (!from) {
                 return false;
             }
@@ -310,19 +310,19 @@
             if ("@Model.Id" == "0") {
                 var fileText = $("#FrontImage").val();
                 if (fileText == "") {
-                    college.Msg.showError("请选择封面图片", "提示信息");
+                    ICusCRM.Msg.showError("请选择封面图片", "提示信息");
                     return false;
                 }
             }
 
 
             if ($("#Shortabstract").val().length < 10) {
-                college.Msg.showError("项目摘要信息必须大于10个字符", "提示信息");
+                ICusCRM.Msg.showError("项目摘要信息必须大于10个字符", "提示信息");
                 return false;
             }
 
             if ($("#Descriptions").val().length < 10) {
-                college.Msg.showError("项目描述信息必须大于10个字符", "提示信息");
+                ICusCRM.Msg.showError("项目描述信息必须大于10个字符", "提示信息");
                 return false;
             }
 

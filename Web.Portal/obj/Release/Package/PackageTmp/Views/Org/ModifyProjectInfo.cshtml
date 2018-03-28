@@ -1,6 +1,6 @@
 ﻿@using System.Diagnostics
-@using College.Infrastructure.Entity
-@model College.Application.OrgMgtServices.Dtos.ProjectDto
+@using ICusCRM.Infrastructure.Entity
+@model ICusCRM.Application.OrgMgtServices.Dtos.ProjectDto
 @{
     var projectType = ViewBag.projectType as List<ComboboxItemDto>;
 }
@@ -127,7 +127,7 @@
     </div>
     <div class="form-group" style="margin-top: 25px">
         <div class="col-sm-12" style="text-align:center;">
-            <button type="submit" onclick="return college.Validator.isValid('signupForm')" class="btn btn-primary">保存</button>
+            <button type="submit" onclick="return ICusCRM.Validator.isValid('signupForm')" class="btn btn-primary">保存</button>
             <button type="button" onclick="javascript: window.location = '/Org/ProjectMgtResul'" class="btn btn-default">返回列表</button>
         </div>
     </div>
@@ -232,7 +232,7 @@
         });
 
         if ("@ViewBag.msg" === "ok") {
-            college.Msg.showSuccess("操作成功，即将调回列表页面");
+            ICusCRM.Msg.showSuccess("操作成功，即将调回列表页面");
             window.setTimeout(back, 1000);
         }
 

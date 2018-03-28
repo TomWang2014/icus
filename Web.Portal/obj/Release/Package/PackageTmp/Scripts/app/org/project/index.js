@@ -25,20 +25,20 @@ var vm = new Vue({
 
         submitAudit: function (id) {
             service.project.io.submitAudit(id).then(function (data) {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
         withdrawalAudit: function (id) {
             service.project.io.withdrawalAudit(id).then(function (data) {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },
         // 删除
         deleteItem: function (id) {
             service.project.io.deleteItem(id).then(function () {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },

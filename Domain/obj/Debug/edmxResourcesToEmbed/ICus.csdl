@@ -167,6 +167,7 @@
     <NavigationProperty Name="Commission" Relationship="Self.FK_Commission_Orders" FromRole="Orders" ToRole="Commission" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Orders_Users" FromRole="Orders" ToRole="Users" />
     <NavigationProperty Name="Users1" Relationship="Self.FK_Orders_Users1" FromRole="Orders" ToRole="Users" />
+    <Property Name="DealImg" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="ProjectToArea">
     <Key>

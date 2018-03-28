@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="icusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="icusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Area">
     <Key>
       <PropertyRef Name="Id" />
@@ -187,6 +187,7 @@
     <Property Name="IsPay" Type="int" />
     <Property Name="Status" Type="int" />
     <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="DealImg" Type="nvarchar" MaxLength="256" />
   </EntityType>
   <EntityType Name="ProjectToArea">
     <Key>

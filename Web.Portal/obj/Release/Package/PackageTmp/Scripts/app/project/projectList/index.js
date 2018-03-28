@@ -33,7 +33,7 @@ var vm = new Vue({
         // 设置冻结/解冻
         setFreezeStatus: function (id) {
             service.project.io.setFreezeStatus(id).then(function (data) {
-                college.Msg.showSuccess();
+                ICusCRM.Msg.showSuccess();
                 vm.getList();
             });
         },

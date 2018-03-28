@@ -52,96 +52,100 @@ namespace ICusCRM.Web.Portal.Controllers
             return this.View();
         }
 
-    //    /// <summary>
-    //    /// 处理用户登录提交的数据
-    //    /// </summary>
-    //    /// <param name="account"> 用户账号</param>
-    //    /// <param name="password"> 用户密码 </param>
-    //    /// <param name="verCode">验证码</param>
-    //    /// <returns> 返回登录成功后的页面 </returns>
-    //    [HttpPost]
-    //    public ActionResult Login(string account, string password, string verCode)
-    //    {
-    //        string msg;
+        /// <summary>
+        /// 处理用户登录提交的数据
+        /// </summary>
+        /// <param name="account"> 用户账号</param>
+        /// <param name="password"> 用户密码 </param>
+        /// <param name="verCode">验证码</param>
+        /// <returns> 返回登录成功后的页面 </returns>
+        [HttpPost]
+        public ActionResult Login(string account, string password, string verCode)
+        {
+            string msg;
 
-    //        if (string.IsNullOrWhiteSpace(verCode))
-    //        {
-    //            this.ViewBag.msg = "请输入正确的验证码！";
-    //            return this.View();
-    //        }
+            if (string.IsNullOrWhiteSpace(verCode))
+            {
+                this.ViewBag.msg = "请输入正确的验证码！";
+                return this.View();
+            }
 
-    //        var code = this.TempData["vcode"] as string;            
-    //        if (!verCode.Equals(code))
-    //        {
-    //            this.ViewBag.msg = "请输入正确的验证码！";
-    //            return this.View();
-    //        }
+            var code = this.TempData["vcode"] as string;
+            if (!verCode.Equals(code))
+            {
+                this.ViewBag.msg = "请输入正确的验证码！";
+                return this.View();
+            }
 
-    //        var user = this.systemServices.UserLogin(account, password, out msg);
-    //        this.ViewBag.msg = msg;
-    //        if (user == null)
-    //        {
-    //            return this.View();
-    //        }
-
-
-    //        try
-    //        {
-    //            var ip = HttpContext.Request.UserHostAddress;
-    //            var browser = HttpContext.Request.Browser.Browser;
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            Log.WriteLine(ex);
-    //        }
+            var user = this.systemServices.UserLogin(account, password, out msg);
+            this.ViewBag.msg = msg;
+            if (user == null)
+            {
+                return this.View();
+            }
 
 
-    //        // 计算可访问的权限
-    //        foreach (var sysFuncItem in user.FuncItems)
-    //        {
-    //            var roleName = ToolkitsHelper.InitAllFunc().FirstOrDefault(a => a.RoleName == sysFuncItem.ToString());
-    //            if (roleName != null)
-    //            {
-    //                user.AuthenticationUrl.AddRange(roleName.IncludeUrl);
-    //            }
+            try
+            {
+                var ip = HttpContext.Request.UserHostAddress;
+                var browser = HttpContext.Request.Browser.Browser;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLine(ex);
+            }
 
-    //            foreach (var funcSmall in sysFuncItem.SubSysFunc)
-    //            {
-    //                var smallRoleName = ToolkitsHelper.InitAllFunc().FirstOrDefault(a => a.RoleName == funcSmall.ToString());
-    //                if (smallRoleName != null)
-    //                {
-    //                    user.AuthenticationUrl.AddRange(smallRoleName.IncludeUrl);
-    //                }
-    //            }
-    //        }
 
-    //        UserIdentity.CurrentUser = user;
-    //        return this.Redirect("/home/index");
-    //    }
+            // 计算可访问的权限
+            foreach (var sysFuncItem in user.FuncItems)
+            {
+                var roleName = ToolkitsHelper.InitAllFunc().FirstOrDefault(a => a.RoleName == sysFuncItem.ToString());
+                if (roleName != null)
+                {
+                    user.AuthenticationUrl.AddRange(roleName.IncludeUrl);
+                }
 
-    //    /// <summary>
-    //    /// 用户退出登录
-    //    /// </summary>
-    //    /// <returns>返回登录页面</returns>
-    //    public ActionResult LoginOut()
-    //    {
-    //        var limit = Request.Cookies.Count;
-    //        for (var i = 0; i < limit; i++)
-    //        {
-    //            var httpCookie = this.Request.Cookies[i];
-    //            if (httpCookie == null)
-    //            {
-    //                continue;
-    //            }
+                if (sysFuncItem.SubSysFunc != null)
+                {
+                    foreach (var funcSmall in sysFuncItem.SubSysFunc)
+                    {
+                        var smallRoleName = ToolkitsHelper.InitAllFunc().FirstOrDefault(a => a.RoleName == funcSmall.ToString());
+                        if (smallRoleName != null)
+                        {
+                            user.AuthenticationUrl.AddRange(smallRoleName.IncludeUrl);
+                        }
+                    }
+                }
+                
+            }
 
-    //            var cookieName = httpCookie.Name;
-    //            var aCookie = new HttpCookie(cookieName) { Expires = DateTime.Now.AddDays(-1) };
-    //            this.Response.Cookies.Add(aCookie);
-    //        }
+            UserIdentity.CurrentUser = user;
+            return this.Redirect("/home/index");
+        }
 
-    //        Session.Abandon();
-    //        return this.Redirect("/home/index");
-    //    }
+        /// <summary>
+        /// 用户退出登录
+        /// </summary>
+        /// <returns>返回登录页面</returns>
+        public ActionResult LoginOut()
+        {
+            var limit = Request.Cookies.Count;
+            for (var i = 0; i < limit; i++)
+            {
+                var httpCookie = this.Request.Cookies[i];
+                if (httpCookie == null)
+                {
+                    continue;
+                }
+
+                var cookieName = httpCookie.Name;
+                var aCookie = new HttpCookie(cookieName) { Expires = DateTime.Now.AddDays(-1) };
+                this.Response.Cookies.Add(aCookie);
+            }
+
+            Session.Abandon();
+            return this.Redirect("/home/index");
+        }
 
         /// <summary>
         /// 代理登录页面
@@ -164,19 +168,19 @@ namespace ICusCRM.Web.Portal.Controllers
     //        return Json(ToolkitsHelper.InitAllFunc(), JsonRequestBehavior.AllowGet);
     //    }
 
-    //    /// <summary>
-    //    /// 获得图片验证码
-    //    /// </summary>
-    //    public void GetImgVerificationCode()
-    //    {
-    //        // 生成随机验证码图
-    //        string vcode;
-    //        var basemap = RandomNumberHelper.GetValidateCodeMap(out vcode, 4);
+        /// <summary>
+        /// 获得图片验证码
+        /// </summary>
+        public void GetImgVerificationCode()
+        {
+            // 生成随机验证码图
+            string vcode;
+            var basemap = RandomNumberHelper.GetValidateCodeMap(out vcode, 4);
 
-    //        // 存储在tempdata并且返回图片格式
-    //        this.TempData["vcode"] = vcode;            
-    //        basemap.Save(this.Response.OutputStream, ImageFormat.Gif);
-    //        this.Response.End();
-    //    }
+            // 存储在tempdata并且返回图片格式
+            this.TempData["vcode"] = vcode;
+            basemap.Save(this.Response.OutputStream, ImageFormat.Gif);
+            this.Response.End();
+        }
     }
 }

@@ -142,6 +142,7 @@
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="icusModel.Orders">
         <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="DealImg" ColumnName="DealImg" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="BId" ColumnName="BId" />
           <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
