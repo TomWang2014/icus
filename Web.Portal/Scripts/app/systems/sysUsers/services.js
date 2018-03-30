@@ -27,12 +27,12 @@
         },
         sysSellerDto:function(){
             this.Id = 0;
-            this.IdentityCard = '';//身份证号
-            this.Email = '';//邮箱
-            this.Phone = '';//手机号
-            this.RealName = '';//真实姓名
-            this.BankCard = '';//银行卡号
-            this.BankName = '';//开户银行名称
+            this.S_IdentityCard = '';//身份证号
+            this.S_Email = '';//邮箱
+            this.S_Phone = '';//手机号
+            this.S_RealName = '';//真实姓名
+            this.S_BankCard = '';//银行卡号
+            this.S_BankName = '';//开户银行名称
         },
         //搜索条件
         sysSearchDto: function () {

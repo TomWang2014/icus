@@ -3,6 +3,7 @@
     data: {
         // 编辑用户dto
         dto: new service.sysUser.dto.sysUserDto(),
+        sellerDto:new service.sysUser.dto.sysSellerDto(),
         //搜索dto
         sysSearchDto: new service.sysUser.dto.sysSearchDto(),
         list: [],
